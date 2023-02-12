@@ -39,7 +39,6 @@ let add = (movie) => {
 };
 
 let update = (movie) => {
-  console.log(movie);
   return db("movies")
     .update(movie)
     .where({ id: movie.id })

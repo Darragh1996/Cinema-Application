@@ -24,6 +24,13 @@ let seed = (knex) => {
           occupied: true,
           aisle: false,
         },
+        {
+          rowID: 0,
+          colID: 3,
+          screenID: 1,
+          occupied: true,
+          aisle: false,
+        },
       ]);
     });
 };

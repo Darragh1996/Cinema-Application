@@ -8,6 +8,21 @@ let seed = (knex) => {
           showingID: 1,
           seatID: 1,
         },
+        {
+          userID: 1,
+          showingID: 1,
+          seatID: 2,
+        },
+        {
+          userID: 1,
+          showingID: 2,
+          seatID: 1,
+        },
+        {
+          userID: 1,
+          showingID: 2,
+          seatID: 2,
+        },
       ]);
     });
 };
