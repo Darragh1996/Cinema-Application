@@ -7,6 +7,7 @@ let up = (knex) => {
     table.string("cast").notNullable();
     table.integer("runtime").notNullable();
     table.string("genre").notNullable();
+    table.float("price").notNullable();
   });
 };
 

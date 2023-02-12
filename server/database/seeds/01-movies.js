@@ -10,6 +10,7 @@ let seed = (knex) => {
           cast: "Toby Maguie",
           runtime: 90,
           genre: "Action",
+          price: 8.5,
         },
         {
           name: "Oppenheimer",
@@ -18,6 +19,7 @@ let seed = (knex) => {
           cast: "Cillian Murphy",
           runtime: 90,
           genre: "Historic",
+          price: 8.5,
         },
       ]);
     });
