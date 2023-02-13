@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate-dev": "npx knex migrate:rollback --all && npx knex migrate:latest && npx knex seed:run",
-    "seed": "npx knex seed:run",
+    "database-setup": "npx knex migrate:rollback --all && npx knex migrate:latest && npx knex seed:run",
     "server": "nodemon index.js"
   },
   "type": "module",
