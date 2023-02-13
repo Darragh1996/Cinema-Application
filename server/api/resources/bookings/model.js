@@ -36,14 +36,6 @@ let update = (booking) => {
 };
 
 let del = (userID, showingID) => {
-  //   console.log(
-  //     db("bookings")
-  //       .where({ userID: userID })
-  //       .andWhere({ showingID: showingID })
-  //       .del()
-  //       .toSQL()
-  //   );
-
   return db("bookings")
     .where({ userID: userID, showingID: showingID })
     .del()
