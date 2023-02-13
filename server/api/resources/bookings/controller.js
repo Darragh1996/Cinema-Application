@@ -25,6 +25,7 @@ let getBookingByUserID = async (req, res) => {
 
 let getBookingByUserIdAndShowingId = async (req, res) => {
   let { userID, showingID } = req.params;
+  //   console.log(req.params);
   try {
     let bookings = await Bookings.getByUserIdAndShowingId(userID, showingID);
     res.status(200).json({ bookings });
