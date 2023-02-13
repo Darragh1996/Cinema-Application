@@ -13,7 +13,7 @@ let up = (knex) => {
       .notNullable()
       .index()
       .references("id")
-      .inTable("bookings")
+      .inTable("showings")
       .onDelete("CASCADE");
     table
       .integer("seatID")
