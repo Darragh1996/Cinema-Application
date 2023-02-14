@@ -36,12 +36,7 @@ let update = (booking) => {
 };
 
 let del = (userID, showingID) => {
-  return db("bookings")
-    .where({ userID: userID, showingID: showingID })
-    .del()
-    .then((numRowsDeleted) => {
-      console.log(`${numRowsDeleted} rows deleted`);
-    });
+  return db("bookings").where({ userID: userID, showingID: showingID }).del();
 };
 
 export { getAll, getByUserID, getByUserIdAndShowingId, add, update, del };

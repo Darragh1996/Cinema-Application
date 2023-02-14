@@ -25,7 +25,6 @@ let getBookingByUserID = async (req, res) => {
 
 let getBookingByUserIdAndShowingId = async (req, res) => {
   let { userID, showingID } = req.params;
-  //   console.log(req.params);
   try {
     let bookings = await Bookings.getByUserIdAndShowingId(userID, showingID);
     res.status(200).json({ bookings });
@@ -82,7 +81,6 @@ let updateBooking = async (req, res) => {
 
 let deleteBooking = async (req, res) => {
   let { userID, showingID } = req.params;
-  console.log(userID, showingID);
 
   try {
     await Bookings.del(userID, showingID);
