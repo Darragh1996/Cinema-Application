@@ -5,7 +5,7 @@ dotenv.config();
 const development = {
   client: "pg",
   connection: {
-    host: "localhost",
+    host: process.env.DATABASE_HOST_DEV,
     user: "postgres",
     password: process.env.PASSWORD,
     database: "reel_dreams",
@@ -26,10 +26,10 @@ const development = {
 const testing = {
   client: "pg",
   connection: {
-    host: "localhost",
+    host: process.env.TEST_DATABASE_HOST,
     user: "postgres",
     password: process.env.PASSWORD,
-    database: "reel_dreams",
+    database: "reel_dreams_test",
   },
   pool: {
     min: 2,
@@ -47,7 +47,7 @@ const testing = {
 const production = {
   client: "pg",
   connection: {
-    host: "localhost",
+    host: process.env.DATABASE_HOST_DEV,
     user: "postgres",
     password: process.env.PASSWORD,
     database: "reel_dreams",

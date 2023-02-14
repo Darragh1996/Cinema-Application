@@ -2,7 +2,7 @@ import knex from "knex";
 
 import knexConfig from "../knexfile.js";
 
-const env = process.env.NODE_ENV || "testing";
+const env = process.env.NODE_ENV || "development";
 
 const configOptions = knexConfig[env];
 
