@@ -6,14 +6,36 @@ let getAll = () => {
 
 let getByUserID = (userID) => {
   return db("bookings")
-    .select("id", "userID", "showingID", "seatID")
-    .where({ userID: userID });
+    .leftJoin("users", "bookings.userID", "users.id")
+    .leftJoin("showings", "bookings.showingID", "showings.id")
+    .leftJoin("movies", "movies.id", "showings.id")
+    .leftJoin("seats", "seats.id", "bookings.seatID")
+    .select(
+      "bookings.id",
+      "users.name as user_name",
+      "movies.name as film_name",
+      "showings.datetime",
+      "seats.rowID",
+      "seats.colID"
+    )
+    .where({ "bookings.userID": userID });
 };
 
 let getByUserIdAndShowingId = (userID, showingID) => {
   return db("bookings")
-    .select("id", "userID", "showingID", "seatID")
-    .where({ userID: userID, showingID: showingID });
+    .leftJoin("users", "bookings.userID", "users.id")
+    .leftJoin("showings", "bookings.showingID", "showings.id")
+    .leftJoin("movies", "movies.id", "showings.id")
+    .leftJoin("seats", "seats.id", "bookings.seatID")
+    .select(
+      "bookings.id",
+      "users.name as user_name",
+      "movies.name as film_name",
+      "showings.datetime",
+      "seats.rowID",
+      "seats.colID"
+    )
+    .where({ "bookings.userID": userID, "bookings.showingID": showingID });
 };
 
 let add = (booking) => {
