@@ -12,7 +12,7 @@ let getAllScreens = async (req, res) => {
 let getScreenByID = async (req, res) => {
   let { id } = req.params;
   try {
-    let screen = await Screens.getByScreenID(id);
+    let screen = await Screens.getByID(id);
     res.status(200).json({ data: screen });
   } catch (error) {
     res.status(500).json({ message: `Error getting screen: ${error.message}` });
