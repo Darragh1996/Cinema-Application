@@ -1,3 +1,5 @@
+import React from "react";
+
 import Home from "../pages/home.js";
 import Example from "../pages/example.js";
 
