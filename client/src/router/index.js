@@ -4,7 +4,6 @@ import SwitchRoutes from "./SwitchRoutes";
 import RoutesConfig from "./RoutesConfig";
 
 const AppRouter = () => {
-  console.log(SwitchRoutes);
   return (
     <Router>
       <SwitchRoutes routes={RoutesConfig} />
