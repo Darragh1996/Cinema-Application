@@ -9,7 +9,8 @@ function example() {
     justAxios()
       .get("/movies")
       .then((res) => {
-        console.log(res);
+        console.log(res.data.movies);
+        setFilms(res.data.movies);
       });
   }, []);
 
@@ -19,7 +20,7 @@ function example() {
       <h2>Here's some films:</h2>
       <ul>
         {films.map((film) => {
-          return <li>{film.name}</li>;
+          return <li key={film.id}>{film.name}</li>;
         })}
       </ul>
     </div>
