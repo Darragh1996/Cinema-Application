@@ -21,11 +21,12 @@ let getUserByID = async (req, res) => {
 
 let addUser = async (req, res) => {
   try {
-    let { name, email, phoneNo } = req.body;
+    let { name, email, password, phoneNo } = req.body;
 
     let userCreated = await Users.add({
       name,
       email,
+      password,
       phoneNo,
     });
 
@@ -43,12 +44,13 @@ let addUser = async (req, res) => {
 let updateUser = async (req, res) => {
   try {
     let { id } = req.params;
-    let { name, email, phoneNo } = req.body;
+    let { name, email, password, phoneNo } = req.body;
 
     let userUpdated = await Users.update({
       id,
       name,
       email,
+      password,
       phoneNo,
     });
 

@@ -21,13 +21,12 @@ let getSeatsByScreenID = async (req, res) => {
 
 let addSeat = async (req, res) => {
   try {
-    let { rowID, colID, screenID, occupied, aisle } = req.body;
+    let { rowID, colID, screenID, aisle } = req.body;
 
     let seatCreated = await Seats.add({
       rowID,
       colID,
       screenID,
-      occupied,
       aisle,
     });
 
@@ -45,14 +44,13 @@ let addSeat = async (req, res) => {
 let updateSeat = async (req, res) => {
   try {
     let { id } = req.params;
-    let { rowID, colID, screenID, occupied, aisle } = req.body;
+    let { rowID, colID, screenID, aisle } = req.body;
 
     let seatUpdated = await Seats.update({
       id,
       rowID,
       colID,
       screenID,
-      occupied,
       aisle,
     });
 

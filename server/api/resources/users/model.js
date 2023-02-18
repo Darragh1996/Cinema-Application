@@ -1,12 +1,12 @@
 import db from "../../../database/dbConfig.js";
 
 let getAll = () => {
-  return db("users").select("id", "name", "email", "phoneNo");
+  return db("users").select("id", "name", "email", "password", "phoneNo");
 };
 
 let getByID = (id) => {
   return db("users")
-    .select("id", "name", "email", "phoneNo")
+    .select("id", "name", "email", "password", "phoneNo")
     .where({ id: id })
     .first();
 };

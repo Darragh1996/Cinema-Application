@@ -1,19 +1,12 @@
 import db from "../../../database/dbConfig.js";
 
 let getAll = () => {
-  return db("seats").select(
-    "id",
-    "rowID",
-    "colID",
-    "screenID",
-    "occupied",
-    "aisle"
-  );
+  return db("seats").select("id", "rowID", "colID", "screenID", "aisle");
 };
 
 let getByScreenID = (screenID) => {
   return db("seats")
-    .select("id", "rowID", "colID", "screenID", "occupied", "aisle")
+    .select("id", "rowID", "colID", "screenID", "aisle")
     .where({ screenID: screenID });
 };
 

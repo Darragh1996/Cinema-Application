@@ -10,8 +10,7 @@ let up = (knex) => {
       .references("id")
       .inTable("screens")
       .onDelete("CASCADE");
-    table.boolean("occupied").notNullable().defaultsTo(false);
-    table.boolean("aisle").notNullable().defaultsTo(false);
+    table.boolean("aisle").notNullable().defaultTo(false);
   });
 };
 
