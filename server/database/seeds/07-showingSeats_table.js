@@ -133,7 +133,7 @@ let seed = (knex) => {
           showingID: 1,
           occupied: false,
         },
-        //next row
+        //next showing
         {
           seatID: 26,
           showingID: 2,

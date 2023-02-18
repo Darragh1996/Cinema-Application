@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { justAxios } from "../utils/axios.js";
+import SeatPicker from "../components/seatPicker/seatPicker.js";
 
 function example() {
   const [films, setFilms] = useState([]);
@@ -9,7 +10,6 @@ function example() {
     justAxios()
       .get("/movies")
       .then((res) => {
-        console.log(res.data.movies);
         setFilms(res.data.movies);
       });
   }, []);
@@ -23,6 +23,9 @@ function example() {
           return <li key={film.id}>{film.name}</li>;
         })}
       </ul>
+      <div>
+        <SeatPicker />
+      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ let getAll = () => {
       "showingSeats.id",
       "showingSeats.showingID",
       "showingSeats.occupied",
-      "seats.id",
+      "showingSeats.seatID",
       "seats.rowID",
       "seats.colID",
       "seats.aisle"
@@ -21,7 +21,7 @@ let getByID = (showingID) => {
       "showingSeats.id",
       "showingSeats.showingID",
       "showingSeats.occupied",
-      "seats.id",
+      "showingSeats.seatID",
       "seats.rowID",
       "seats.colID",
       "seats.aisle"
