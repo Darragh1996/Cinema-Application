@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { justAxios } from "../../utils/axios";
 import Row from "./row";
-import { v4 as uuidv4 } from "uuid";
 
 function SeatPicker({ showingID, colCount }) {
   const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState(new Set());
+
+  let handleSubmit = (event) => {
+    console.log(selectedSeats);
+    justAxios()
+      .post("/showingSeats/book", { ids: [...selectedSeats] })
+      .then((res) => {
+        console.log(res);
+      });
+  };
 
   useEffect(() => {
     justAxios()
@@ -34,7 +42,7 @@ function SeatPicker({ showingID, colCount }) {
   return (
     <div>
       <h3>This is the seat picker</h3>
-      <ul>
+      <div>
         {seats.map((row, index) => {
           return (
             <Row
@@ -45,7 +53,8 @@ function SeatPicker({ showingID, colCount }) {
             />
           );
         })}
-      </ul>
+      </div>
+      <button onClick={handleSubmit}>Book Seats</button>
     </div>
   );
 }

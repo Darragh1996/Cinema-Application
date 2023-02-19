@@ -16,11 +16,11 @@ let up = (knex) => {
       .inTable("showings")
       .onDelete("CASCADE");
     table
-      .integer("seatID")
+      .integer("showingSeatID")
       .notNullable()
       .index()
       .references("id")
-      .inTable("seats")
+      .inTable("showingSeats")
       .onDelete("CASCADE");
   });
 };

@@ -46,19 +46,23 @@ let addShowingSeats = async (req, res) => {
 
 let updateShowingSeat = async (req, res) => {
   try {
-    let { id } = req.params;
-    let { seatID, showingID, occupied } = req.body;
+    // let { id } = req.params;
+    let { ids } = req.body;
 
-    let showingSeatUpdated = await ShowingSeats.update({
-      id,
-      seatID,
-      showingID,
-      occupied,
-    });
+    for (let i = 0; i < ids.length; i++) {
+      await ShowingSeats.update({
+        id: ids[i],
+      });
+    }
+    // let showingSeatUpdated = await ShowingSeats.update({
+    //   id,
+    //   seatID,
+    //   showingID,
+    //   occupied,
+    // });
 
     res.status(200).json({
-      message: "Showing Seat updated successfully",
-      data: { showingSeat: showingSeatUpdated },
+      message: "Showing Seats updated successfully",
     });
   } catch (error) {
     res

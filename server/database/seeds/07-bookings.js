@@ -6,22 +6,22 @@ let seed = (knex) => {
         {
           userID: 1,
           showingID: 1,
-          seatID: 1,
+          showingSeatID: 1,
         },
         {
           userID: 1,
           showingID: 1,
-          seatID: 2,
+          showingSeatID: 2,
         },
         {
           userID: 1,
           showingID: 2,
-          seatID: 1,
+          showingSeatID: 1,
         },
         {
           userID: 1,
           showingID: 2,
-          seatID: 2,
+          showingSeatID: 2,
         },
       ]);
     });

@@ -13,7 +13,7 @@ import {
 router.get("/", getAllShowingSeats);
 router.get("/:id", getShowingSeatsByID);
 router.post("/", addShowingSeats);
-router.post("/:id", updateShowingSeat);
+router.post("/book", updateShowingSeat);
 router.delete("/:id", deleteShowingSeats);
 
 export default router;
