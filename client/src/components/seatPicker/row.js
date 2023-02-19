@@ -1,20 +1,19 @@
 import React from "react";
 import "./test.css";
 
-function Row({ row }) {
+import Seat from "./seat";
+
+function Row({ row, selectedSeats, setSelectedSeats }) {
   return (
-    <div class="row">
-      {row.map((seat) => {
+    <div className="row">
+      {row.map((seat, index) => {
         return (
-          <span
-            class="seat"
-            style={{
-              backgroundColor: seat.occupied ? "red" : "green",
-              visibility: seat.aisle ? "hidden" : "",
-            }}
-          >
-            {seat.seatID}.
-          </span>
+          <Seat
+            seat={seat}
+            selectedSeats={selectedSeats}
+            setSelectedSeats={setSelectedSeats}
+            key={`seat-${index}`}
+          />
         );
       })}
     </div>

@@ -1,43 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { justAxios } from "../../utils/axios";
 import Row from "./row";
+import { v4 as uuidv4 } from "uuid";
 
-function SeatPicker() {
+function SeatPicker({ showingID, colCount }) {
   const [seats, setSeats] = useState([]);
-  const [res, setRes] = useState([]);
+  const [selectedSeats, setSelectedSeats] = useState(new Set());
 
   useEffect(() => {
     justAxios()
-      .get("/showingSeats/1")
+      .get(`/showingSeats/${showingID}`)
       .then((res) => {
-        console.log(res.data.showingSeats);
-        setRes(res.data.showingSeats);
+        let rows = [];
+        let row = [];
+        let counter = 1;
+
+        let seats = res.data.showingSeats;
+
+        for (let i = 0; i < seats.length; i++) {
+          if (counter > colCount) {
+            rows.push(row);
+            counter = 1;
+            row = [];
+          }
+          row.push(seats[i]);
+          counter += 1;
+        }
+        rows.push(row);
+        setSeats(rows);
       });
   }, []);
-
-  useEffect(() => {
-    let rows = [];
-    let counter = 1;
-    let temp = [];
-    for (let i = 0; i < res.length; i++) {
-      if (counter > 5) {
-        rows.push(temp);
-        counter = 1;
-        temp = [];
-      }
-      temp.push(res[i]);
-      counter += 1;
-    }
-    rows.push(temp);
-    setSeats(rows);
-  }, [res]);
 
   return (
     <div>
       <h3>This is the seat picker</h3>
       <ul>
-        {seats.map((row) => {
-          return <Row row={row} />;
+        {seats.map((row, index) => {
+          return (
+            <Row
+              row={row}
+              selectedSeats={selectedSeats}
+              setSelectedSeats={setSelectedSeats}
+              key={`row-${index}`}
+            />
+          );
         })}
       </ul>
     </div>
