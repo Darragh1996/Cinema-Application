@@ -1,5 +1,5 @@
 import React from "react";
-import "./test.css";
+import "./seatPicker.css";
 
 import Seat from "./seat";
 

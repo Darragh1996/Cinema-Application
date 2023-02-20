@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./test.css";
+import "./seatPicker.css";
+import { ReactComponent as SeatSVG } from "../../images/couch-seat-svgrepo-com.svg";
 
 const Seat = ({ seat, selectedSeats, setSelectedSeats }) => {
   const [isSelected, setSelected] = useState(false);
@@ -23,30 +24,25 @@ const Seat = ({ seat, selectedSeats, setSelectedSeats }) => {
   };
 
   let handleSeatClick = (event) => {
-    console.log(selectedSeats);
     if (!isSelected) {
-      console.log(event.target);
-      event.target.style.backgroundColor = "blue";
       addToSet(seat.seatID);
     } else {
-      event.target.style.backgroundColor = "green";
       removeFromSet(seat.seatID);
     }
   };
 
   return (
-    <div
+    <SeatSVG
       className={`seat seat-${seat.seatID}`}
       onClick={(e) => handleSeatClick(e)}
       style={{
-        backgroundColor: seat.occupied ? "red" : isSelected ? "blue" : "green",
+        fill: seat.occupied ? "red" : isSelected ? "orange" : "green",
+        backgroundColor: "white",
         visibility: seat.aisle ? "hidden" : "",
         pointerEvents: seat.occupied ? "none" : "",
       }}
       key={`seat-${seat.seatID}`}
-    >
-      {seat.seatID}
-    </div>
+    />
   );
 };
 

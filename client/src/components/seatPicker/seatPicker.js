@@ -5,13 +5,16 @@ import Row from "./row";
 function SeatPicker({ showingID, colCount }) {
   const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState(new Set());
+  const [response, setResponse] = useState(false);
 
   let handleSubmit = (event) => {
-    console.log(selectedSeats);
     justAxios()
       .post("/showingSeats/book", { ids: [...selectedSeats] })
       .then((res) => {
-        console.log(res);
+        if (res.status === 200) {
+          setResponse(!response);
+        }
+        setSelectedSeats(new Set());
       });
   };
 
@@ -37,11 +40,11 @@ function SeatPicker({ showingID, colCount }) {
         rows.push(row);
         setSeats(rows);
       });
-  }, []);
+  }, [response]);
 
   return (
     <div>
-      <h3>This is the seat picker</h3>
+      <h3>Seats selected: {selectedSeats.size}</h3>
       <div>
         {seats.map((row, index) => {
           return (
