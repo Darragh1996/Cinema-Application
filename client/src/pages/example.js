@@ -18,15 +18,15 @@ function example() {
   return (
     <div>
       <h1>Example page</h1>
-      {/* <h2>Here's some films:</h2>
+      <h2>Here's some films:</h2>
       <ul>
         {films.map((film) => {
           return <li key={film.id}>{film.name}</li>;
         })}
       </ul>
       <div>
-        <SeatPicker showingID={1} colCount={5} />
-      </div> */}
+        <SeatPicker showingID={4} colCount={9} />
+      </div>
       <div>
         <SeatGenerator />
       </div>

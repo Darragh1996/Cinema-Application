@@ -1,4 +1,5 @@
 import * as Screens from "./model.js";
+import * as Seats from "../seats/model.js";
 
 let getAllScreens = async (req, res) => {
   try {
@@ -21,12 +22,24 @@ let getScreenByID = async (req, res) => {
 
 let addScreen = async (req, res) => {
   try {
-    let { rowCount, colCount } = req.body;
+    let { rowCount, colCount, seats } = req.body;
 
     let screenCreated = await Screens.add({
       rowCount,
       colCount,
     });
+
+    let newSeats = await seats.map((row, rowIndex) => {
+      return row.map((seat) => {
+        return { ...seat, screenID: screenCreated.id };
+      });
+    });
+
+    for (let i = 0; i < newSeats.length; i++) {
+      for (let j = 0; j < newSeats[i].length; j++) {
+        await Seats.add(newSeats[i][j]);
+      }
+    }
 
     res.status(201).json({
       message: "Screen added successfully",

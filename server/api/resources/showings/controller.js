@@ -1,4 +1,6 @@
 import * as Showings from "./model.js";
+import * as ShowingSeats from "../showingSeats/model.js";
+import * as Seats from "../seats/model.js";
 
 let getAllShowings = async (req, res) => {
   try {
@@ -30,6 +32,27 @@ let addShowing = async (req, res) => {
       screenID,
       datetime,
     });
+
+    let screenSeats = await Seats.getByScreenID(screenID);
+
+    let showingSeats = screenSeats.map((seat) => {
+      let newSeat = {
+        ...seat,
+        showingID: showingCreated.id,
+        seatID: seat.id,
+        occupied: false,
+      };
+      delete newSeat.aisle;
+      delete newSeat.screenID;
+      delete newSeat.colID;
+      delete newSeat.rowID;
+      delete newSeat.id;
+      return newSeat;
+    });
+
+    for (let i = 0; i < showingSeats.length; i++) {
+      await ShowingSeats.add(showingSeats[i]);
+    }
 
     res.status(201).json({
       message: "Showing added successfully",

@@ -15,7 +15,7 @@ let add = (seat) => {
     .insert(seat)
     .returning("*")
     .then((newSeat) => {
-      return newSeat[0];
+      return newSeat;
     });
 };
 

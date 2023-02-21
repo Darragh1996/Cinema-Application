@@ -51,7 +51,7 @@ const Seat = ({ rowIndex, colIndex, setSeats }) => {
         fill: isSelected ? "gray" : "green",
         backgroundColor: "white",
       }}
-      //   key={`seat-${seat.seatID}`}
+      key={`seat-${rowIndex}-${colIndex}`}
     />
   );
 };
