@@ -7,7 +7,7 @@
 }
 
 .seat:hover {
-  cursor: url("../../images/admission-tickets-svgrepo-com.svg"), auto;
+  cursor: pointer;
 }
 
 .row {

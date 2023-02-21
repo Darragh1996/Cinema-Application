@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { justAxios } from "../utils/axios.js";
 import SeatPicker from "../components/seatPicker/seatPicker.js";
+import SeatGenerator from "../components/screenSeatGenerator/seatGenerator.js";
 
 function example() {
   const [films, setFilms] = useState([]);
@@ -17,7 +18,7 @@ function example() {
   return (
     <div>
       <h1>Example page</h1>
-      <h2>Here's some films:</h2>
+      {/* <h2>Here's some films:</h2>
       <ul>
         {films.map((film) => {
           return <li key={film.id}>{film.name}</li>;
@@ -25,6 +26,9 @@ function example() {
       </ul>
       <div>
         <SeatPicker showingID={1} colCount={5} />
+      </div> */}
+      <div>
+        <SeatGenerator />
       </div>
     </div>
   );
