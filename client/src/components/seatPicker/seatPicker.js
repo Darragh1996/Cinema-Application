@@ -43,7 +43,7 @@ function SeatPicker({ showingID, colCount }) {
         console.log("seats ordered: ", rows);
         setSeats(rows);
       });
-  }, [response]);
+  }, [response, colCount]);
 
   return (
     <div>

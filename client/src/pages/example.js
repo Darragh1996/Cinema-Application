@@ -25,7 +25,7 @@ function example() {
         })}
       </ul>
       <div>
-        <SeatPicker showingID={6} colCount={7} />
+        <SeatPicker showingID={4} colCount={7} />
       </div>
       <div>
         <SeatGenerator />

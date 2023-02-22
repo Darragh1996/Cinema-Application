@@ -4,7 +4,7 @@ import * as Seats from "../seats/model.js";
 let getAllScreens = async (req, res) => {
   try {
     let screens = await Screens.getAll();
-    await res.status(200).json({ data: screens });
+    await res.status(200).json({ screens: screens });
   } catch (error) {
     res.status(500).json({ message: `Error getting screen: ${error.message}` });
   }
@@ -14,7 +14,7 @@ let getScreenByID = async (req, res) => {
   let { id } = req.params;
   try {
     let screen = await Screens.getByID(id);
-    res.status(200).json({ data: screen });
+    res.status(200).json({ screen: screen });
   } catch (error) {
     res.status(500).json({ message: `Error getting screen: ${error.message}` });
   }

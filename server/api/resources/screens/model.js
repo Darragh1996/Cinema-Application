@@ -5,7 +5,10 @@ let getAll = () => {
 };
 
 let getByID = (id) => {
-  return db("screens").select("id", "rowCount", "colCount").where({ id });
+  return db("screens")
+    .select("id", "rowCount", "colCount")
+    .where({ id })
+    .first();
 };
 
 let add = (screen) => {
