@@ -6,6 +6,7 @@ function SeatPicker({ showingID, colCount }) {
   const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState(new Set());
   const [response, setResponse] = useState(false);
+  const [rows, setRows] = useState([]);
 
   let handleSubmit = (event) => {
     justAxios()
@@ -22,34 +23,51 @@ function SeatPicker({ showingID, colCount }) {
     justAxios()
       .get(`/showingSeats/${showingID}`)
       .then((res) => {
-        let rows = [];
-        let row = [];
-        let counter = 1;
+        // let rows = [];
+        // let row = [];
+        // let counter = 1;
 
-        let seats = res.data.showingSeats;
+        // let seats = res.data.showingSeats;
 
-        console.log("seats before: ", seats);
+        setSeats(res.data.showingSeats);
 
-        for (let i = 0; i < seats.length; i++) {
-          if (counter > colCount) {
-            rows.push(row);
-            counter = 1;
-            row = [];
-          }
-          row.push(seats[i]);
-          counter += 1;
-        }
-        rows.push(row);
-        console.log("seats ordered: ", rows);
-        setSeats(rows);
+        // for (let i = 0; i < seats.length; i++) {
+        //   if (counter > colCount) {
+        //     rows.push(row);
+        //     counter = 1;
+        //     row = [];
+        //   }
+        //   row.push(seats[i]);
+        //   counter += 1;
+        // }
+        // rows.push(row);
+        // setSeats(rows);
       });
-  }, [response, colCount]);
+  }, [response]);
+
+  useEffect(() => {
+    let tempRows = [];
+    let row = [];
+    let counter = 1;
+
+    for (let i = 0; i < seats.length; i++) {
+      if (counter > colCount) {
+        tempRows.push(row);
+        counter = 1;
+        row = [];
+      }
+      row.push(seats[i]);
+      counter += 1;
+    }
+    tempRows.push(row);
+    setRows(tempRows);
+  }, [colCount]);
 
   return (
     <div>
       <h3>Seats selected: {selectedSeats.size}</h3>
       <div>
-        {seats.map((row, index) => {
+        {rows.map((row, index) => {
           return (
             <Row
               row={row}
