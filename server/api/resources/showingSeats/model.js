@@ -26,7 +26,8 @@ let getByID = (showingID) => {
       "seats.colID",
       "seats.aisle"
     )
-    .where({ "showingSeats.showingID": showingID });
+    .where({ "showingSeats.showingID": showingID })
+    .orderBy("showingSeats.id");
 };
 
 let add = (showingSeat) => {

@@ -28,6 +28,8 @@ function SeatPicker({ showingID, colCount }) {
 
         let seats = res.data.showingSeats;
 
+        console.log("seats before: ", seats);
+
         for (let i = 0; i < seats.length; i++) {
           if (counter > colCount) {
             rows.push(row);
@@ -38,6 +40,7 @@ function SeatPicker({ showingID, colCount }) {
           counter += 1;
         }
         rows.push(row);
+        console.log("seats ordered: ", rows);
         setSeats(rows);
       });
   }, [response]);
