@@ -3,9 +3,8 @@ import { justAxios } from "../../utils/axios";
 import Row from "./row";
 
 function SeatPicker({ showingID, colCount }) {
-  const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState(new Set());
-  const [response, setResponse] = useState(false);
+  const [hasChanged, setHasChanged] = useState(false);
   const [rows, setRows] = useState([]);
 
   let handleSubmit = (event) => {
@@ -13,7 +12,7 @@ function SeatPicker({ showingID, colCount }) {
       .post("/showingSeats/book", { ids: [...selectedSeats] })
       .then((res) => {
         if (res.status === 200) {
-          setResponse(!response);
+          setHasChanged(!hasChanged);
         }
         setSelectedSeats(new Set());
       });
@@ -23,60 +22,46 @@ function SeatPicker({ showingID, colCount }) {
     justAxios()
       .get(`/showingSeats/${showingID}`)
       .then((res) => {
-        // let rows = [];
-        // let row = [];
-        // let counter = 1;
+        let rows = [];
+        let row = [];
+        let counter = 1;
 
-        // let seats = res.data.showingSeats;
+        let seats = res.data.showingSeats;
 
-        setSeats(res.data.showingSeats);
-
-        // for (let i = 0; i < seats.length; i++) {
-        //   if (counter > colCount) {
-        //     rows.push(row);
-        //     counter = 1;
-        //     row = [];
-        //   }
-        //   row.push(seats[i]);
-        //   counter += 1;
-        // }
-        // rows.push(row);
-        // setSeats(rows);
+        for (let i = 0; i < seats.length; i++) {
+          if (counter > colCount) {
+            rows.push(row);
+            counter = 1;
+            row = [];
+          }
+          row.push(seats[i]);
+          counter += 1;
+        }
+        rows.push(row);
+        console.log("rows: ", rows);
+        console.log("colCount: ", colCount);
+        setRows(rows);
       });
-  }, [response]);
-
-  useEffect(() => {
-    let tempRows = [];
-    let row = [];
-    let counter = 1;
-
-    for (let i = 0; i < seats.length; i++) {
-      if (counter > colCount) {
-        tempRows.push(row);
-        counter = 1;
-        row = [];
-      }
-      row.push(seats[i]);
-      counter += 1;
-    }
-    tempRows.push(row);
-    setRows(tempRows);
-  }, [colCount]);
+  }, [hasChanged, colCount]);
 
   return (
     <div>
       <h3>Seats selected: {selectedSeats.size}</h3>
       <div>
-        {rows.map((row, index) => {
-          return (
-            <Row
-              row={row}
-              selectedSeats={selectedSeats}
-              setSelectedSeats={setSelectedSeats}
-              key={`row-${index}`}
-            />
-          );
-        })}
+        {colCount && rows ? (
+          rows.map((row, index) => {
+            return (
+              <Row
+                row={row}
+                selectedSeats={selectedSeats}
+                setSelectedSeats={setSelectedSeats}
+                key={`row-${index}`}
+              />
+            );
+          })
+        ) : (
+          <h1>Loading...</h1>
+        )}
       </div>
       <button onClick={handleSubmit}>Book Seats</button>
     </div>

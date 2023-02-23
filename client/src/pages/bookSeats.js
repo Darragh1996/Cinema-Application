@@ -15,7 +15,7 @@ function bookSeats() {
         justAxios()
           .get(`/screens/${res.data.showing.screenID}`)
           .then((res2) => {
-            console.log(res2.data.screen.colCount);
+            console.log("response: ", res2.data.screen);
             setColCount(res2.data.screen.colCount);
           });
       });
