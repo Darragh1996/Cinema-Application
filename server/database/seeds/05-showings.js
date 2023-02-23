@@ -10,7 +10,7 @@ let seed = (knex) => {
         },
         {
           movieID: 2,
-          screenID: 1,
+          screenID: 2,
           datetime: knex.fn.now(6),
         },
         {

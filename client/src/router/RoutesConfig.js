@@ -8,6 +8,8 @@ import DeleteMovie from "../pages/deleteMovie.js";
 import UserLogin from "../pages/userLogIn.js";
 import ViewMovie from "../pages/viewMovie.js";
 
+import CreateScreen from "../pages/admin/createScreen.js";
+import BookSeats from "../pages/bookSeats.js";
 
 const RoutesConfig = [
   {
@@ -38,7 +40,14 @@ const RoutesConfig = [
     path: "/viewMovie",
     element: <ViewMovie />,
   },
-  
+  {
+    path: "/admin/createScreen",
+    element: <CreateScreen />,
+  },
+  {
+    path: "/bookSeats/:showingID",
+    element: <BookSeats />,
+  },
 ];
 
 export default RoutesConfig;

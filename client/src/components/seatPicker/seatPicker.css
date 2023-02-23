@@ -2,12 +2,12 @@
   background-color: red;
   height: 50px;
   width: 50px;
-  margin: 10px;
+  margin: 0.1rem;
   display: inline-block;
 }
 
 .seat:hover {
-  cursor: url("../../images/admission-tickets-svgrepo-com.svg"), auto;
+  cursor: pointer;
 }
 
 .row {

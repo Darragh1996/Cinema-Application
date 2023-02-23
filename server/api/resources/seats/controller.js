@@ -23,7 +23,7 @@ let addSeat = async (req, res) => {
   try {
     let { rowID, colID, screenID, aisle } = req.body;
 
-    let seatCreated = await Seats.add({
+    let seatsCreated = await Seats.add({
       rowID,
       colID,
       screenID,
@@ -32,7 +32,7 @@ let addSeat = async (req, res) => {
 
     res.status(201).json({
       message: "Seat added successfully",
-      data: { seat: seatCreated },
+      data: { seats: seatsCreated },
     });
   } catch (error) {
     res

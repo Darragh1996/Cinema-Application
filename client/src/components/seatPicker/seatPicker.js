@@ -3,16 +3,16 @@ import { justAxios } from "../../utils/axios";
 import Row from "./row";
 
 function SeatPicker({ showingID, colCount }) {
-  const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState(new Set());
-  const [response, setResponse] = useState(false);
+  const [hasChanged, setHasChanged] = useState(false);
+  const [rows, setRows] = useState([]);
 
   let handleSubmit = (event) => {
     justAxios()
       .post("/showingSeats/book", { ids: [...selectedSeats] })
       .then((res) => {
         if (res.status === 200) {
-          setResponse(!response);
+          setHasChanged(!hasChanged);
         }
         setSelectedSeats(new Set());
       });
@@ -38,24 +38,30 @@ function SeatPicker({ showingID, colCount }) {
           counter += 1;
         }
         rows.push(row);
-        setSeats(rows);
+        console.log("rows: ", rows);
+        console.log("colCount: ", colCount);
+        setRows(rows);
       });
-  }, [response]);
+  }, [hasChanged, colCount]);
 
   return (
     <div>
       <h3>Seats selected: {selectedSeats.size}</h3>
       <div>
-        {seats.map((row, index) => {
-          return (
-            <Row
-              row={row}
-              selectedSeats={selectedSeats}
-              setSelectedSeats={setSelectedSeats}
-              key={`row-${index}`}
-            />
-          );
-        })}
+        {colCount && rows ? (
+          rows.map((row, index) => {
+            return (
+              <Row
+                row={row}
+                selectedSeats={selectedSeats}
+                setSelectedSeats={setSelectedSeats}
+                key={`row-${index}`}
+              />
+            );
+          })
+        ) : (
+          <h1>Loading...</h1>
+        )}
       </div>
       <button onClick={handleSubmit}>Book Seats</button>
     </div>
