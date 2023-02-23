@@ -34,4 +34,8 @@ let del = (id) => {
   return db("users").where({ id }).del();
 };
 
-export { getAll, getByID, add, update, del };
+let filter = (filter) => {
+  return db("users").where(filter).first();
+};
+
+export { getAll, getByID, add, update, del, filter };
