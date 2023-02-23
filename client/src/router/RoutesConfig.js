@@ -2,6 +2,12 @@ import React from "react";
 
 import Home from "../pages/home.js";
 import Example from "../pages/example.js";
+import AddMovie from "../pages/addMovie.js";
+import CreateUser from "../pages/createUser.js";
+import DeleteMovie from "../pages/deleteMovie.js";
+import UserLogin from "../pages/userLogIn.js";
+import ViewMovie from "../pages/viewMovie.js";
+
 
 const RoutesConfig = [
   {
@@ -12,6 +18,27 @@ const RoutesConfig = [
     path: "/example",
     element: <Example />,
   },
+  {
+    path: "/addMovie",
+    element: <AddMovie />,
+  },
+  {
+    path: "/createUser",
+    element: <CreateUser />,
+  },
+  {
+    path: "/deleteMovie",
+    element: <DeleteMovie />,
+  },
+  {
+    path: "/userLogin",
+    element: <UserLogin />,
+  },
+  {
+    path: "/viewMovie",
+    element: <ViewMovie />,
+  },
+  
 ];
 
 export default RoutesConfig;

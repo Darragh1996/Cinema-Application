@@ -1,0 +1,174 @@
+.bookNowButton{
+    color: black;
+    background-color: #FCAF3B;
+    border-radius: 3px;
+    border-color: #FCAF3B;
+    
+    font-family: 'Inter';
+    font-style: bold;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    width: 100px;
+    height: 30px;
+    margin:auto;
+}
+
+
+#nav {
+    height: 80px;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    max-height: 100px;
+    display: flex;
+}
+
+#nav img {
+    padding-left: 40px;
+    margin-top: auto;
+    margin-bottom:auto;
+    height:60px;
+    width: 60px;
+}
+
+#nav h3{
+    position: absolute;
+    right: 20%;
+    top: 0%;
+    bottom: 0%;
+
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.88);
+
+    text-decoration: underline;
+    text-decoration-color: #FCAF3B;
+}
+
+
+#userIcon{
+    position: absolute;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+#quickBook {
+    padding-top: 100px;
+    padding-bottom: 25px;
+    display: flex;
+    /* margin: auto;
+    align-items: center; */
+    justify-content: space-around;
+    background-color: #d9d9d9;
+    right: 0%;
+    white-space: nowrap;
+}
+
+#posterCarousel{
+    height: 400px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+#posterCarousel #leftArrow{
+    position: absolute;
+    left: 7%;
+    top: 320px;
+    height: 40px;
+}
+
+#posterCarousel #rightArrow{
+    position: absolute;
+    right: 7%;
+    top: 320px;
+    height: 40px;
+}
+
+#moviePosterTrio{
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: space-around;
+    height: 502px;
+}
+
+.trioPoster{
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 434px;
+    width: 289px;
+}
+
+.container {
+    position: relative;
+    background-color: white;
+    color: black;
+    top: 280px;
+    margin: auto;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.container h4{
+    padding: 10px;
+    padding-top: 10px;
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 700;
+    text-align: center;
+}
+
+#movieFormContainer{
+    margin:auto;
+    padding-top: 100px;
+}
+
+table{
+    margin: auto;
+    justify-content: auto;
+    font-family: 'Roboto Flex';
+}
+
+input {
+    width: 300px;
+}
+
+#loginFormContainer{
+    margin: auto;
+    padding-top: 100px;
+}
+
+#adminMoviesContainer{
+    margin: auto;
+    padding-top: 100px;
+}
+
+#footer{
+    position: relative;
+    height: 100px;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    bottom: 0px;
+}

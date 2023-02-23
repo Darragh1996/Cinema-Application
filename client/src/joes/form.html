@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Flex' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    
+    <title>Form</title>
+</head>
+<body>
+    <div id="nav">
+        <img src="./img/logo.png" alt="Reel Dreams">
+        <a href><h3>SHOWTIMES</h3></a>
+        <img id="userIcon" src="./img/userIcon.png" alt="User Icon">
+    </div>
+    <div id="movieFormContainer">        
+        <form id="movieForm">
+            <table>
+                <tr>
+                    <td>
+                        <label for="movieName">Movie Name</label>
+                    </td>
+                    <td>
+                        <input type="text" id="movieName" required></input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="director">Director</label>
+                    </td>
+                    <td>
+                        <input type="text" id="director" required></input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="runtime">Runtime</label>
+                    </td>
+                    <td>
+                        <input type="number" id="runtime" placeholder="mins" min="1" max="1000" required></input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="genre">Genre</label>
+                    </td>
+                    <td>
+                        <input type="text" id="genre" required></input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="trailerURL">Trailer URL</label>
+                    </td>
+                    <td>
+                        <input type="url" id="trailerURL" required></input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="releaseDate">Release Date</label>
+                    </td>
+                    <td>
+                        <input type="date" id="releaseDate" required></input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="posterURL">Poster URL</label>
+                    </td>
+                    <td>
+                        <input type="url" id="posterURL"  required></input>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Save" class="bookNowButton">
+        </form>
+    </div>
+<!-- name, rating director, cast, runtime, genre, trailer, price -->
+
+    
+<script src="form.js"></script>
+</body>
+
+</html>
