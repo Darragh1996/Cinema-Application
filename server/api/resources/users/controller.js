@@ -1,4 +1,5 @@
-import bcrypt, { hash } from "bcrypt";
+import bcrypt, { hash } from "bcrypt"; 
+//had to comment this out to get server to run
 import * as Users from "./model.js";
 
 let getAllUsers = async (req, res) => {

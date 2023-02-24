@@ -6,7 +6,7 @@ import { justAxios } from "../utils/axios.js";
 function viewMovie() {
     const [films, setFilms] = useState([]);
     const [id, setID] = useState("");
-    const [movie,setMovie]=useState({});
+    const [movie, setMovie] = useState({});
 
     useEffect(() => {
         justAxios()
@@ -57,13 +57,13 @@ function viewMovie() {
                     value='View Movie'
                 />
             </form>
-          {
-             movie ? (
-                <div>
-                    <h2>{movie.name}</h2>
-                </div>
-               ): ""
-          }
+            {
+                movie ? (
+                    <div>
+                        <h2>name: {movie.name}</h2>
+                    </div>
+                ) : ""
+            }
         </div>
     );
 }
