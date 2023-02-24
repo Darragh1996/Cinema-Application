@@ -7,6 +7,7 @@ import CreateUser from "../pages/createUser.js";
 import DeleteMovie from "../pages/deleteMovie.js";
 import UserLogin from "../pages/userLogIn.js";
 import ViewMovie from "../pages/viewMovie.js";
+import EditMovie from "../pages/editMovie.js";
 
 import CreateScreen from "../pages/admin/createScreen.js";
 import BookSeats from "../pages/bookSeats.js";
@@ -31,6 +32,10 @@ const RoutesConfig = [
   {
     path: "/deleteMovie",
     element: <DeleteMovie />,
+  },
+  {
+    path: "/editMovie",
+    element: <EditMovie />,
   },
   {
     path: "/userLogin",

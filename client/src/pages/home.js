@@ -6,6 +6,7 @@ import CreateUserButton from "../components/createUserButton.js";
 import DeleteMovieButton from "../components/deleteMovieButton.js";
 import LoginButton from "../components/loginButton.js";
 import ViewMovieButton from "../components/viewMovieButton.js";
+import EditMovieButton from "../components/editMovieButton.js";
 
 function home() {
   return (
@@ -16,7 +17,8 @@ function home() {
       <CreateUserButton/> <br/>
       <DeleteMovieButton/> <br/>
       <LoginButton/> <br/>
-      <ViewMovieButton/>
+      <ViewMovieButton/> <br/>
+      <EditMovieButton/>
     </div>
   );
 }
