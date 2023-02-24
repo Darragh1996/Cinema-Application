@@ -1,0 +1,158 @@
+body {
+  font-family: "Source Code Pro", monospace;
+}
+
+#indexHeader {
+  font-size: 50px;
+  color: #0d6efd;
+  width: 50vw;
+  text-align: center;
+  margin-left: 25vw;
+  margin-top: 25vh;
+}
+
+#indexBtns {
+  display: flex;
+  justify-content: space-around;
+  width: 40vw;
+  margin-left: 30vw;
+  margin-top: 10vh;
+}
+
+#indexBtns button {
+  font-size: 30px;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+#header h1 {
+  width: 20vw;
+  text-align: center;
+  margin-left: 40vw;
+  font-size: 45px;
+  color: #0d6efd;
+}
+
+#headerButtons {
+  display: flex;
+  justify-content: space-around;
+  width: 20vw;
+  margin-right: 2vw;
+  text-decoration: none;
+}
+
+#header button {
+  display: block;
+  min-width: 8vw;
+  font-size: 20px;
+}
+
+.table {
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+th,
+td {
+  text-align: center;
+}
+
+.cinemaForm {
+  width: 30vw;
+  margin-left: 35vw;
+  margin-top: 2vh;
+  padding: 1rem;
+  border: 1px solid #0d6efd;
+  border-radius: 5px;
+}
+
+label {
+  color: #0d6efd;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+}
+
+#playMovieIcon {
+  color: #0d6efd;
+}
+
+#playMovieIcon:hover {
+  cursor: pointer;
+}
+
+#sqlFailure {
+  border-radius: 10px;
+  position: absolute;
+  top: 20vh;
+  left: 35vw;
+  width: 30vw;
+  height: 50vh;
+}
+
+#sqlFailure h1 {
+  margin-top: 5vh;
+  text-align: center;
+  color: #dc3545;
+}
+
+#sqlFailure p {
+  margin-top: 5vh;
+  text-align: center;
+  font-weight: 200;
+}
+
+#sqlFailure a {
+  width: 10vw;
+  display: block;
+  margin-left: 10vw;
+  margin-top: 5vh;
+}
+
+#sqlFailure a button {
+  width: 10vw;
+}
+
+#trailerBox {
+  display: block;
+  z-index: 100;
+  background-color: white;
+  border: 3px solid #0d6efd;
+  border-radius: 5px;
+  position: absolute;
+  top: 22.5vh;
+  left: 20vw;
+  width: 60vw;
+  height: 55vh;
+}
+
+#trailer {
+  width: 100%;
+  height: 100%;
+}
+
+#popUpModal {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  /* creates frosted glass effect */
+  background: rgba(255, 255, 255, 0.33);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.6px);
+  -webkit-backdrop-filter: blur(5.6px);
+}
