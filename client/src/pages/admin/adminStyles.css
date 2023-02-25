@@ -1,5 +1,5 @@
 body {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", monospace !important;
 }
 
 #indexHeader {
@@ -55,6 +55,7 @@ body {
 
 .table {
   font-size: 20px;
+  font-family: "Source Code Pro", monospace !important;
 }
 
 a {
@@ -63,13 +64,13 @@ a {
 
 th,
 td {
-  text-align: center;
+  text-align: center !important;
 }
 
 .cinemaForm {
   width: 30vw;
   margin-left: 35vw;
-  margin-top: 2vh;
+  margin-top: 5vh;
   padding: 1rem;
   border: 1px solid #0d6efd;
   border-radius: 5px;

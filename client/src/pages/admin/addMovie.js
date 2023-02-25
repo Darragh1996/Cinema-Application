@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { justAxios } from "../../utils/axios.js";
+import { useNavigate } from "react-router-dom";
 
+// import styles from "./AddMovie.module.css";
 import "./adminStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function movieForm() {
+function MovieForm() {
   const [movieState, setMovieState] = useState({
     name: "",
     rating: "",
@@ -16,17 +19,16 @@ function movieForm() {
     img_landscape_url: "",
     details: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    if (e.target.name != "runtime") {
+    if (e.target.name !== "runtime") {
       setMovieState({
         ...movieState,
         [e.target.name]: e.target.value,
       });
     } else {
       if (!/[^0-9]/.test(e.target.value)) {
-        console.log("runtime hello");
-
         setMovieState({
           ...movieState,
           [e.target.name]: e.target.value,
@@ -44,6 +46,7 @@ function movieForm() {
         })
         .then((res) => {
           console.log(res);
+          navigate("/admin/viewMovies");
         });
     } catch (err) {
       console.log(err);
@@ -55,12 +58,12 @@ function movieForm() {
       <div id="header">
         <h1>Add Movie</h1>
         <div id="headerButtons">
-          <a href="/">
+          <Link to="/admin">
             <button className="btn btn-success">Home</button>
-          </a>
-          <a href="/movies">
+          </Link>
+          <Link to="/admin/viewMovies">
             <button className="btn btn-danger">Cancel</button>
-          </a>
+          </Link>
         </div>
       </div>
       <form onSubmit={(event) => handleSubmit(event)} className="cinemaForm">
@@ -181,4 +184,4 @@ function movieForm() {
     </div>
   );
 }
-export default movieForm;
+export default MovieForm;

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import "../styles.css";
+// import styles from "./Home.module.css";
+import "../../styles.css";
 
-import logo from "../img/logo.png";
-import userIcon from "../img/userIcon.png";
-import posterWide from "../img/posterwide.png";
-import leftArrow from "../img/leftArrow.png";
-import rightArrow from "../img/rightArrow.png";
-import posterTall from "../img/postertall.png";
+import logo from "./img/logo.png";
+import userIcon from "./img/userIcon.png";
+import posterWide from "./img/posterwide.png";
+import leftArrow from "./img/leftArrow.png";
+import rightArrow from "./img/rightArrow.png";
+import posterTall from "./img/postertall.png";
 
-function home() {
+function Home() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -46,7 +47,11 @@ function home() {
           <select id="qbTime" name="qbTime">
             <option value="now">Now</option>
           </select>
-          <input type="submit" value="Book Now" class="bookNowButton"></input>
+          <input
+            type="submit"
+            value="Book Now"
+            className="bookNowButton"
+          ></input>
         </form>
       </div>
       <div id="posterCarousel">
@@ -80,4 +85,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;

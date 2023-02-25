@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { justAxios } from "../../utils/axios.js";
 
+// import styles from "./EditMovie.module.css";
 import "./adminStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function movieEditForm() {
+function MovieEditForm() {
   const params = useParams();
   const [movieState, setMovieState] = useState({
     id: 0,
@@ -19,17 +20,16 @@ function movieEditForm() {
     img_landscape_url: "",
     details: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    if (e.target.name != "runtime") {
+    if (e.target.name !== "runtime") {
       setMovieState({
         ...movieState,
         [e.target.name]: e.target.value,
       });
     } else {
       if (!/[^0-9]/.test(e.target.value)) {
-        console.log("runtime hello");
-
         setMovieState({
           movieState,
           [e.target.name]: e.target.value,
@@ -47,6 +47,7 @@ function movieEditForm() {
         })
         .then((res) => {
           console.log(res);
+          navigate("/admin/viewMovies");
         });
     } catch (err) {
       console.log(err);
@@ -192,4 +193,4 @@ function movieEditForm() {
     </div>
   );
 }
-export default movieEditForm;
+export default MovieEditForm;

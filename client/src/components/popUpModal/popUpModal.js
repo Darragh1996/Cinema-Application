@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function popUpModal({ linkToYoutubeTrailer }) {
-  const closeTrailerBox = () => {
-    // closes the pop-up modal
+import styles from "./popUpModal.module.css";
 
-    let popUpModal = document.getElementById("popUpModal");
-    let trailer = document.getElementById("trailer");
-    trailer.remove(); // removes the now unneeded ifram element
-    popUpModal.style.display = "none"; // makes it invisible
-  };
+function popUpModal({ linkToYoutubeTrailer, setModalDisplay, setTrailer }) {
+  useEffect(() => {
+    console.log("from inside the modal");
+  }, []);
 
   return (
-    <div id="popUpModal" onClick={closeTrailerBox}>
+    <div
+      id={styles.popUpModal}
+      onClick={() => {
+        setModalDisplay(false);
+        setTrailer("");
+      }}
+    >
       <div id="trailerBox">
         <iframe
-          id="trailer"
+          title="Watch Trailer"
+          id={styles.trailer}
           src={linkToYoutubeTrailer}
-          style={{ height: "100%", width: "100%", display: "block" }}
+          style={{
+            height: "100%",
+            width: "100%",
+            display: "block",
+          }}
         ></iframe>
       </div>
     </div>

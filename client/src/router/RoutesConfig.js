@@ -1,16 +1,17 @@
 import React from "react";
 
-import Home from "../pages/home.js";
+import Home from "../pages/Home/Home.js";
 import Example from "../pages/example.js";
-import AddMovie from "../pages/admin/addMovie.js";
+import AddMovie from "../pages/admin/AddMovie.js";
 // import CreateUser from "../pages/createUser.js";
 // import DeleteMovie from "../pages/deleteMovie.js";
 // import UserLogin from "../pages/userLogIn.js";
-// import ViewMovie from "../pages/viewMovie.js";
-import EditMovie from "../pages/admin/editMovie.js";
+import ViewMovies from "../pages/admin/ViewMovie.js";
+import EditMovie from "../pages/admin/EditMovie.js";
+import AdminHome from "../pages/admin/AdminHome.js";
 
-import CreateScreen from "../pages/admin/createScreen.js";
-import BookSeats from "../pages/bookSeats.js";
+// import CreateScreen from "../pages/admin/createScreen.js";
+// import BookSeats from "../pages/bookSeats.js";
 
 const RoutesConfig = [
   {
@@ -20,6 +21,10 @@ const RoutesConfig = [
   {
     path: "/example",
     element: <Example />,
+  },
+  {
+    path: "/admin",
+    element: <AdminHome />,
   },
   {
     path: "/admin/addMovie",
@@ -41,10 +46,10 @@ const RoutesConfig = [
   //   path: "/userLogin",
   //   element: <UserLogin />,
   // },
-  // {
-  //   path: "/viewMovie",
-  //   element: <ViewMovie />,
-  // },
+  {
+    path: "/admin/viewMovies",
+    element: <ViewMovies />,
+  },
   // {
   //   path: "/admin/createScreen",
   //   element: <CreateScreen />,
