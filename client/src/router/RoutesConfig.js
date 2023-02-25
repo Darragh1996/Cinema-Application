@@ -7,7 +7,7 @@ import AddMovie from "../pages/admin/addMovie.js";
 // import DeleteMovie from "../pages/deleteMovie.js";
 // import UserLogin from "../pages/userLogIn.js";
 // import ViewMovie from "../pages/viewMovie.js";
-// import EditMovie from "../pages/editMovie.js";
+import EditMovie from "../pages/admin/editMovie.js";
 
 import CreateScreen from "../pages/admin/createScreen.js";
 import BookSeats from "../pages/bookSeats.js";
@@ -22,7 +22,7 @@ const RoutesConfig = [
     element: <Example />,
   },
   {
-    path: "/addMovie",
+    path: "/admin/addMovie",
     element: <AddMovie />,
   },
   // {
@@ -33,10 +33,10 @@ const RoutesConfig = [
   //   path: "/deleteMovie",
   //   element: <DeleteMovie />,
   // },
-  // {
-  //   path: "/editMovie",
-  //   element: <EditMovie />,
-  // },
+  {
+    path: "/admin/editMovie/:movieID",
+    element: <EditMovie />,
+  },
   // {
   //   path: "/userLogin",
   //   element: <UserLogin />,

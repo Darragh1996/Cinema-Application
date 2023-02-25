@@ -4,11 +4,11 @@ import { justAxios } from "../../utils/axios.js";
 
 import "./adminStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
 
 function movieEditForm() {
   const params = useParams();
   const [movieState, setMovieState] = useState({
+    id: 0,
     name: "",
     rating: "",
     director: "",
@@ -31,7 +31,7 @@ function movieEditForm() {
         console.log("runtime hello");
 
         setMovieState({
-          ...movieState,
+          movieState,
           [e.target.name]: e.target.value,
         });
       }
@@ -42,16 +42,8 @@ function movieEditForm() {
     e.preventDefault();
     try {
       justAxios()
-        .post("/movies", {
-          name: movieState.name,
-          director: movieState.director,
-          rating: movieState.rating,
-          runtime: movieState.runtime,
-          genre: movieState.genre,
-          trailer_url: movieState.trailer_url,
-          img_landscape_url: movieState.img_landscape_url,
-          img_poster_url: movieState.img_poster_url,
-          details: movieState.details,
+        .post(`/movies/${params.movieID}`, {
+          movieState,
         })
         .then((res) => {
           console.log(res);
@@ -72,7 +64,7 @@ function movieEditForm() {
   return (
     <div>
       <div id="header">
-        <h1>Add Movie</h1>
+        <h1>Edit Movie</h1>
         <div id="headerButtons">
           <a href="/">
             <button className="btn btn-success">Home</button>
@@ -195,7 +187,7 @@ function movieEditForm() {
             onChange={(event) => handleChange(event)}
           />
         </div>
-        <input type="submit" value="Add" className="btn btn-primary" />
+        <input type="submit" value="Save Edit" className="btn btn-primary" />
       </form>
     </div>
   );

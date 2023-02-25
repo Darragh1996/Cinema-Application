@@ -40,15 +40,7 @@ function movieForm() {
     try {
       justAxios()
         .post("/movies", {
-          name: movieState.name,
-          director: movieState.director,
-          rating: movieState.rating,
-          runtime: movieState.runtime,
-          genre: movieState.genre,
-          trailer_url: movieState.trailer_url,
-          img_landscape_url: movieState.img_landscape_url,
-          img_poster_url: movieState.img_poster_url,
-          details: movieState.details,
+          movieState,
         })
         .then((res) => {
           console.log(res);
