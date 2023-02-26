@@ -3,9 +3,9 @@ import React from "react";
 import Home from "../pages/Home/Home.js";
 import Example from "../pages/example.js";
 import AddMovie from "../pages/admin/AddMovie.js";
-// import CreateUser from "../pages/createUser.js";
+import CreateUser from "../pages/createUser.js";
 // import DeleteMovie from "../pages/deleteMovie.js";
-// import UserLogin from "../pages/userLogIn.js";
+import UserLogin from "../pages/userLogIn.js";
 import ViewMovies from "../pages/admin/ViewMovie.js";
 import EditMovie from "../pages/admin/EditMovie.js";
 import AdminHome from "../pages/admin/AdminHome.js";
@@ -30,10 +30,10 @@ const RoutesConfig = [
     path: "/admin/addMovie",
     element: <AddMovie />,
   },
-  // {
-  //   path: "/createUser",
-  //   element: <CreateUser />,
-  // },
+  {
+    path: "/createUser",
+    element: <CreateUser />,
+  },
   // {
   //   path: "/deleteMovie",
   //   element: <DeleteMovie />,
@@ -42,10 +42,10 @@ const RoutesConfig = [
     path: "/admin/editMovie/:movieID",
     element: <EditMovie />,
   },
-  // {
-  //   path: "/userLogin",
-  //   element: <UserLogin />,
-  // },
+  {
+    path: "/userLogin",
+    element: <UserLogin />,
+  },
   {
     path: "/admin/viewMovies",
     element: <ViewMovies />,

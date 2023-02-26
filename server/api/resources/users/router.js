@@ -13,7 +13,7 @@ import {
 import { checkUserExists, checkEmailExists } from "./middlewares.js";
 
 router.get("/", getAllUsers);
-router.get("/login", checkEmailExists, loginUser);
+router.post("/login", checkEmailExists, loginUser);
 router.get("/:id", getUserByID);
 router.post("/", checkUserExists, registerUser);
 router.post("/:id", updateUser);

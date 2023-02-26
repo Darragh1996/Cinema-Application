@@ -1,4 +1,4 @@
-import bcrypt, { hash } from "bcrypt"; 
+import bcrypt, { hash } from "bcrypt";
 //had to comment this out to get server to run
 import * as Users from "./model.js";
 
@@ -51,6 +51,8 @@ let loginUser = async (req, res) => {
       user,
       body: { password },
     } = req;
+
+    console.log(user, password);
 
     /* 1st is user submitted password. 2nd is hashed stored password */
     const isPasswordValid = bcrypt.compareSync(password, user.password);
