@@ -157,3 +157,8 @@ input {
   backdrop-filter: blur(5.6px);
   -webkit-backdrop-filter: blur(5.6px);
 }
+
+.highlighted {
+  background-color: #0d6efd;
+  color: white;
+}

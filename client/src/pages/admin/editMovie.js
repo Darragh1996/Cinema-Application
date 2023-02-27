@@ -47,7 +47,7 @@ function MovieEditForm() {
         })
         .then((res) => {
           console.log(res);
-          navigate("/admin/viewMovies");
+          navigate("/admin/movies");
         });
     } catch (err) {
       console.log(err);
