@@ -47,7 +47,7 @@ const RoutesConfig = [
     element: <UserLogin />,
   },
   {
-    path: "/admin/viewMovies",
+    path: "/admin/movies",
     element: <ViewMovies />,
   },
   // {

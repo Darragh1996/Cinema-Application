@@ -61,7 +61,7 @@ function MovieForm() {
           <Link to="/admin">
             <button className="btn btn-success">Home</button>
           </Link>
-          <Link to="/admin/viewMovies">
+          <Link to="/admin/movies">
             <button className="btn btn-danger">Cancel</button>
           </Link>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { justAxios } from "../../utils/axios.js";
 
 // import styles from "./EditMovie.module.css";
@@ -67,12 +67,12 @@ function MovieEditForm() {
       <div id="header">
         <h1>Edit Movie</h1>
         <div id="headerButtons">
-          <a href="/">
+          <Link to="/admin">
             <button className="btn btn-success">Home</button>
-          </a>
-          <a href="/movies">
+          </Link>
+          <Link to="/admin/movies">
             <button className="btn btn-danger">Cancel</button>
-          </a>
+          </Link>
         </div>
       </div>
       <form onSubmit={(event) => handleSubmit(event)} className="cinemaForm">
