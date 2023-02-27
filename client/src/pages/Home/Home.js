@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { justAxios } from "../../utils/axios";
 
 // import styles from "./Home.module.css";
 import "../../styles.css";
@@ -15,13 +16,20 @@ function Home() {
 
   useEffect(() => {
     // TODO: axios call for movies to go here.
+    justAxios()
+      .get("/movies")
+      .then((res) => {
+        console.log("movies");
+        console.log(res.data.movies.slice(0, 3));
+        setMovies(res.data.movies.slice(0, 3));
+      });
 
     // this is just mock data
-    let mockMovie = {
-      poster_img: posterTall,
-      name: "Ant-man & the Wasp: Quantumania",
-    };
-    setMovies([mockMovie, mockMovie, mockMovie]);
+    // let mockMovie = {
+    //   poster_img: posterTall,
+    //   name: "Ant-man & the Wasp: Quantumania",
+    // };
+    // setMovies([mockMovie, mockMovie, mockMovie]);
   }, []);
 
   return (
@@ -64,7 +72,7 @@ function Home() {
           return (
             <div
               className="trioPoster"
-              style={{ backgroundImage: `url(${movie.poster_img})` }}
+              style={{ backgroundImage: `url(${movie.img_poster_url})` }}
             >
               <div className="container">
                 <h4 className="trioMovieTitle">{movie.name}</h4>
