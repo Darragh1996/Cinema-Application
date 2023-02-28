@@ -56,7 +56,7 @@ const RoutesConfig = [
     element: <ViewScreens />,
   },
   {
-    path: "/admin/createScreen",
+    path: "/admin/addScreen",
     element: <CreateScreen />,
   },
   // {

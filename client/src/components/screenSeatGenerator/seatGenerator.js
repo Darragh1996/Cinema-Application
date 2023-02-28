@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { justAxios } from "../../utils/axios";
 import Row from "./row";
 
 function SeatGenerator() {
   const [seats, setSeats] = useState([]);
+  const navigate = useNavigate();
 
   let handleSubmit = (event) => {
     let jsonSeats = seats.map((row, rowIndex) => {
@@ -23,6 +25,7 @@ function SeatGenerator() {
       })
       .then((res) => {
         console.log(res);
+        navigate("/admin/screens");
       });
   };
 
