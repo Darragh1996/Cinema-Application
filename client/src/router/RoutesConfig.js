@@ -11,7 +11,7 @@ import EditMovie from "../pages/admin/EditMovie.js";
 import AdminHome from "../pages/admin/AdminHome.js";
 import ViewScreens from "../pages/admin/ViewScreens.js";
 
-// import CreateScreen from "../pages/admin/createScreen.js";
+import CreateScreen from "../pages/admin/CreateScreen.js";
 // import BookSeats from "../pages/bookSeats.js";
 
 const RoutesConfig = [
@@ -55,10 +55,10 @@ const RoutesConfig = [
     path: "/admin/screens",
     element: <ViewScreens />,
   },
-  // {
-  //   path: "/admin/createScreen",
-  //   element: <CreateScreen />,
-  // },
+  {
+    path: "/admin/createScreen",
+    element: <CreateScreen />,
+  },
   // {
   //   path: "/bookSeats/:showingID",
   //   element: <BookSeats />,
