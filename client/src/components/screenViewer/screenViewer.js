@@ -3,7 +3,6 @@ import { justAxios } from "../../utils/axios";
 import Row from "./row";
 
 function SeatPicker({ screenID, colCount }) {
-  const [hasChanged, setHasChanged] = useState(false);
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
