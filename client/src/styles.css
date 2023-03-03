@@ -114,6 +114,10 @@
   width: 289px;
 }
 
+.trioPoster img{
+  max-width: 100%;
+}
+
 .container {
   position: relative;
   background-color: white;
