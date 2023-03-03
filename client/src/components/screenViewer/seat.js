@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./screenViewer.css";
 import { ReactComponent as SeatSVG } from "../../images/couch-seat-svgrepo-com.svg";
 

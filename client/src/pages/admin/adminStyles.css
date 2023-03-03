@@ -158,7 +158,25 @@ input {
   -webkit-backdrop-filter: blur(5.6px);
 }
 
+ul {
+  padding: 0 !important;
+  width: 10vw;
+}
+
+li {
+  width: 100%;
+  height: 30px;
+  /* vertical-align: */
+  font-size: 20px;
+}
+
 .highlighted {
   background-color: #0d6efd;
   color: white;
+}
+
+.screenViewer {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
 }

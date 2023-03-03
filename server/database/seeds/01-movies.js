@@ -17,13 +17,13 @@ let seed = (knex) => {
             "https://drive.google.com/uc?export=view&id=1LKaJoQLdjMQK528EYm0rCm7Xdm2o-CIM",
         },
         {
-          name: "Iron Man 2",
+          name: "The Dark Knight",
           rating: "12A",
-          director: "CJon Favreau",
+          director: "Christopher Nolan",
           runtime: 152,
           genre: "Action",
-          details: "Iron Man beats up fathers enemy",
-          trailer_url: "https://www.youtube.com/embed/qsRZghNciIo",
+          details: "Batman fights people.",
+          trailer_url: "https://www.youtube.com/embed/EXeTwQWrcwY",
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1J_NooYoTQYY7wdSSNy5IEdTs2KVRsQBm",
           img_landscape_url:
