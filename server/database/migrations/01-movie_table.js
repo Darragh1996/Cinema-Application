@@ -4,10 +4,12 @@ let up = (knex) => {
     table.string("name").notNullable();
     table.string("rating").notNullable();
     table.string("director").notNullable();
-    table.string("cast").notNullable();
     table.integer("runtime").notNullable();
     table.string("genre").notNullable();
-    table.float("price").notNullable();
+    table.string("details").notNullable();
+    table.string("trailer_url").notNullable();
+    table.string("img_poster_url").notNullable();
+    table.string("img_landscape_url").notNullable();
   });
 };
 

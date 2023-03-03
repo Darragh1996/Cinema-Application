@@ -1,0 +1,15 @@
+.seat {
+  background-color: red;
+  height: 50px;
+  width: 50px;
+  margin: 0.1rem;
+  display: inline-block;
+}
+
+.seat:hover {
+  cursor: pointer;
+}
+
+.row {
+  margin: 10px;
+}

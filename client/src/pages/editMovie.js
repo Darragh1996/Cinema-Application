@@ -160,5 +160,3 @@ function viewMovie() {
     );
 }
 
-
-export default viewMovie;
