@@ -9,7 +9,7 @@ import userIcon from "./img/userIcon.png";
 import posterWide from "./img/posterwide.png";
 import leftArrow from "./img/leftArrow.png";
 import rightArrow from "./img/rightArrow.png";
-import posterTall from "./img/postertall.png";
+// import posterTall from "./img/postertall.png";
 
 function Home() {
   const [movies, setMovies] = useState([]);

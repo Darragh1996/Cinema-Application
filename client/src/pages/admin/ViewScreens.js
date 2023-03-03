@@ -53,7 +53,7 @@ function ViewScreens() {
           </Link>
         </div>
       </div>
-      <div>
+      <div className="screenViewer">
         <ul style={{ listStyleType: "none" }}>
           {screens.map((screen) => {
             // if (index === 0) {
@@ -71,8 +71,8 @@ function ViewScreens() {
             );
           })}
         </ul>
+        <ScreenViewer screenID={choice} colCount={selectedScreen.colCount} />
       </div>
-      <ScreenViewer screenID={choice} colCount={selectedScreen.colCount} />
     </div>
   );
 }

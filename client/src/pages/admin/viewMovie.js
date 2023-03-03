@@ -106,7 +106,7 @@ function ViewMovie() {
                 <td>
                   <Link
                     onClick={() => deleteMovie(movie.id)}
-                    to={`/admin/viewMovies`}
+                    to={`/admin/movies`}
                   >
                     <span className="glyphicon glyphicon-trash">
                       <Trash />
