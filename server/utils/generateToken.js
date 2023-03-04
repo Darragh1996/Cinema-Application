@@ -1,4 +1,4 @@
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { SECRET } from "../config/index.js";
 
 const generateToken = (user, secret = SECRET) => {
