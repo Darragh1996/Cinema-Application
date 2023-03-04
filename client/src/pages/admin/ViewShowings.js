@@ -5,7 +5,7 @@ import { Pencil, Trash } from "react-bootstrap-icons";
 // import styles from "./ViewMovie.module.css";
 import "./adminStyles.css";
 
-import { justAxios } from "../../utils/axios.js";
+import { justAxios, axiosWithAuth } from "../../utils/axios.js";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -38,12 +38,12 @@ function ViewShowings() {
       });
   }, [update]);
 
-  let deleteShowing = async (movieID) => {
+  let deleteShowing = async (showingID) => {
     // e.preventDefault();
     // let movieToDelete = ("/movies/" + id)
     try {
-      justAxios()
-        .delete(`/showings/${movieID}`)
+      axiosWithAuth()
+        .delete(`/showings/${showingID}`)
         .then((res) => {
           console.log(res);
           // navigate("/admin/viewMovies");
