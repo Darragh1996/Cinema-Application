@@ -11,8 +11,8 @@ function AdminHome() {
         <Link to="/admin/movies">
           <button class="btn btn-primary">Movie List</button>
         </Link>
-        <Link to="/admin/timetable">
-          <button class="btn btn-primary">Timetable</button>
+        <Link to="/admin/showings">
+          <button class="btn btn-primary">Showings</button>
         </Link>
         <Link to="/admin/screens">
           <button class="btn btn-primary">Screens</button>
