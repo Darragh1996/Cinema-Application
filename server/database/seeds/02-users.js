@@ -31,6 +31,14 @@ let seed = (knex) => {
             "$2b$10$WPvD2W5kQK0J2gBL9Hm00uGSgtzUnbAbObH8.2eXbrHGpKk.UaF9S",
           phoneNo: "123 456 7890",
         },
+        {
+          name: "BossMan",
+          email: "boss@email.com",
+          password:
+            "$2b$10$WPvD2W5kQK0J2gBL9Hm00uGSgtzUnbAbObH8.2eXbrHGpKk.UaF9S",
+          phoneNo: "123 456 7890",
+          admin: true,
+        },
       ]);
     });
 };
