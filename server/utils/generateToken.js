@@ -3,7 +3,7 @@ import { SECRET } from "../config/index.js";
 
 const generateToken = (user, secret = SECRET) => {
   const payload = {
-    subject: 0,
+    subject: user.id,
     name: user.name,
     email: user.email,
     admin: user.admin,
