@@ -10,10 +10,12 @@ import {
   deleteMovie,
 } from "./controller.js";
 
-router.get("/", getAllMovies);
-router.get("/:id", getMovieByID);
-router.post("/", addMovie);
-router.post("/:id", updateMovie);
-router.delete("/:id", deleteMovie);
+import { authorized, authorizedAdmin } from "../../middlewares.js";
+
+router.get("/", authorized, getAllMovies);
+router.get("/:id", authorized, getMovieByID);
+router.post("/", authorizedAdmin, addMovie);
+router.post("/:id", authorizedAdmin, updateMovie);
+router.delete("/:id", authorizedAdmin, deleteMovie);
 
 export default router;

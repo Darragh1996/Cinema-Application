@@ -11,11 +11,13 @@ import {
   deleteBooking,
 } from "./controller.js";
 
-router.get("/", getAllBookings);
-router.get("/:userID", getBookingByUserID);
+import { authorized, authorizedAdmin } from "../../middlewares.js";
+
+router.get("/", authorizedAdmin, getAllBookings);
+router.get("/:userID", authorized, getBookingByUserID);
 router.get("/:userID/:showingID", getBookingByUserIdAndShowingId);
-router.post("/", addBooking);
-router.post("/:id", updateBooking);
-router.delete("/:userID/:showingID", deleteBooking);
+router.post("/", authorized, addBooking);
+// router.post("/:id", updateBooking);
+router.delete("/:userID/:showingID", authorized, deleteBooking);
 
 export default router;
