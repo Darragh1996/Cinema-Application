@@ -13,11 +13,12 @@ import ViewScreens from "../pages/admin/ViewScreens.js";
 
 import CreateScreen from "../pages/admin/CreateScreen.js";
 import BookSeats from "../pages/bookSeats.js";
+import PrivateRoute from "../components/privateRoute.js";
 
 const RoutesConfig = [
   {
     path: "/",
-    element: <Home />,
+    element: <PrivateRoute Component={Home} admin={false} />,
   },
   {
     path: "/example",
@@ -25,11 +26,11 @@ const RoutesConfig = [
   },
   {
     path: "/admin",
-    element: <AdminHome />,
+    element: <PrivateRoute Component={AdminHome} admin={true} />,
   },
   {
     path: "/admin/addMovie",
-    element: <AddMovie />,
+    element: <PrivateRoute Component={AddMovie} admin={true} />,
   },
   {
     path: "/register",
@@ -41,7 +42,7 @@ const RoutesConfig = [
   // },
   {
     path: "/admin/editMovie/:movieID",
-    element: <EditMovie />,
+    element: <PrivateRoute Component={EditMovie} admin={true} />,
   },
   {
     path: "/login",
@@ -49,19 +50,19 @@ const RoutesConfig = [
   },
   {
     path: "/admin/movies",
-    element: <ViewMovies />,
+    element: <PrivateRoute Component={ViewMovies} admin={true} />,
   },
   {
     path: "/admin/screens",
-    element: <ViewScreens />,
+    element: <PrivateRoute Component={ViewScreens} admin={true} />,
   },
   {
     path: "/admin/addScreen",
-    element: <CreateScreen />,
+    element: <PrivateRoute Component={CreateScreen} admin={true} />,
   },
   {
     path: "/bookSeats/:showingID",
-    element: <BookSeats />,
+    element: <PrivateRoute Component={BookSeats} admin={false} />,
   },
 ];
 

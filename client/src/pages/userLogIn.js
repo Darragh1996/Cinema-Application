@@ -16,6 +16,7 @@ function userLogin() {
         })
         .then((res) => {
           console.log(res);
+          localStorage.setItem("reel_dreams_jwt", res.data.data.token);
         });
     } catch (err) {
       console.log(err);
