@@ -16,12 +16,26 @@ let getByID = (id) => {
     .leftJoin("movies", "showings.movieID", "movies.id")
     .select(
       "showings.id",
+      "movies.id",
       "movies.name",
       "showings.screenID",
       "showings.datetime"
     )
     .where({ "showings.id": id })
     .first();
+};
+
+let getByMovieID = (movieID) => {
+  return db("showings")
+    .leftJoin("movies", "showings.movieID", "movies.id")
+    .select(
+      "showings.id",
+      "movies.name",
+      "movies.id",
+      "showings.screenID",
+      "showings.datetime"
+    )
+    .where({ "movies.id": movieID });
 };
 
 let add = (showing) => {
@@ -47,4 +61,4 @@ let del = (id) => {
   return db("showings").where({ id }).del();
 };
 
-export { getAll, getByID, add, update, del };
+export { getAll, getByID, getByMovieID, add, update, del };
