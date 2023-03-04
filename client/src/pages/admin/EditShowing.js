@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axios.js";
-import { useNavigate } from "react-router-dom";
 import { justAxios } from "../../utils/axios.js";
 
 // import styles from "./AddMovie.module.css";
 import "./adminStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function ShowingForm() {
+function EditShowingForm() {
   const [showingState, setShowingState] = useState({
+    id: 0,
     movieID: 1,
     screenID: 1,
     datetime: "",
   });
+  //   const [showing, setShowing] = useState
   const [movies, setMovies] = useState([]);
   const [screens, setScreens] = useState([]);
   const navigate = useNavigate();
+  const params = useParams();
 
   const handleChange = (e) => {
     setShowingState({
       ...showingState,
       [e.target.name]: e.target.value,
     });
+    console.log(showingState);
   };
 
   let handleSubmit = async (e) => {
@@ -34,7 +37,7 @@ function ShowingForm() {
     };
     try {
       axiosWithAuth()
-        .post("/showings", showing)
+        .post(`/showings/${params.showingID}`, showing)
         .then((res) => {
           console.log(res);
           navigate("/admin/showings");
@@ -46,6 +49,26 @@ function ShowingForm() {
   };
 
   useEffect(() => {
+    justAxios()
+      .get(`/showings/${params.showingID}`)
+      .then((res) => {
+        const date = new Date(res.data.showing.datetime);
+
+        // Format the Date object to a string suited to
+        // the required format of datetime-local
+        const year = date.getUTCFullYear();
+        const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+        const day = String(date.getUTCDate()).padStart(2, "0");
+        const hours = String(date.getUTCHours()).padStart(2, "0");
+        const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+        const formattedDatetime = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+        setShowingState({
+          ...res.data.showing,
+          datetime: formattedDatetime,
+        });
+      });
+
     justAxios()
       .get("/movies")
       .then((res) => {
@@ -64,7 +87,7 @@ function ShowingForm() {
   return (
     <div>
       <div id="header">
-        <h1>Add Showing</h1>
+        <h1>Edit Showing</h1>
         <div id="headerButtons">
           <Link to="/admin">
             <button className="btn btn-success">Home</button>
@@ -88,7 +111,14 @@ function ShowingForm() {
             onChange={(event) => handleChange(event)}
           >
             {movies.map((movie) => {
-              return <option value={parseInt(movie.id)}>{movie.name}</option>;
+              return (
+                <option
+                  value={parseInt(movie.id)}
+                  selected={showingState.movieID === movie.id}
+                >
+                  {movie.name}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -105,7 +135,14 @@ function ShowingForm() {
             onChange={(event) => handleChange(event)}
           >
             {screens.map((screen) => {
-              return <option value={screen.id}>{screen.id}</option>;
+              return (
+                <option
+                  value={screen.id}
+                  selected={showingState.screenID === screen.id}
+                >
+                  {screen.id}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -124,9 +161,9 @@ function ShowingForm() {
           />
         </div>
 
-        <input type="submit" value="Add" className="btn btn-primary" />
+        <input type="submit" value="Edit" className="btn btn-primary" />
       </form>
     </div>
   );
 }
-export default ShowingForm;
+export default EditShowingForm;

@@ -12,6 +12,7 @@ import AdminHome from "../pages/admin/AdminHome.js";
 import ViewScreens from "../pages/admin/ViewScreens.js";
 import ViewShowings from "../pages/admin/ViewShowings.js";
 import AddShowing from "../pages/admin/AddShowing.js";
+import EditShowing from "../pages/admin/EditShowing.js";
 
 import CreateScreen from "../pages/admin/CreateScreen.js";
 import BookSeats from "../pages/bookSeats.js";
@@ -73,6 +74,10 @@ const RoutesConfig = [
   {
     path: "/admin/addShowing",
     element: <PrivateRoute Component={AddShowing} admin={true} />,
+  },
+  {
+    path: "/admin/editShowing/:showingID",
+    element: <PrivateRoute Component={EditShowing} admin={true} />,
   },
 ];
 
