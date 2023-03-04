@@ -35,7 +35,6 @@ let del = (id) => {
 };
 
 let filter = (filter) => {
-  console.log("hello");
   return db("users").where(filter).first();
 };
 

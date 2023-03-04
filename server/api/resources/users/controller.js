@@ -46,8 +46,6 @@ let registerUser = async (req, res) => {
 };
 
 let loginUser = async (req, res) => {
-  console.log("inside login controller");
-
   try {
     const {
       user,
