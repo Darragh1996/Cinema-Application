@@ -16,7 +16,7 @@ let getByID = (id) => {
     .leftJoin("movies", "showings.movieID", "movies.id")
     .select(
       "showings.id",
-      "movies.id",
+      "movies.id as movieID",
       "movies.name",
       "showings.screenID",
       "showings.datetime"
@@ -31,7 +31,7 @@ let getByMovieID = (movieID) => {
     .select(
       "showings.id",
       "movies.name",
-      "movies.id",
+      "movies.id as movieID",
       "showings.screenID",
       "showings.datetime"
     )
