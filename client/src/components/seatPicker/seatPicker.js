@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { justAxios } from "../../utils/axios";
+import { justAxios, axiosWithAuth } from "../../utils/axios";
 import Row from "./row";
 
 function SeatPicker({ showingID, colCount }) {
@@ -8,7 +8,7 @@ function SeatPicker({ showingID, colCount }) {
   const [rows, setRows] = useState([]);
 
   let handleSubmit = (event) => {
-    justAxios()
+    axiosWithAuth()
       .post("/showingSeats/book", { ids: [...selectedSeats] })
       .then((res) => {
         if (res.status === 200) {
