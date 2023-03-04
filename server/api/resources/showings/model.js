@@ -8,7 +8,8 @@ let getAll = () => {
       "movies.name",
       "showings.screenID",
       "showings.datetime"
-    );
+    )
+    .orderBy("showings.datetime");
 };
 
 let getByID = (id) => {
@@ -35,7 +36,8 @@ let getByMovieID = (movieID) => {
       "showings.screenID",
       "showings.datetime"
     )
-    .where({ "movies.id": movieID });
+    .where({ "movies.id": movieID })
+    .orderBy("showings.datetime");
 };
 
 let add = (showing) => {
