@@ -32,7 +32,7 @@ const RoutesConfig = [
     element: <AddMovie />,
   },
   {
-    path: "/createUser",
+    path: "/register",
     element: <CreateUser />,
   },
   // {
@@ -44,7 +44,7 @@ const RoutesConfig = [
     element: <EditMovie />,
   },
   {
-    path: "/userLogin",
+    path: "/login",
     element: <UserLogin />,
   },
   {

@@ -46,13 +46,13 @@ let registerUser = async (req, res) => {
 };
 
 let loginUser = async (req, res) => {
+  console.log("inside login controller");
+
   try {
     const {
       user,
       body: { password },
     } = req;
-
-    console.log(user, password);
 
     /* 1st is user submitted password. 2nd is hashed stored password */
     const isPasswordValid = bcrypt.compareSync(password, user.password);

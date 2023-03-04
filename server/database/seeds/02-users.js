@@ -6,25 +6,29 @@ let seed = (knex) => {
         {
           name: "Darragh",
           email: "darragh@email.com",
-          password: "password",
+          password:
+            "$2b$10$WPvD2W5kQK0J2gBL9Hm00uGSgtzUnbAbObH8.2eXbrHGpKk.UaF9S",
           phoneNo: "123 456 7890",
         },
         {
           name: "Joseph",
           email: "joseph@email.com",
-          password: "password",
+          password:
+            "$2b$10$WPvD2W5kQK0J2gBL9Hm00uGSgtzUnbAbObH8.2eXbrHGpKk.UaF9S",
           phoneNo: "123 456 7890",
         },
         {
           name: "Tegan",
           email: "tegan@email.com",
-          password: "password",
+          password:
+            "$2b$10$WPvD2W5kQK0J2gBL9Hm00uGSgtzUnbAbObH8.2eXbrHGpKk.UaF9S",
           phoneNo: "123 456 7890",
         },
         {
           name: "Jason",
           email: "jason@email.com",
-          password: "password",
+          password:
+            "$2b$10$WPvD2W5kQK0J2gBL9Hm00uGSgtzUnbAbObH8.2eXbrHGpKk.UaF9S",
           phoneNo: "123 456 7890",
         },
       ]);
