@@ -8,6 +8,7 @@ function SeatPicker({ showingID, colCount }) {
   const [rows, setRows] = useState([]);
 
   let handleSubmit = (event) => {
+    console.log(selectedSeats);
     axiosWithAuth()
       .post("/showingSeats/book", { ids: [...selectedSeats] })
       .then((res) => {
@@ -38,8 +39,6 @@ function SeatPicker({ showingID, colCount }) {
           counter += 1;
         }
         rows.push(row);
-        console.log("rows: ", rows);
-        console.log("colCount: ", colCount);
         setRows(rows);
       });
   }, [hasChanged, colCount]);
