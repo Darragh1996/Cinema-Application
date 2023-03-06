@@ -10,10 +10,12 @@ import {
   deleteScreen,
 } from "./controller.js";
 
+import { authorizedAdmin } from "../../middlewares.js";
+
 router.get("/", getAllScreens);
 router.get("/:id", getScreenByID);
-router.post("/", addScreen);
-router.post("/:id", updateScreen);
-router.delete("/:id", deleteScreen);
+router.post("/", authorizedAdmin, addScreen);
+router.post("/:id", authorizedAdmin, updateScreen);
+router.delete("/:id", authorizedAdmin, deleteScreen);
 
 export default router;

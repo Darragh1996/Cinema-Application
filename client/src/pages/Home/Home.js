@@ -15,21 +15,11 @@ function Home() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    // TODO: axios call for movies to go here.
     justAxios()
       .get("/movies")
       .then((res) => {
-        console.log("movies");
-        console.log(res.data.movies.slice(0, 3));
         setMovies(res.data.movies.slice(0, 3));
       });
-
-    // this is just mock data
-    // let mockMovie = {
-    //   poster_img: posterTall,
-    //   name: "Ant-man & the Wasp: Quantumania",
-    // };
-    // setMovies([mockMovie, mockMovie, mockMovie]);
   }, []);
 
   return (
@@ -68,11 +58,12 @@ function Home() {
         <img id="rightArrow" src={rightArrow} alt="rightArrow" />
       </div>
       <div id="moviePosterTrio">
-        {movies.map((movie) => {
+        {movies.map((movie, index) => {
           return (
             <div
               className="trioPoster"
               style={{ backgroundImage: `url(${movie.img_poster_url})` }}
+              key={`trioPoster-${index}`}
             >
               <div className="container">
                 <h4 className="trioMovieTitle">{movie.name}</h4>

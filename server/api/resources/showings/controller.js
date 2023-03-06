@@ -19,7 +19,21 @@ let getShowingByID = async (req, res) => {
     let showing = await Showings.getByID(id);
     res.status(200).json({ showing });
   } catch (error) {
-    res.status(500).json({ message: `Error getting user: ${error.message}` });
+    res
+      .status(500)
+      .json({ message: `Error getting showing: ${error.message}` });
+  }
+};
+
+let getShowingByMovieID = async (req, res) => {
+  let { movieID } = req.params;
+  try {
+    let showings = await Showings.getByMovieID(movieID);
+    res.status(200).json({ showings });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Error getting showings: ${error.message}` });
   }
 };
 
@@ -105,6 +119,7 @@ let deleteShowing = async (req, res) => {
 export {
   getAllShowings,
   getShowingByID,
+  getShowingByMovieID,
   addShowing,
   updateShowing,
   deleteShowing,

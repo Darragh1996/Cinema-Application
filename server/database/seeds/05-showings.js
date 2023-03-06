@@ -13,11 +13,6 @@ let seed = (knex) => {
           screenID: 2,
           datetime: knex.fn.now(6),
         },
-        {
-          movieID: 1,
-          screenID: 1,
-          datetime: knex.fn.now(6),
-        },
       ]);
     });
 };

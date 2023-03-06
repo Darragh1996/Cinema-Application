@@ -10,14 +10,18 @@ import ViewMovies from "../pages/admin/ViewMovie.js";
 import EditMovie from "../pages/admin/EditMovie.js";
 import AdminHome from "../pages/admin/AdminHome.js";
 import ViewScreens from "../pages/admin/ViewScreens.js";
+import ViewShowings from "../pages/admin/ViewShowings.js";
+import AddShowing from "../pages/admin/AddShowing.js";
+import EditShowing from "../pages/admin/EditShowing.js";
 
 import CreateScreen from "../pages/admin/CreateScreen.js";
-// import BookSeats from "../pages/bookSeats.js";
+import BookSeats from "../pages/bookSeats.js";
+import PrivateRoute from "../components/privateRoute.js";
 
 const RoutesConfig = [
   {
     path: "/",
-    element: <Home />,
+    element: <PrivateRoute Component={Home} admin={false} />,
   },
   {
     path: "/example",
@@ -25,14 +29,14 @@ const RoutesConfig = [
   },
   {
     path: "/admin",
-    element: <AdminHome />,
+    element: <PrivateRoute Component={AdminHome} admin={true} />,
   },
   {
     path: "/admin/addMovie",
-    element: <AddMovie />,
+    element: <PrivateRoute Component={AddMovie} admin={true} />,
   },
   {
-    path: "/createUser",
+    path: "/register",
     element: <CreateUser />,
   },
   // {
@@ -41,28 +45,40 @@ const RoutesConfig = [
   // },
   {
     path: "/admin/editMovie/:movieID",
-    element: <EditMovie />,
+    element: <PrivateRoute Component={EditMovie} admin={true} />,
   },
   {
-    path: "/userLogin",
+    path: "/login",
     element: <UserLogin />,
   },
   {
     path: "/admin/movies",
-    element: <ViewMovies />,
+    element: <PrivateRoute Component={ViewMovies} admin={true} />,
   },
   {
     path: "/admin/screens",
-    element: <ViewScreens />,
+    element: <PrivateRoute Component={ViewScreens} admin={true} />,
   },
   {
     path: "/admin/addScreen",
-    element: <CreateScreen />,
+    element: <PrivateRoute Component={CreateScreen} admin={true} />,
   },
-  // {
-  //   path: "/bookSeats/:showingID",
-  //   element: <BookSeats />,
-  // },
+  {
+    path: "/bookSeats/:showingID",
+    element: <PrivateRoute Component={BookSeats} admin={false} />,
+  },
+  {
+    path: "/admin/showings",
+    element: <PrivateRoute Component={ViewShowings} admin={true} />,
+  },
+  {
+    path: "/admin/addShowing",
+    element: <PrivateRoute Component={AddShowing} admin={true} />,
+  },
+  {
+    path: "/admin/editShowing/:showingID",
+    element: <PrivateRoute Component={EditShowing} admin={true} />,
+  },
 ];
 
 export default RoutesConfig;

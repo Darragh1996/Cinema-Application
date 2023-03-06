@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { justAxios } from "../../utils/axios";
+import { axiosWithAuth } from "../../utils/axios";
 import Row from "./row";
 
 function SeatGenerator() {
@@ -17,7 +17,7 @@ function SeatGenerator() {
         };
       });
     });
-    justAxios()
+    axiosWithAuth()
       .post("/screens", {
         rowCount: jsonSeats.length,
         colCount: jsonSeats[0].length,

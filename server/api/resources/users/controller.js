@@ -1,6 +1,6 @@
-import bcrypt, { hash } from "bcrypt";
-//had to comment this out to get server to run
+import bcrypt from "bcrypt";
 import * as Users from "./model.js";
+import { generateToken } from "../../../utils/generateToken.js";
 
 let getAllUsers = async (req, res) => {
   try {
@@ -52,22 +52,23 @@ let loginUser = async (req, res) => {
       body: { password },
     } = req;
 
-    console.log(user, password);
-
     /* 1st is user submitted password. 2nd is hashed stored password */
     const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (isPasswordValid) {
       delete user.password;
+      const token = generateToken(user);
 
       res.status(200).json({
         message: `Welcome. You're logged in!`,
-        data: { user },
+        data: { user, token },
       });
     } else {
       res.status(401).json({ message: "Invalid credentials" });
     }
   } catch (error) {
-    res.status(500).json({ message: `Failed to log user in` });
+    res
+      .status(500)
+      .json({ message: `Failed to log user in: ${error.message}` });
   }
 };
 
