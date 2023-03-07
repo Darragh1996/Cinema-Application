@@ -13,14 +13,35 @@ import rightArrow from "./img/rightArrow.png";
 
 function Home() {
   const [movies, setMovies] = useState([]);
+  const [movOption, setMovOption] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [dateOption, setDateOption] = useState([]);
+
 
   useEffect(() => {
     justAxios()
       .get("/movies")
       .then((res) => {
         setMovies(res.data.movies.slice(0, 3));
+        setMovOption(res.data.movies);
       });
   }, []);
+
+  function handleMovieChange(event) {
+    setSelectedMovie(event.target.value)
+    const movieId = event.target.value
+
+    justAxios()
+      .get("showings/view/" + movieId)
+      .then((res) => {
+        setDateOption(res.data.showings);
+      });
+  }
+  function formatDatetime(datetime) {
+    const date = new Date(datetime);
+    const options = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    const formattedDatetime = date.toLocaleDateString('en-GB', options);
+    return formattedDatetime;}
 
   return (
     <div>
@@ -34,17 +55,25 @@ function Home() {
       <div id="quickBook">
         <form>
           <label htmlFor="qBMovieName"></label>
-          <select id="qBMovieName" name="qBMovieName">
-            <option value="Black Panther">Select Movie</option>
+          <select id="qBMovieName" name="qBMovieName" onChange={handleMovieChange}>
+            <option value="" >Select Movie </option>
+            {movOption.map((movie) => (
+              <option key={movie.id} value={movie.id}>{movie.name}</option>
+            ))}
           </select>
+  
           <label htmlFor="qbDate"></label>
-          <select id="qbDate" name="qbDate">
-            <option value="Black Panther">Today</option>
+          <select id="qbDate" name="qbDate" disabled={!selectedMovie}>
+            <option value="" >Select Time </option>
+            {dateOption.map((date) => (
+              <option key={date.id} value={date.id}>{formatDatetime(date.datetime)}</option>
+            ))}
           </select>
-          <label htmlFor="qbTime"></label>
+
+          {/* <label htmlFor="qbTime"></label>
           <select id="qbTime" name="qbTime">
             <option value="now">Now</option>
-          </select>
+          </select> */}
           <input
             type="submit"
             value="Book Now"

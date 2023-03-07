@@ -13,6 +13,7 @@ import ViewScreens from "../pages/admin/ViewScreens.js";
 import ViewShowings from "../pages/admin/ViewShowings.js";
 import AddShowing from "../pages/admin/AddShowing.js";
 import EditShowing from "../pages/admin/EditShowing.js";
+import ViewBooking from "../pages/viewBookings.js";
 
 import CreateScreen from "../pages/admin/CreateScreen.js";
 import BookSeats from "../pages/bookSeats.js";
@@ -50,6 +51,10 @@ const RoutesConfig = [
   {
     path: "/login",
     element: <UserLogin />,
+  },
+  {
+    path:"viewBookings",
+    element: <PrivateRoute Component={ViewBooking} admin={false} />,
   },
   {
     path: "/admin/movies",
