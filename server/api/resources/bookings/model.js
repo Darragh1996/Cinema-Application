@@ -9,7 +9,8 @@ let getByUserID = (userID) => {
     .leftJoin("users", "bookings.userID", "users.id")
     .leftJoin("showings", "bookings.showingID", "showings.id")
     .leftJoin("movies", "movies.id", "showings.id")
-    .leftJoin("seats", "seats.id", "bookings.seatID")
+    .leftJoin("showingSeats", "showingSeats.id", "bookings.showingSeatID")
+    .leftJoin("seats", "seats.id", "showingSeats.seatID")
     .select(
       "bookings.id",
       "users.name as user_name",
