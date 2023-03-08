@@ -41,7 +41,7 @@ let add = (showingSeat) => {
 
 let update = (showingSeat) => {
   return db("showingSeats")
-    .update({ occupied: true })
+    .update({ occupied: showingSeat.occupied })
     .where({ id: showingSeat.id })
     .returning("*")
     .then((updatedShowingSeat) => {
