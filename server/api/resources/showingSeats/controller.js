@@ -55,12 +55,11 @@ let bookShowingSeat = async (req, res) => {
         id: ids[i],
         occupied: true,
       });
-      let res = await Booking.add({
+      await Booking.add({
         userID,
         showingID,
         showingSeatID: updatedShowingSeat.id,
       });
-      console.log(res);
     }
 
     res.status(200).json({
