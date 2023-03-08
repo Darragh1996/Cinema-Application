@@ -75,7 +75,7 @@ function viewBookings() {
                                         </span>
                                     </Link>
                                 </td>
-
+                                
                             </tr>
                         );
                     })}

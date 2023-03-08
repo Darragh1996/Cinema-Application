@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { justAxios } from "../../utils/axios";
+import { useNavigate,} from "react-router-dom";
 
 // import styles from "./Home.module.css";
 import "../../styles.css";
@@ -16,6 +17,9 @@ function Home() {
   const [movOption, setMovOption] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [dateOption, setDateOption] = useState([]);
+  // const [selected, setSelectedDate] = useState(null);
+  const [selectedShowing, setSelectedShowing]=useState(0)
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -39,9 +43,22 @@ function Home() {
   }
   function formatDatetime(datetime) {
     const date = new Date(datetime);
-    const options = {year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
     const formattedDatetime = date.toLocaleDateString('en-GB', options);
-    return formattedDatetime;}
+    return formattedDatetime;
+  }
+
+  function handleDateChange(event) {
+    const showingID=event.target.value
+    console.log(showingID)
+    setSelectedShowing(showingID)
+    console.log(selectedShowing)
+  }
+
+  function pickSeats(){
+    navigate("/bookSeats/"+selectedShowing);
+
+  }
 
   return (
     <div>
@@ -61,23 +78,21 @@ function Home() {
               <option key={movie.id} value={movie.id}>{movie.name}</option>
             ))}
           </select>
-  
+
           <label htmlFor="qbDate"></label>
-          <select id="qbDate" name="qbDate" disabled={!selectedMovie}>
+          <select id="qbDate" name="qbDate" disabled={!selectedMovie} onChange={handleDateChange}>
             <option value="" >Select Time </option>
             {dateOption.map((date) => (
               <option key={date.id} value={date.id}>{formatDatetime(date.datetime)}</option>
             ))}
           </select>
-
-          {/* <label htmlFor="qbTime"></label>
-          <select id="qbTime" name="qbTime">
-            <option value="now">Now</option>
-          </select> */}
+          
           <input
-            type="submit"
+            // type="submit"
             value="Book Now"
             className="bookNowButton"
+            disabled={selectedShowing ===0}
+            onClick={pickSeats}
           ></input>
         </form>
       </div>
@@ -96,7 +111,7 @@ function Home() {
             >
               <div className="container">
                 <h4 className="trioMovieTitle">{movie.name}</h4>
-                <button className="bookNowButton">Book Now</button>
+                <button className="bookNowButton" onClick={(e) => pickSeats(e)}>Book Now</button>
               </div>
             </div>
           );
