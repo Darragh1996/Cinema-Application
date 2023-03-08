@@ -15,6 +15,7 @@ let getByUserID = (userID) => {
       "bookings.id",
       "users.name as user_name",
       "movies.name as film_name",
+      "bookings.showingID",
       "showings.datetime",
       "seats.rowID",
       "seats.colID"
@@ -33,6 +34,7 @@ let getByUserIdAndShowingId = (userID, showingID) => {
       "bookings.id",
       "users.name as user_name",
       "movies.name as film_name",
+      "bookings.showingID",
       "showings.datetime",
       "seats.rowID",
       "seats.colID"
