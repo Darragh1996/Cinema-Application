@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import decode from "jwt-decode";
 import { axiosWithAuth } from "../utils/axios";
+import { Link } from "react-router-dom";
+import { Trash } from "react-bootstrap-icons";
 
 function viewBookings() {
-    const [bookings, setBookings] = useState([]);
+    const [booking, setBookings] = useState([]);
+    const [update, setUpdate] = useState(false);
 
     useEffect(() => {
 
@@ -12,16 +15,39 @@ function viewBookings() {
         if (token) {
             const decoded = decode(token);
             const userID = decoded.subject;
-            console.log(userID)
+            
 
             axiosWithAuth()
                 .get("/bookings/" + userID)
                 .then((res) => {
+                    // console.log(res.data)
                     setBookings(res.data.bookings);
                 });
-                console.log(bookings)
+
         }
-    }, []);
+    }, [update]);
+
+    let deleteBooking = async (bookingId) => {
+        try {
+                axiosWithAuth()
+                    .delete("bookings/1/" + bookingId)
+                    .then((res) => {
+                        console.log(bookingId)
+                        setUpdate(!update);
+                    });
+            
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
+    function formatDatetime(datetime) {
+        const date = new Date(datetime);
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+        const formattedDatetime = date.toLocaleDateString('en-GB', options);
+        return formattedDatetime;
+    }
 
     return (
         <div>
@@ -29,16 +55,26 @@ function viewBookings() {
             <table className="table table-striped">
                 <thead className="table-dark">
                     <tr>
-                        <th scope="col">Movie ID</th>
-                        <th scope="col">User</th>
+                        <th scope="col">Movie</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {bookings.map((booking) => {
+                    {booking.map((booking) => {
                         return (
                             <tr>
-                                <td>{booking.showingID}</td>
-                                <td>{booking.userID}</td>
+                                <td>{booking.film_name}</td>
+                                <td>{formatDatetime(booking.datetime)}</td>
+                                <td>
+                                    <Link
+                                        onClick={() => deleteBooking(booking.showingID)}
+                                        to={`/viewBookings`}>
+                                        <span className="glyphicon glyphicon-trash">
+                                            <Trash />
+                                        </span>
+                                    </Link>
+                                </td>
 
                             </tr>
                         );
