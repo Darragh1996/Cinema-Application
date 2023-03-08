@@ -10,7 +10,7 @@ function SeatPicker({ showingID, colCount }) {
   let handleSubmit = (event) => {
     console.log(selectedSeats);
     axiosWithAuth()
-      .post("/showingSeats/book", { ids: [...selectedSeats] })
+      .post("/showingSeats/book", { ids: [...selectedSeats], showingID })
       .then((res) => {
         if (res.status === 200) {
           setHasChanged(!hasChanged);

@@ -53,7 +53,7 @@ const RoutesConfig = [
     element: <UserLogin />,
   },
   {
-    path:"viewBookings",
+    path: "/viewBookings",
     element: <PrivateRoute Component={ViewBooking} admin={false} />,
   },
   {
