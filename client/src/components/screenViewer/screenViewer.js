@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { justAxios } from "../../utils/axios";
+import { axiosWithAuth } from "../../utils/axios";
 import Row from "./row";
 
 function SeatPicker({ screenID, colCount }) {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    justAxios()
+    axiosWithAuth()
       .get(`/seats/${screenID}`)
       .then((res) => {
         let rows = [];

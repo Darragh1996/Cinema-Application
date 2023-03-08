@@ -9,13 +9,13 @@ function AdminHome() {
       <h1 id="indexHeader">Reel Dreams Admin Page</h1>
       <div id="indexBtns">
         <Link to="/admin/movies">
-          <button class="btn btn-primary">Movie List</button>
+          <button className="btn btn-primary">Movie List</button>
         </Link>
-        <Link to="/admin/timetable">
-          <button class="btn btn-primary">Timetable</button>
+        <Link to="/admin/showings">
+          <button className="btn btn-primary">Showings</button>
         </Link>
         <Link to="/admin/screens">
-          <button class="btn btn-primary">Screens</button>
+          <button className="btn btn-primary">Screens</button>
         </Link>
       </div>
     </div>

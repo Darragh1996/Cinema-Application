@@ -40,7 +40,6 @@ let updateMovie = async (req, res) => {
   try {
     let { id } = req.params;
     // let { name, director, cast, genre, runtime, price, rating } = req.body;
-    console.log(req.body.movieState);
 
     let movieUpdated = await Movies.update({ ...req.body.movieState, id });
 

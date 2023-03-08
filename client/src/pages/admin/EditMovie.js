@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { justAxios } from "../../utils/axios.js";
+import { justAxios, axiosWithAuth } from "../../utils/axios.js";
 
 // import styles from "./EditMovie.module.css";
 import "./adminStyles.css";
@@ -41,7 +41,7 @@ function MovieEditForm() {
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      justAxios()
+      axiosWithAuth()
         .post(`/movies/${params.movieID}`, {
           movieState,
         })

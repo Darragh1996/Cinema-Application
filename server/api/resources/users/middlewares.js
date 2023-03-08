@@ -12,7 +12,6 @@ let checkUserExists = async (req, res, next) => {
 
 let checkEmailExists = async (req, res, next) => {
   const { email } = req.body;
-  console.log(req.body);
   const user = await filter({ email });
   if (!user) {
     res.status(404).json({ message: "User with this email does not exist" });
