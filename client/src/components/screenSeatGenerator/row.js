@@ -13,6 +13,7 @@ function Row({ row, rowIndex, setSeats }) {
             colIndex={index}
             setSeats={setSeats}
             key={`seat-${index}`}
+            style = {{ width: 500/row.length }}
           />
         );
       })}

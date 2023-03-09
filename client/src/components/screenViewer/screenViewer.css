@@ -12,14 +12,16 @@
   box-sizing: border-box;
   display: flex;
   width: auto;
-  justify-content: space-evenly;
+  justify-content: center;
   min-width: 60%;
-  margin-right: 20%;
-  max-width: 1000px;
 }
 
 .seatsLayout {
   border: 3px solid #0d6efd;
   width: 500px;
   height: 400px;
+}
+
+#Layer_1 {
+  max-width: 100px;
 }
