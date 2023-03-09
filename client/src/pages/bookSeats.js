@@ -4,7 +4,7 @@ import { justAxios } from "../utils/axios";
 
 import SeatPicker from "../components/seatPicker/seatPicker";
 
-function bookSeats() {
+function BookSeats() {
   const params = useParams();
   const [colCount, setColCount] = useState(0);
 
@@ -29,4 +29,4 @@ function bookSeats() {
   );
 }
 
-export default bookSeats;
+export default BookSeats;

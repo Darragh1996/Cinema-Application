@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { justAxios } from "../utils/axios.js";
 
-function createUser() {
+function CreateUser() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -85,4 +85,4 @@ function createUser() {
     )
 }
 
-export default createUser;
+export default CreateUser;

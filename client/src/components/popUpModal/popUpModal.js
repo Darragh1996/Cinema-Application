@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import styles from "./popUpModal.module.css";
 
-function popUpModal({ linkToYoutubeTrailer, setModalDisplay, setTrailer }) {
+function PopUpModal({ linkToYoutubeTrailer, setModalDisplay, setTrailer }) {
   useEffect(() => {
     console.log("from inside the modal");
   }, []);
@@ -31,4 +31,4 @@ function popUpModal({ linkToYoutubeTrailer, setModalDisplay, setTrailer }) {
   );
 }
 
-export default popUpModal;
+export default PopUpModal;
