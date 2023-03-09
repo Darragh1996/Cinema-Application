@@ -60,9 +60,9 @@ function ViewBookings() {
         <thead className="table-dark">
           <tr>
             <th scope="col">Movie</th>
-            <th scope="col">Time</th>
+            <th scope="col">Date & Time</th>
             <th scope="col">No. of tickets</th>
-            <th scope="col">Delete</th>
+            <th scope="col">Cancel</th>
           </tr>
         </thead>
         <tbody>
@@ -91,4 +91,3 @@ function ViewBookings() {
   );
 }
 export default ViewBookings;
-

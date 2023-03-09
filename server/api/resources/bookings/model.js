@@ -24,7 +24,7 @@ let getByUserID = (userID) => {
   return db("bookings")
     .leftJoin("users", "bookings.userID", "users.id")
     .leftJoin("showings", "bookings.showingID", "showings.id")
-    .leftJoin("movies", "movies.id", "showings.id")
+    .leftJoin("movies", "movies.id", "showings.movieID")
     .leftJoin("showingSeats", "showingSeats.id", "bookings.showingSeatID")
     .leftJoin("seats", "seats.id", "showingSeats.seatID")
     .select(
@@ -41,7 +41,7 @@ let getByUserIdAndShowingId = (userID, showingID) => {
   return db("bookings")
     .leftJoin("users", "bookings.userID", "users.id")
     .leftJoin("showings", "bookings.showingID", "showings.id")
-    .leftJoin("movies", "movies.id", "showings.id")
+    .leftJoin("movies", "movies.id", "showings.movieID")
     .leftJoin("showingSeats", "showingSeats.id", "bookings.showingSeatID")
     .leftJoin("seats", "seats.id", "showingSeats.seatID")
     .select(
