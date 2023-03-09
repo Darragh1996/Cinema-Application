@@ -4,16 +4,10 @@ import { axiosWithAuth } from "../utils/axios";
 import { Link } from "react-router-dom";
 import { Trash } from "react-bootstrap-icons";
 
-<<<<<<< HEAD
 function ViewBookings() {
-    const [booking, setBookings] = useState([]);
-    const [update, setUpdate] = useState(false);
-=======
-function viewBookings() {
   const [booking, setBookings] = useState([]);
   const [update, setUpdate] = useState(false);
   const [userID, setUserID] = useState(0);
->>>>>>> f29059381bc852b83dc3a15082b05bdb20d083f9
 
   useEffect(() => {
     let token = localStorage.getItem("reel_dreams_jwt");
@@ -96,9 +90,5 @@ function viewBookings() {
     </div>
   );
 }
-<<<<<<< HEAD
 export default ViewBookings;
 
-=======
-export default viewBookings;
->>>>>>> f29059381bc852b83dc3a15082b05bdb20d083f9
