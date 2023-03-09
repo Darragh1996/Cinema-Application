@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { justAxios } from "../utils/axios.js";
 
-function userLogin() {
+function UserLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -57,4 +57,4 @@ function userLogin() {
   );
 }
 
-export default userLogin;
+export default UserLogin;
