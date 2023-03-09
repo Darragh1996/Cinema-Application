@@ -1,7 +1,6 @@
 import React from "react";
 
 import Home from "../pages/Home/Home.js";
-import Example from "../pages/example.js";
 import AddMovie from "../pages/admin/AddMovie.js";
 import CreateUser from "../pages/createUser.js";
 // import DeleteMovie from "../pages/deleteMovie.js";
@@ -10,29 +9,30 @@ import ViewMovies from "../pages/admin/ViewMovie.js";
 import EditMovie from "../pages/admin/EditMovie.js";
 import AdminHome from "../pages/admin/AdminHome.js";
 import ViewScreens from "../pages/admin/ViewScreens.js";
+import ViewShowings from "../pages/admin/ViewShowings.js";
+import AddShowing from "../pages/admin/AddShowing.js";
+import EditShowing from "../pages/admin/EditShowing.js";
+import ViewBooking from "../pages/viewBookings.js";
 
-// import CreateScreen from "../pages/admin/createScreen.js";
-// import BookSeats from "../pages/bookSeats.js";
+import CreateScreen from "../pages/admin/CreateScreen.js";
+import BookSeats from "../pages/bookSeats.js";
+import PrivateRoute from "../components/privateRoute.js";
 
 const RoutesConfig = [
   {
     path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/example",
-    element: <Example />,
+    element: <PrivateRoute Component={Home} admin={false} />,
   },
   {
     path: "/admin",
-    element: <AdminHome />,
+    element: <PrivateRoute Component={AdminHome} admin={true} />,
   },
   {
     path: "/admin/addMovie",
-    element: <AddMovie />,
+    element: <PrivateRoute Component={AddMovie} admin={true} />,
   },
   {
-    path: "/createUser",
+    path: "/register",
     element: <CreateUser />,
   },
   // {
@@ -41,28 +41,44 @@ const RoutesConfig = [
   // },
   {
     path: "/admin/editMovie/:movieID",
-    element: <EditMovie />,
+    element: <PrivateRoute Component={EditMovie} admin={true} />,
   },
   {
-    path: "/userLogin",
+    path: "/login",
     element: <UserLogin />,
   },
   {
+    path: "/viewBookings",
+    element: <PrivateRoute Component={ViewBooking} admin={false} />,
+  },
+  {
     path: "/admin/movies",
-    element: <ViewMovies />,
+    element: <PrivateRoute Component={ViewMovies} admin={true} />,
   },
   {
     path: "/admin/screens",
-    element: <ViewScreens />,
+    element: <PrivateRoute Component={ViewScreens} admin={true} />,
   },
-  // {
-  //   path: "/admin/createScreen",
-  //   element: <CreateScreen />,
-  // },
-  // {
-  //   path: "/bookSeats/:showingID",
-  //   element: <BookSeats />,
-  // },
+  {
+    path: "/admin/addScreen",
+    element: <PrivateRoute Component={CreateScreen} admin={true} />,
+  },
+  {
+    path: "/bookSeats/:showingID",
+    element: <PrivateRoute Component={BookSeats} admin={false} />,
+  },
+  {
+    path: "/admin/showings",
+    element: <PrivateRoute Component={ViewShowings} admin={true} />,
+  },
+  {
+    path: "/admin/addShowing",
+    element: <PrivateRoute Component={AddShowing} admin={true} />,
+  },
+  {
+    path: "/admin/editShowing/:showingID",
+    element: <PrivateRoute Component={EditShowing} admin={true} />,
+  },
 ];
 
 export default RoutesConfig;

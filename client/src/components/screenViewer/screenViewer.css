@@ -1,15 +1,25 @@
 .seat {
   background-color: red;
-  height: 50px;
-  width: 50px;
-  margin: 0.1rem;
+  height: 2rem;
+  width: 2rem;
+  margin: 0;
+  padding: 0;
   display: inline-block;
 }
 
-.seat:hover {
-  cursor: pointer;
+.row {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  width: auto;
+  justify-content: space-evenly;
+  min-width: 60%;
+  margin-right: 20%;
+  max-width: 1000px;
 }
 
-.row {
-  margin: 10px;
+.seatsLayout {
+  border: 3px solid #0d6efd;
+  width: 500px;
+  height: 400px;
 }

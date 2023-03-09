@@ -10,10 +10,12 @@ import {
   deleteSeat,
 } from "./controller.js";
 
-router.get("/", getAllSeats);
-router.get("/:id", getSeatsByScreenID);
-router.post("/", addSeat);
-router.post("/:id", updateSeat);
-router.delete("/:id", deleteSeat);
+import { authorizedAdmin } from "../../middlewares.js";
+
+// router.get("/", getAllSeats);
+router.get("/:id", authorizedAdmin, getSeatsByScreenID);
+router.post("/", authorizedAdmin, addSeat);
+router.post("/:id", authorizedAdmin, updateSeat);
+router.delete("/:id", authorizedAdmin, deleteSeat);
 
 export default router;

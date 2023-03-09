@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { justAxios } from "../../utils/axios.js";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { justAxios, axiosWithAuth } from "../../utils/axios.js";
 
-// import styles from "./AddMovie.module.css";
+// import styles from "./EditMovie.module.css";
 import "./adminStyles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function MovieForm() {
+function MovieEditForm() {
+  const params = useParams();
   const [movieState, setMovieState] = useState({
+    id: 0,
     name: "",
     rating: "",
     director: "",
@@ -30,7 +31,7 @@ function MovieForm() {
     } else {
       if (!/[^0-9]/.test(e.target.value)) {
         setMovieState({
-          ...movieState,
+          movieState,
           [e.target.name]: e.target.value,
         });
       }
@@ -40,23 +41,31 @@ function MovieForm() {
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      justAxios()
-        .post("/movies", {
+      axiosWithAuth()
+        .post(`/movies/${params.movieID}`, {
           movieState,
         })
         .then((res) => {
           console.log(res);
-          navigate("/admin/viewMovies");
+          navigate("/admin/movies");
         });
     } catch (err) {
       console.log(err);
     }
   };
 
+  useEffect(() => {
+    justAxios()
+      .get(`/movies/${params.movieID}`)
+      .then((res) => {
+        setMovieState({ ...res.data.movie });
+      });
+  }, []);
+
   return (
     <div>
       <div id="header">
-        <h1>Add Movie</h1>
+        <h1>Edit Movie</h1>
         <div id="headerButtons">
           <Link to="/admin">
             <button className="btn btn-success">Home</button>
@@ -179,9 +188,9 @@ function MovieForm() {
             onChange={(event) => handleChange(event)}
           />
         </div>
-        <input type="submit" value="Add" className="btn btn-primary" />
+        <input type="submit" value="Save Edit" className="btn btn-primary" />
       </form>
     </div>
   );
 }
-export default MovieForm;
+export default MovieEditForm;

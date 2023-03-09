@@ -6,7 +6,7 @@ import { PlayCircle, Pencil, Trash } from "react-bootstrap-icons";
 // import styles from "./ViewMovie.module.css";
 import "./adminStyles.css";
 
-import { justAxios } from "../../utils/axios.js";
+import { justAxios, axiosWithAuth } from "../../utils/axios.js";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -33,14 +33,10 @@ function ViewMovie() {
   }, [trailer]);
 
   let deleteMovie = async (movieID) => {
-    // e.preventDefault();
-    // let movieToDelete = ("/movies/" + id)
     try {
-      justAxios()
+      axiosWithAuth()
         .delete(`/movies/${movieID}`)
         .then((res) => {
-          console.log(res);
-          // navigate("/admin/viewMovies");
           setUpdate(!update);
         });
     } catch (err) {
@@ -106,7 +102,7 @@ function ViewMovie() {
                 <td>
                   <Link
                     onClick={() => deleteMovie(movie.id)}
-                    to={`/admin/viewMovies`}
+                    to={`/admin/movies`}
                   >
                     <span className="glyphicon glyphicon-trash">
                       <Trash />

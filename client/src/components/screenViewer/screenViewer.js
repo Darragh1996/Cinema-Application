@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { justAxios } from "../../utils/axios";
+import { axiosWithAuth } from "../../utils/axios";
 import Row from "./row";
 
 function SeatPicker({ screenID, colCount }) {
-  const [hasChanged, setHasChanged] = useState(false);
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    justAxios()
+    axiosWithAuth()
       .get(`/seats/${screenID}`)
       .then((res) => {
         let rows = [];
@@ -34,7 +33,7 @@ function SeatPicker({ screenID, colCount }) {
   }, [screenID, colCount]);
 
   return (
-    <div>
+    <div className="seatsLayout">
       {colCount && rows ? (
         rows.map((row, index) => {
           return <Row row={row} key={`row-${index}`} />;

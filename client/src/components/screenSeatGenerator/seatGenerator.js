@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { justAxios } from "../../utils/axios";
+import { useNavigate } from "react-router-dom";
+import { axiosWithAuth } from "../../utils/axios";
 import Row from "./row";
 
 function SeatGenerator() {
   const [seats, setSeats] = useState([]);
+  const navigate = useNavigate();
 
   let handleSubmit = (event) => {
     let jsonSeats = seats.map((row, rowIndex) => {
@@ -15,7 +17,7 @@ function SeatGenerator() {
         };
       });
     });
-    justAxios()
+    axiosWithAuth()
       .post("/screens", {
         rowCount: jsonSeats.length,
         colCount: jsonSeats[0].length,
@@ -23,6 +25,7 @@ function SeatGenerator() {
       })
       .then((res) => {
         console.log(res);
+        navigate("/admin/screens");
       });
   };
 

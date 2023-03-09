@@ -53,14 +53,9 @@ function ViewScreens() {
           </Link>
         </div>
       </div>
-      <div>
+      <div className="screenViewer">
         <ul style={{ listStyleType: "none" }}>
           {screens.map((screen) => {
-            // if (index === 0) {
-            //   return <li className="highlighted">Screen {screen.id}</li>;
-            // } else {
-            //   return <li>Screen {screen.id}</li>;
-            // }
             return (
               <li
                 className={choice === screen.id ? "highlighted" : ""}
@@ -71,8 +66,8 @@ function ViewScreens() {
             );
           })}
         </ul>
+        <ScreenViewer screenID={choice} colCount={selectedScreen.colCount} />
       </div>
-      <ScreenViewer screenID={choice} colCount={selectedScreen.colCount} />
     </div>
   );
 }
