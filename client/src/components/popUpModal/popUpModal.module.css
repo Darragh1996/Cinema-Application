@@ -1,0 +1,31 @@
+#trailerBox {
+  display: block;
+  z-index: 100;
+  background-color: white;
+  border: 3px solid #0d6efd;
+  border-radius: 5px;
+  position: absolute;
+  top: 22.5vh;
+  left: 20vw;
+  width: 60vw;
+  height: 55vh;
+}
+
+#trailer {
+  width: 100%;
+  height: 100%;
+}
+
+#popUpModal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  /* creates frosted glass effect */
+  background: rgba(255, 255, 255, 0.33);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.6px);
+  -webkit-backdrop-filter: blur(5.6px);
+}

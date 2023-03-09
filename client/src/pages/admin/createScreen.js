@@ -2,7 +2,7 @@ import React from "react";
 
 import SeatGenerator from "../../components/screenSeatGenerator/seatGenerator";
 
-function createScreen() {
+function CreateScreen() {
   return (
     <div>
       <h1>Create a new screen</h1>
@@ -11,4 +11,4 @@ function createScreen() {
   );
 }
 
-export default createScreen;
+export default CreateScreen;

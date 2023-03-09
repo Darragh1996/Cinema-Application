@@ -1,0 +1,25 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+import "./adminStyles.css";
+
+function AdminHome() {
+  return (
+    <div>
+      <h1 id="indexHeader">Reel Dreams Admin Page</h1>
+      <div id="indexBtns">
+        <Link to="/admin/movies">
+          <button class="btn btn-primary">Movie List</button>
+        </Link>
+        <Link to="/admin/timetable">
+          <button class="btn btn-primary">Timetable</button>
+        </Link>
+        <Link to="/admin/screens">
+          <button class="btn btn-primary">Screens</button>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default AdminHome;

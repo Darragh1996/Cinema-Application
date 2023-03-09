@@ -6,10 +6,12 @@ let getAll = () => {
     "name",
     "rating",
     "director",
-    "cast",
     "runtime",
     "genre",
-    "price"
+    "details",
+    "trailer_url",
+    "img_poster_url",
+    "img_landscape_url"
   );
 };
 
@@ -20,10 +22,12 @@ let getByID = (id) => {
       "name",
       "rating",
       "director",
-      "cast",
       "runtime",
       "genre",
-      "price"
+      "details",
+      "trailer_url",
+      "img_poster_url",
+      "img_landscape_url"
     )
     .where({ id: id })
     .first();

@@ -21,17 +21,9 @@ let getMovieByID = async (req, res) => {
 
 let addMovie = async (req, res) => {
   try {
-    let { name, director, cast, genre, runtime, price, rating } = req.body;
+    // let { name, director, cast, genre, runtime, price, rating } = req.body;
 
-    let movieCreated = await Movies.add({
-      name,
-      rating,
-      director,
-      cast,
-      genre,
-      runtime,
-      price,
-    });
+    let movieCreated = await Movies.add(req.body.movieState);
 
     res.status(201).json({
       message: "Movie added successfully",
@@ -47,18 +39,10 @@ let addMovie = async (req, res) => {
 let updateMovie = async (req, res) => {
   try {
     let { id } = req.params;
-    let { name, director, cast, genre, runtime, price, rating } = req.body;
+    // let { name, director, cast, genre, runtime, price, rating } = req.body;
+    console.log(req.body.movieState);
 
-    let movieUpdated = await Movies.update({
-      id,
-      name,
-      rating,
-      director,
-      cast,
-      genre,
-      runtime,
-      price,
-    });
+    let movieUpdated = await Movies.update({ ...req.body.movieState, id });
 
     res.status(200).json({
       message: "Movie updated successfully",
