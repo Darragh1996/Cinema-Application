@@ -35,7 +35,7 @@
   padding-left: 40px;
   margin-top: auto;
   margin-bottom: auto;
-  height: 60px;
+  height: 40px;
   width: 60px;
 }
 
@@ -66,17 +66,15 @@
   height: 20px;
 }
 
-#quickBook {
+#quickBook{
+  background-color: #d9d9d9;
+  width: 100%;
+  justify-content: center;
   padding-top: 100px;
   padding-bottom: 25px;
-  display: flex;
-  /* margin: auto;
-        align-items: center; */
-  justify-content: space-around;
-  background-color: #d9d9d9;
-  right: 0%;
-  white-space: nowrap;
+  display: inline-flex;
 }
+
 
 #posterCarousel {
   height: 400px;
@@ -112,6 +110,7 @@
   margin-bottom: auto;
   height: 434px;
   width: 289px;
+  background-size: 100% 100%;
 }
 
 .container {

@@ -4,7 +4,7 @@ import { axiosWithAuth } from "../utils/axios";
 import { Link } from "react-router-dom";
 import { Trash } from "react-bootstrap-icons";
 
-function viewBookings() {
+function ViewBookings() {
     const [booking, setBookings] = useState([]);
     const [update, setUpdate] = useState(false);
 
@@ -84,5 +84,5 @@ function viewBookings() {
         </div>
     )
 }
-export default viewBookings;
+export default ViewBookings;
 
