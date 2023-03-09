@@ -6,8 +6,8 @@ const Seat = ({ seat, selectedSeats, setSelectedSeats }) => {
   const [isSelected, setSelected] = useState(false);
 
   useEffect(() => {
-    setSelected(selectedSeats.has(seat.seatID));
-  }, [selectedSeats, seat.seatID]);
+    setSelected(selectedSeats.has(seat.id));
+  }, [selectedSeats, seat.id]);
 
   let addToSet = (newSeat) => {
     setSelected(true);
@@ -25,9 +25,9 @@ const Seat = ({ seat, selectedSeats, setSelectedSeats }) => {
 
   let handleSeatClick = (event) => {
     if (!isSelected) {
-      addToSet(seat.seatID);
+      addToSet(seat.id);
     } else {
-      removeFromSet(seat.seatID);
+      removeFromSet(seat.id);
     }
   };
 
