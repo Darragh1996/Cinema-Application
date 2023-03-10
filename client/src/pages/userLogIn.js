@@ -25,6 +25,9 @@ function userLogin() {
       console.log(err);
     }
   };
+  function createAccount(e){
+    navigate("/register");
+  }
   return (
     <div>
       <form
@@ -53,6 +56,7 @@ function userLogin() {
         <br />
         <input className="submitButton" type="submit" value="Login" />
       </form>
+      <button className="createAccountButton" onClick={(e) => createAccount(e)}>Create Account</button>
     </div>
   );
 }
