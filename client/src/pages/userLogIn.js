@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { justAxios } from "../utils/axios.js";
 
-function userLogin() {
+function UserLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -49,7 +49,7 @@ function userLogin() {
         <br />
         <input
           name="password"
-          type="text"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -61,4 +61,4 @@ function userLogin() {
   );
 }
 
-export default userLogin;
+export default UserLogin;

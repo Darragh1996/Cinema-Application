@@ -1,4 +1,5 @@
 import * as Bookings from "./model.js";
+import * as ShowingSeats from "../showingSeats/model.js";
 
 let getAllBookings = async (req, res) => {
   try {
@@ -37,12 +38,12 @@ let getBookingByUserIdAndShowingId = async (req, res) => {
 
 let addBooking = async (req, res) => {
   try {
-    let { userID, showingID, seatID } = req.body;
+    let { userID, showingID, showingSeatID } = req.body;
 
     let bookingCreated = await Bookings.add({
       userID,
       showingID,
-      seatID,
+      showingSeatID,
     });
 
     res.status(201).json({
@@ -83,7 +84,13 @@ let deleteBooking = async (req, res) => {
   let { userID, showingID } = req.params;
 
   try {
-    await Bookings.del(userID, showingID);
+    let deletedBookings = await Bookings.del(userID, showingID);
+    for (let i = 0; i < deletedBookings.length; i++) {
+      await ShowingSeats.update({
+        id: deletedBookings[i].showingSeatID,
+        occupied: false,
+      });
+    }
     res.status(200).json({ message: "Booking successfully deleted" });
   } catch (error) {
     res.status(500).json({

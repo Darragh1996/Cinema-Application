@@ -1,4 +1,5 @@
 import * as ShowingSeats from "./model.js";
+import * as Booking from "../bookings/model.js";
 
 let getAllShowingSeats = async (req, res) => {
   try {
@@ -44,7 +45,34 @@ let addShowingSeats = async (req, res) => {
   }
 };
 
-let updateShowingSeat = async (req, res) => {
+let bookShowingSeat = async (req, res) => {
+  try {
+    let { ids, showingID } = req.body;
+    let userID = req.decodedToken.subject;
+
+    for (let i = 0; i < ids.length; i++) {
+      let updatedShowingSeat = await ShowingSeats.update({
+        id: ids[i],
+        occupied: true,
+      });
+      await Booking.add({
+        userID,
+        showingID,
+        showingSeatID: updatedShowingSeat.id,
+      });
+    }
+
+    res.status(200).json({
+      message: "Showing Seats booked successfully",
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to book showing seat", error: error.message });
+  }
+};
+
+let cancelShowingSeat = async (req, res) => {
   try {
     // let { id } = req.params;
     let { ids } = req.body;
@@ -52,22 +80,17 @@ let updateShowingSeat = async (req, res) => {
     for (let i = 0; i < ids.length; i++) {
       await ShowingSeats.update({
         id: ids[i],
+        occupied: false,
       });
     }
-    // let showingSeatUpdated = await ShowingSeats.update({
-    //   id,
-    //   seatID,
-    //   showingID,
-    //   occupied,
-    // });
 
     res.status(200).json({
-      message: "Showing Seats updated successfully",
+      message: "Showing Seats canceled successfully",
     });
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Failed to update showing seat", error: error.message });
+      .json({ message: "Failed to cancel showing seat", error: error.message });
   }
 };
 
@@ -89,6 +112,7 @@ export {
   getAllShowingSeats,
   getShowingSeatsByID,
   addShowingSeats,
-  updateShowingSeat,
+  bookShowingSeat,
+  cancelShowingSeat,
   deleteShowingSeats,
 };

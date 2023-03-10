@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { justAxios } from "../../utils/axios";
-import { useNavigate,} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // import styles from "./Home.module.css";
 import "../../styles.css";
@@ -18,9 +18,8 @@ function Home() {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [dateOption, setDateOption] = useState([]);
   // const [selected, setSelectedDate] = useState(null);
-  const [selectedShowing, setSelectedShowing]=useState(0)
+  const [selectedShowing, setSelectedShowing] = useState(0);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     justAxios()
@@ -32,8 +31,8 @@ function Home() {
   }, []);
 
   function handleMovieChange(event) {
-    setSelectedMovie(event.target.value)
-    const movieId = event.target.value
+    setSelectedMovie(event.target.value);
+    const movieId = event.target.value;
 
     justAxios()
       .get("showings/view/" + movieId)
@@ -43,21 +42,26 @@ function Home() {
   }
   function formatDatetime(datetime) {
     const date = new Date(datetime);
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-    const formattedDatetime = date.toLocaleDateString('en-GB', options);
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    const formattedDatetime = date.toLocaleDateString("en-GB", options);
     return formattedDatetime;
   }
 
   function handleDateChange(event) {
-    const showingID=event.target.value
-    console.log(showingID)
-    setSelectedShowing(showingID)
-    console.log(selectedShowing)
+    const showingID = event.target.value;
+    console.log(showingID);
+    setSelectedShowing(showingID);
+    console.log(selectedShowing);
   }
 
-  function pickSeats(){
-    navigate("/bookSeats/"+selectedShowing);
-
+  function pickSeats() {
+    navigate("/bookSeats/" + selectedShowing);
   }
 
   return (
@@ -72,26 +76,39 @@ function Home() {
       <div id="quickBook">
         <form>
           <label htmlFor="qBMovieName"></label>
-          <select id="qBMovieName" name="qBMovieName" onChange={handleMovieChange}>
-            <option value="" >Select Movie </option>
+          <select
+            id="qBMovieName"
+            name="qBMovieName"
+            onChange={handleMovieChange}
+          >
+            <option value="">Select Movie </option>
             {movOption.map((movie) => (
-              <option key={movie.id} value={movie.id}>{movie.name}</option>
+              <option key={movie.id} value={movie.id}>
+                {movie.name}
+              </option>
             ))}
           </select>
 
           <label htmlFor="qbDate"></label>
-          <select id="qbDate" name="qbDate" disabled={!selectedMovie} onChange={handleDateChange}>
-            <option value="" >Select Time </option>
+          <select
+            id="qbDate"
+            name="qbDate"
+            disabled={!selectedMovie}
+            onChange={handleDateChange}
+          >
+            <option value="">Select Time </option>
             {dateOption.map((date) => (
-              <option key={date.id} value={date.id}>{formatDatetime(date.datetime)}</option>
+              <option key={date.id} value={date.id}>
+                {formatDatetime(date.datetime)}
+              </option>
             ))}
           </select>
-          
+
           <input
             // type="submit"
             value="Book Now"
             className="bookNowButton"
-            disabled={selectedShowing ===0}
+            disabled={selectedShowing === 0}
             onClick={pickSeats}
           ></input>
         </form>
@@ -111,7 +128,9 @@ function Home() {
             >
               <div className="container">
                 <h4 className="trioMovieTitle">{movie.name}</h4>
-                <button className="bookNowButton" onClick={(e) => pickSeats(e)}>Book Now</button>
+                <button className="bookNowButton" onClick={(e) => pickSeats(e)}>
+                  Book Now
+                </button>
               </div>
             </div>
           );

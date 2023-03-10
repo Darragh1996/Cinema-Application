@@ -1,7 +1,6 @@
 import React from "react";
 
 import Home from "../pages/Home/Home.js";
-import Example from "../pages/example.js";
 import AddMovie from "../pages/admin/AddMovie.js";
 import CreateUser from "../pages/createUser.js";
 // import DeleteMovie from "../pages/deleteMovie.js";
@@ -23,10 +22,6 @@ const RoutesConfig = [
   {
     path: "/",
     element: <PrivateRoute Component={Home} admin={false} />,
-  },
-  {
-    path: "/example",
-    element: <Example />,
   },
   {
     path: "/admin",
@@ -53,7 +48,7 @@ const RoutesConfig = [
     element: <UserLogin />,
   },
   {
-    path:"viewBookings",
+    path: "/viewBookings",
     element: <PrivateRoute Component={ViewBooking} admin={false} />,
   },
   {
