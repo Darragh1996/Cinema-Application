@@ -62,6 +62,16 @@ function BookSeats() {
   function handleDateChange(event) {
     const showingID = event.target.value;
     setSelectedShowing(showingID);
+    justAxios()
+      .get(`/showings/${showingID}`)
+      .then((res4) => {
+        justAxios()
+          .get(`/screens/${res4.data.showing.screenID}`)
+          .then((res5) => {
+            setColCount(res5.data.screen.colCount);
+            
+          });
+        })
   }
 
   return (
@@ -90,10 +100,11 @@ function BookSeats() {
                   id="movieTimesBookingChoice"
                   name="movieTimesBookingChoice"
                   onChange={handleDateChange}
+                  value={selectedShowing}
                 >
                   <option value="">Select Showing</option>
                   {dateOption.map((date) => (
-                    <option key={date.id} value={date.id} selected = {date.id === selectedShowing ? 'selected': 'false'}>
+                    <option key={date.id} value={date.id}>
                       {formatDatetime(date.datetime)}
                     </option>
                   ))}
@@ -107,7 +118,8 @@ function BookSeats() {
       </div>
       <div>
         <h1>Pick your seats.</h1>
-        <SeatPicker showingID={params.showingID} colCount={colCount} />
+        {/* Set the parameters of the SeatPicker Component to the parameters of that selected by the date menu */}
+        <SeatPicker showingID={selectedShowing} colCount={colCount} />
       </div>
       
     </div>
