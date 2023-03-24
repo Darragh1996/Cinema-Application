@@ -58,6 +58,10 @@
   display: block;
 }
 
+.dropdown-section {
+  padding-bottom: 20px;
+}
+
 #nav h3 {
   position: absolute;
   right: 20%;
@@ -94,26 +98,31 @@
   display: inline-flex;
 }
 
+.carouselBG{
+  background-color: black;
+}
+
 
 #posterCarousel {
   height: 400px;
+  width: 600px;
   background-color: black;
   color: white;
   display: flex;
-  justify-content: center;
+  margin: auto;
 }
 
 #posterCarousel #leftArrow {
   position: absolute;
   left: 7%;
-  top: 320px;
+  top: 350px;
   height: 40px;
 }
 
 #posterCarousel #rightArrow {
   position: absolute;
   right: 7%;
-  top: 320px;
+  top: 350px;
   height: 40px;
 }
 
@@ -191,4 +200,43 @@ input {
   white-space: nowrap;
   text-decoration: underline;
   text-decoration-color: #fcaf3b;
+}
+
+.movieInfoContainer{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 2%
+
+}
+.movieInfoContainer img{
+  height: 300px;
+  padding-right: 100px;
+}
+
+.rating12A{
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  text-align: center;
+  vertical-align: center;
+  border-radius: 25px;
+  padding-top: 12px;
+  font-weight: bold;
+}
+
+.ratingPG{
+  width: 50px;
+  height: 50px;
+  background-color: green;
+  text-align: center;
+  vertical-align: center;
+  border-radius: 25px;
+  padding-top: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.pickYourSeats{
+  text-align: center;
 }

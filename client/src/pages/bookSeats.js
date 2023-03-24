@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { justAxios } from "../utils/axios";
 
 import SeatPicker from "../components/seatPicker/seatPicker";
+import { PlayCircle } from "react-bootstrap-icons";
+import PopUpModal from "../components/popUpModal/popUpModal.js";
 
 function BookSeats() {
   const params = useParams();
@@ -11,8 +13,12 @@ function BookSeats() {
   const [movieDescription, setMovieDescription] = useState("");
   const [movieAgeRating, setMovieAgeRating] = useState("");
   const [movieGenre, setMovieGenre] = useState("");
+  const [moviePoster, setMoviePoster] = useState("");
   const [selectedShowing, setSelectedShowing] = useState(params.showingID);
   const [dateOption, setDateOption] = useState([]);
+  const [trailer, setTrailer] = useState("");
+  const [modalDisplay, setModalDisplay] = useState(false);
+  const [movieTrailer, setMovieTrailer] = useState('');
 
   useEffect(() => {
     justAxios()
@@ -30,6 +36,9 @@ function BookSeats() {
             setMovieDescription(res3.data.movie.details);
             setMovieAgeRating(res3.data.movie.rating);
             setMovieGenre(res3.data.movie.genre);
+            setMoviePoster(res3.data.movie.img_poster_url);
+            setMovieTrailer(res3.data.movie.trailer_url);
+
           });
         justAxios()
           .get("showings/view/" + res.data.showing.movieID)
@@ -38,6 +47,14 @@ function BookSeats() {
           });
       });
   }, []);
+
+  useEffect(() => {
+    if (trailer) {
+      setModalDisplay(true);
+    } else {
+      setModalDisplay(false);
+    }
+  }, [trailer]);
 
   function formatDatetime(datetime) {
     const date = new Date(datetime);
@@ -66,11 +83,16 @@ function BookSeats() {
       });
   }
 
+  let handleModal = (trailer) => {
+    setTrailer(trailer);
+  };
+  
+
   return (
     <div>
-      <div className="container">
+      <div className="movieInfoContainer">
         <div className="left-section">
-          <img src="" alt="" className="movie-img" />
+          <img src={moviePoster} alt={movieName} className="movie-img" />
         </div>
         <div className="right-section">
           <h2 className="movie-heading">{movieName}</h2>
@@ -78,20 +100,19 @@ function BookSeats() {
           <p className="sub-heading-actors">{movieGenre}</p>
 
           <div className="movie-info">
-            <p>{movieAgeRating}</p>
+            <p class={"rating"+movieAgeRating}>{movieAgeRating}</p>
             <p>{movieDescription}</p>
           </div>
 
           <div className="dropdown-section">
             <div className="date">
-              <label htmlFor="date">showing</label>
+              <label htmlFor="date">Select</label>
               <select
                 id="movieTimesBookingChoice"
                 name="movieTimesBookingChoice"
                 onChange={handleDateChange}
                 value={selectedShowing}
               >
-                <option value="">Select Showing</option>
                 {dateOption.map((date) => (
                   <option key={date.id} value={date.id}>
                     {formatDatetime(date.datetime)}
@@ -100,10 +121,30 @@ function BookSeats() {
               </select>
             </div>
           </div>
+          <div id='trailerButtonDiv'>
+          <span
+              id="playMovieIcon"
+              class="glyphicon glyphicon-play-circle"
+              onClick={() => {
+                handleModal(movieTrailer);
+              }}
+            >
+              <PlayCircle />
+          </span>
+          {console.log(trailer)}
+          </div>{modalDisplay ? (
+          <PopUpModal
+            setModalDisplay={setModalDisplay}
+            linkToYoutubeTrailer={trailer}
+            setTrailer={setTrailer}
+          />
+      ) : (
+        ""
+      )}
         </div>
       </div>
       <div>
-        <h1>Pick your seats.</h1>
+        <h1 className="pickYourSeats">Pick your seats</h1>
         {/* Set the parameters of the SeatPicker Component to the parameters of that selected by the date menu */}
         <SeatPicker showingID={selectedShowing} colCount={colCount} />
       </div>

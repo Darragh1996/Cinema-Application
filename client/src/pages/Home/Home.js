@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { justAxios } from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
+import MovieSlider from "../../components/movieSlider/movieSlider";
 
 // import styles from "./Home.module.css";
 import "../../styles.css";
 
 import logo from "./img/logo.png";
 import userIcon from "./img/userIcon.png";
-import posterWide from "./img/posterwide.png";
+// import posterWide from "./img/posterwide.png";
 import leftArrow from "./img/leftArrow.png";
 import rightArrow from "./img/rightArrow.png";
 // import posterTall from "./img/postertall.png";
@@ -113,10 +114,15 @@ function Home() {
           ></input>
         </form>
       </div>
-      <div id="posterCarousel">
-        <img src={posterWide} alt="bigPoster" />
-        <img id="leftArrow" src={leftArrow} alt="leftArrow" />
-        <img id="rightArrow" src={rightArrow} alt="rightArrow" />
+      <div className="carouselBG">
+        <div id="posterCarousel">
+          {/* <img src={posterWide} alt="bigPoster" /> */}
+          {/* <img id="leftArrow" src={leftArrow} alt="leftArrow" />
+          <img id="rightArrow" src={rightArrow} alt="rightArrow" /> */}
+          <MovieSlider 
+            movies={movies}
+          />
+        </div>
       </div>
       <div id="moviePosterTrio">
         {movies.map((movie, index) => {

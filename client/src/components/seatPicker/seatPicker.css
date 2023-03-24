@@ -3,7 +3,7 @@
   height: 50px;
   width: 50px;
   margin: 0.1rem;
-  display: inline-block;
+  display: inline;
 }
 
 .seat:hover {
