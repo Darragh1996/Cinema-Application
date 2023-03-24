@@ -55,6 +55,15 @@ function BookSeats() {
   function handleDateChange(event) {
     const showingID = event.target.value;
     setSelectedShowing(showingID);
+    justAxios()
+      .get(`/showings/${showingID}`)
+      .then((res4) => {
+        justAxios()
+          .get(`/screens/${res4.data.showing.screenID}`)
+          .then((res5) => {
+            setColCount(res5.data.screen.colCount);
+          });
+      });
   }
 
   return (
@@ -95,7 +104,8 @@ function BookSeats() {
       </div>
       <div>
         <h1>Pick your seats.</h1>
-        <SeatPicker showingID={params.showingID} colCount={colCount} />
+        {/* Set the parameters of the SeatPicker Component to the parameters of that selected by the date menu */}
+        <SeatPicker showingID={selectedShowing} colCount={colCount} />
       </div>
     </div>
   );
