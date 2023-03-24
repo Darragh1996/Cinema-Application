@@ -25,7 +25,7 @@ function Home() {
     justAxios()
       .get("/movies")
       .then((res) => {
-        setMovies(res.data.movies.slice(0, 3));
+        setMovies(res.data.movies);
         setMovOption(res.data.movies);
       });
   }, []);
@@ -135,13 +135,6 @@ function Home() {
             </div>
           );
         })}
-      </div>
-
-      <div id="footer">
-        <p>Admin</p>
-        <p>Contact Us</p>
-        <p>Google Maps</p>
-        <p>SOCIALS</p>
       </div>
     </div>
   );
