@@ -27,7 +27,7 @@ function MovieSlider({ movies }) {
               key={idx}
               className={styles.fade}
               style={{
-                width: "600px", // Added width
+                width: "100vw", // Added width
                 height: "400px", // Added height
                 backgroundImage: `url(${movie.img_landscape_url})`,
                 backgroundPosition: "center",

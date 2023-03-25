@@ -27,11 +27,13 @@
 /* Caption text */
 .text {
   color: #f2f2f2;
-  font-size: 15px;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
+  font-size: 30px;
   padding: 8px 12px;
   position: absolute;
   bottom: 8px;
-  width: 100%;
+  width: 100vw;
   text-align: center;
 }
 
