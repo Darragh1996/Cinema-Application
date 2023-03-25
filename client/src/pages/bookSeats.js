@@ -18,7 +18,7 @@ function BookSeats() {
   const [dateOption, setDateOption] = useState([]);
   const [trailer, setTrailer] = useState("");
   const [modalDisplay, setModalDisplay] = useState(false);
-  const [movieTrailer, setMovieTrailer] = useState('');
+  const [movieTrailer, setMovieTrailer] = useState("");
 
   useEffect(() => {
     justAxios()
@@ -38,7 +38,6 @@ function BookSeats() {
             setMovieGenre(res3.data.movie.genre);
             setMoviePoster(res3.data.movie.img_poster_url);
             setMovieTrailer(res3.data.movie.trailer_url);
-
           });
         justAxios()
           .get("showings/view/" + res.data.showing.movieID)
@@ -86,7 +85,6 @@ function BookSeats() {
   let handleModal = (trailer) => {
     setTrailer(trailer);
   };
-  
 
   return (
     <div>
@@ -100,7 +98,7 @@ function BookSeats() {
           <p className="sub-heading-actors">{movieGenre}</p>
 
           <div className="movie-info">
-            <p class={"rating"+movieAgeRating}>{movieAgeRating}</p>
+            <p className={"rating" + movieAgeRating}>{movieAgeRating}</p>
             <p>{movieDescription}</p>
           </div>
 
@@ -121,26 +119,27 @@ function BookSeats() {
               </select>
             </div>
           </div>
-          <div id='trailerButtonDiv'>
-          <span
+          <div id="trailerButtonDiv">
+            <span
               id="playMovieIcon"
-              class="glyphicon glyphicon-play-circle"
+              className="glyphicon glyphicon-play-circle"
               onClick={() => {
                 handleModal(movieTrailer);
               }}
             >
               <PlayCircle />
-          </span>
-          {console.log(trailer)}
-          </div>{modalDisplay ? (
-          <PopUpModal
-            setModalDisplay={setModalDisplay}
-            linkToYoutubeTrailer={trailer}
-            setTrailer={setTrailer}
-          />
-      ) : (
-        ""
-      )}
+            </span>
+            {console.log(trailer)}
+          </div>
+          {modalDisplay ? (
+            <PopUpModal
+              setModalDisplay={setModalDisplay}
+              linkToYoutubeTrailer={trailer}
+              setTrailer={setTrailer}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div>
