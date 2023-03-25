@@ -6,22 +6,13 @@ import styles from "./movieSlider.module.css";
 import leftArrow from "../../joes/img/leftArrow.png";
 import rightArrow from "../../joes/img/rightArrow.png";
 
-function MovieSlider() {
-  const [movies, setMovies] = useState([]);
+function MovieSlider({ movies }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const updateImage = (val) => {
     console.log("update image");
     setCurrentIndex((currentIndex + val) % movies.length);
   };
-
-  useEffect(() => {
-    justAxios()
-      .get(`/movies`)
-      .then((res) => {
-        setMovies(res.data.movies);
-      });
-  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => updateImage(1), 5000);
