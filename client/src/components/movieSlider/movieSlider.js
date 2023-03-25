@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { justAxios } from "../../utils/axios";
 
 import styles from "./movieSlider.module.css";
 
