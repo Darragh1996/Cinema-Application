@@ -41,7 +41,7 @@ function SeatPicker({ showingID, colCount }) {
         rows.push(row);
         setRows(rows);
       });
-  }, [hasChanged, colCount]);
+  }, [showingID, hasChanged, colCount]);
 
   return (
     <div className="pickYourSeats">

@@ -9,6 +9,8 @@ import PopUpModal from "../components/popUpModal/popUpModal.js";
 function BookSeats() {
   const params = useParams();
   const [colCount, setColCount] = useState(0);
+  const [screenID, setScreenID] = useState(0);
+  const [movieID, setMovieID] = useState(0);
   const [movieName, setMovieName] = useState("");
   const [movieDescription, setMovieDescription] = useState("");
   const [movieAgeRating, setMovieAgeRating] = useState("");
@@ -22,30 +24,42 @@ function BookSeats() {
 
   useEffect(() => {
     justAxios()
-      .get(`/showings/${params.showingID}`)
+      .get(`/showings/${selectedShowing}`)
       .then((res) => {
         setMovieName(res.data.showing.name);
-        justAxios()
-          .get(`/screens/${res.data.showing.screenID}`)
-          .then((res2) => {
-            setColCount(res2.data.screen.colCount);
-          });
-        justAxios()
-          .get(`/movies/${res.data.showing.movieID}`)
-          .then((res3) => {
-            setMovieDescription(res3.data.movie.details);
-            setMovieAgeRating(res3.data.movie.rating);
-            setMovieGenre(res3.data.movie.genre);
-            setMoviePoster(res3.data.movie.img_poster_url);
-            setMovieTrailer(res3.data.movie.trailer_url);
-          });
-        justAxios()
-          .get("showings/view/" + res.data.showing.movieID)
-          .then((res4) => {
-            setDateOption(res4.data.showings);
-          });
+        setScreenID(res.data.showing.screenID);
+        setMovieID(res.data.showing.movieID);
       });
-  }, []);
+  }, [selectedShowing]);
+
+  useEffect(() => {
+    if (movieID !== 0) {
+      justAxios()
+        .get(`/movies/${movieID}`)
+        .then((res) => {
+          setMovieDescription(res.data.movie.details);
+          setMovieAgeRating(res.data.movie.rating);
+          setMovieGenre(res.data.movie.genre);
+          setMoviePoster(res.data.movie.img_poster_url);
+          setMovieTrailer(res.data.movie.trailer_url);
+        });
+      justAxios()
+        .get(`showings/view/${movieID}`)
+        .then((res) => {
+          setDateOption(res.data.showings);
+        });
+    }
+  }, [movieID]);
+
+  useEffect(() => {
+    if (movieID !== 0) {
+      justAxios()
+        .get(`/screens/${screenID}`)
+        .then((res) => {
+          setColCount(res.data.screen.colCount);
+        });
+    }
+  }, [screenID]);
 
   useEffect(() => {
     if (trailer) {
@@ -71,15 +85,6 @@ function BookSeats() {
   function handleDateChange(event) {
     const showingID = event.target.value;
     setSelectedShowing(showingID);
-    justAxios()
-      .get(`/showings/${showingID}`)
-      .then((res4) => {
-        justAxios()
-          .get(`/screens/${res4.data.showing.screenID}`)
-          .then((res5) => {
-            setColCount(res5.data.screen.colCount);
-          });
-      });
   }
 
   let handleModal = (trailer) => {
