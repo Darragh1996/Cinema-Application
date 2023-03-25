@@ -1,59 +1,72 @@
-import React , { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { justAxios } from "../../utils/axios";
 
-
+import styles from "./movieSlider.module.css";
 
 import leftArrow from "../../joes/img/leftArrow.png";
 import rightArrow from "../../joes/img/rightArrow.png";
 
-
 function MovieSlider() {
-    const [movies, setMovies] = useState([{}]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [movies, setMovies] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    const slideStyles = {
-        width: "600px",
-        height: "400px",
-        backgroundImage: `url(${movies[currentIndex].img_landscape_url})` , 
-        backgroundPosition: "center",
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: "cover"
+  const updateImage = (val) => {
+    console.log("update image");
+    setCurrentIndex((currentIndex + val) % movies.length);
+  };
 
-    }
+  useEffect(() => {
+    justAxios()
+      .get(`/movies`)
+      .then((res) => {
+        setMovies(res.data.movies);
+      });
+  }, []);
 
-    function goToPrevious(){
-        if(currentIndex <= 0){
-            setCurrentIndex(11)
-        }
-        else{ 
-            setCurrentIndex(currentIndex-1)
-        }
-    }
+  useEffect(() => {
+    const interval = setInterval(() => updateImage(1), 5000);
+    return () => clearInterval(interval);
+  }, [currentIndex, movies]);
 
-    function goToNext(){
-        if(currentIndex >= 11){
-            setCurrentIndex(0)
-        }
-        else{ 
-            setCurrentIndex(currentIndex+1)
-        }
-    }
-    setInterval(goToNext, 5000);
-    useEffect(() => {
-        justAxios()
-            .get(`/movies/`)
-            .then((res) => {
-                console.log(res)
-                setMovies(res.data.movies);
-        });
-      }, []);
-    
-    return (
-        <div style={ slideStyles }>
-            <img id="leftArrow" onClick={goToPrevious} src={leftArrow} alt="leftArrow" />
-            <img id="rightArrow" onClick={goToNext} src={rightArrow} alt="rightArrow" />
-        </div>
-    );
+  return (
+    <div>
+      <div className={styles.carouselContainer}>
+        {movies.map((movie, idx) => {
+          return (
+            <div
+              key={idx}
+              className={styles.fade}
+              style={{
+                width: "600px", // Added width
+                height: "400px", // Added height
+                backgroundImage: `url(${movie.img_landscape_url})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                display: currentIndex === idx ? "block" : "none",
+              }}
+            >
+              <div className={styles.text}>{movie.name}</div>
+            </div>
+          );
+        })}
+      </div>
+      <img
+        className={styles.arrow}
+        id="leftArrow"
+        onClick={() => updateImage(-1)}
+        src={leftArrow}
+        alt="leftArrow"
+      />
+      <img
+        className={styles.arrow}
+        id="rightArrow"
+        onClick={() => updateImage(1)}
+        src={rightArrow}
+        alt="rightArrow"
+      />
+    </div>
+  );
 }
 
 export default MovieSlider;
