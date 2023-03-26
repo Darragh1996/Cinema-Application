@@ -63,8 +63,8 @@ let addShowing = async (req, res) => {
     }
 
     if (conflictFound) {
-      res.status(500).json({
-        message: "Another showing already exists at the selected datetime",
+      res.status(400).json({
+        message: "A showing already exists at the selected datetime & screen",
       });
     } else {
       let showingCreated = await Showings.add({
