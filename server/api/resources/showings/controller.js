@@ -1,6 +1,7 @@
 import * as Showings from "./model.js";
 import * as ShowingSeats from "../showingSeats/model.js";
 import * as Seats from "../seats/model.js";
+import * as Movies from "../movies/model.js";
 
 let getAllShowings = async (req, res) => {
   try {
@@ -41,37 +42,63 @@ let addShowing = async (req, res) => {
   try {
     let { movieID, screenID, datetime } = req.body;
 
-    let showingCreated = await Showings.add({
-      movieID,
-      screenID,
-      datetime,
-    });
+    let showings = await Showings.getByScreenID(screenID);
+    let movie = await Movies.getByID(movieID);
 
-    let screenSeats = await Seats.getByScreenID(screenID);
+    let movieRuntimeSeconds = movie.runtime * 60 * 1000;
+    let dateTimeSeconds = new Date(datetime).getTime();
 
-    let showingSeats = screenSeats.map((seat) => {
-      let newSeat = {
-        ...seat,
-        showingID: showingCreated.id,
-        seatID: seat.id,
-        occupied: false,
-      };
-      delete newSeat.aisle;
-      delete newSeat.screenID;
-      delete newSeat.colID;
-      delete newSeat.rowID;
-      delete newSeat.id;
-      return newSeat;
-    });
+    let conflictFound = false;
 
-    for (let i = 0; i < showingSeats.length; i++) {
-      await ShowingSeats.add(showingSeats[i]);
+    for (let i = 0; i < showings.length; i++) {
+      let otherShowingTime = new Date(showings[i].datetime).getTime();
+
+      if (
+        dateTimeSeconds >= otherShowingTime &&
+        dateTimeSeconds < otherShowingTime + movieRuntimeSeconds
+      ) {
+        conflictFound = true;
+        break;
+      }
     }
 
-    res.status(201).json({
-      message: "Showing added successfully",
-      data: { showing: showingCreated },
-    });
+    if (conflictFound) {
+      res.status(500).json({
+        message: "Another showing already exists at the selected datetime",
+      });
+    } else {
+      let showingCreated = await Showings.add({
+        movieID,
+        screenID,
+        datetime,
+      });
+
+      let screenSeats = await Seats.getByScreenID(screenID);
+
+      let showingSeats = screenSeats.map((seat) => {
+        let newSeat = {
+          ...seat,
+          showingID: showingCreated.id,
+          seatID: seat.id,
+          occupied: false,
+        };
+        delete newSeat.aisle;
+        delete newSeat.screenID;
+        delete newSeat.colID;
+        delete newSeat.rowID;
+        delete newSeat.id;
+        return newSeat;
+      });
+
+      for (let i = 0; i < showingSeats.length; i++) {
+        await ShowingSeats.add(showingSeats[i]);
+      }
+
+      res.status(201).json({
+        message: "Showing added successfully",
+        data: { showing: showingCreated },
+      });
+    }
   } catch (error) {
     res
       .status(500)
