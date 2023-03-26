@@ -11,6 +11,8 @@ function MovieSlider() {
     const [movies, setMovies] = useState([{}]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // const carouselTimer = 2000;
+
     const slideStyles = {
         width: "600px",
         height: "400px",
@@ -37,8 +39,15 @@ function MovieSlider() {
         else{ 
             setCurrentIndex(currentIndex+1)
         }
+        console.log("currentIndex: ", currentIndex)
     }
-    setInterval(goToNext, 5000);
+
+    // useEffect(()=>{
+    //     const interval = setInterval(goToNext, carouselTimer);
+    //     return () => clearInterval(interval);
+    // }, []);
+
+
     useEffect(() => {
         justAxios()
             .get(`/movies/`)

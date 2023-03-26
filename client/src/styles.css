@@ -119,6 +119,10 @@
   height: 40px;
 }
 
+#posterCarousel img:hover {
+  cursor: pointer;
+}
+
 #posterCarousel #rightArrow {
   position: absolute;
   right: 7%;
