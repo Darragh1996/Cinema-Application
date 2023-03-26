@@ -8,9 +8,6 @@ import handlebars from "handlebars";
 
 import * as dotenv from "dotenv";
 
-console.log("Email:", process.env.EMAIL);
-console.log("Email Password:", process.env.EMAIL_PASSWORD);
-
 dotenv.config();
 
 let getAllShowingSeats = async (req, res) => {
@@ -73,6 +70,43 @@ let bookShowingSeat = async (req, res) => {
         showingSeatID: updatedShowingSeat.id,
       });
     }
+
+    let transporter = nodemailer.createTransport({
+      host: "sandbox.smtp.mailtrap.io",
+      port: 2525,
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    // Read the Handlebars template file
+    const templateFile = await fs.readFile("./utils/emailTemplate.hbs", "utf8");
+
+    // Compile the template
+    const template = handlebars.compile(templateFile);
+
+    const { name, datetime } = await Showings.getByID(showingID);
+
+    const html = template({
+      username: req.decodedToken.name,
+      seatCount: ids.length,
+      movieName: name,
+      datetime: datetime,
+    });
+
+    let message = {
+      from: "from-example@email.com",
+      to: "to-example@email.com",
+      subject: "Subject",
+      html: html,
+    };
+
+    transporter.sendMail(message, (err, info) => {
+      if (err) {
+        console.log(err);
+      }
+    });
 
     res.status(200).json({
       message: "Showing Seats booked successfully",
