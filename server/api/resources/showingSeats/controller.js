@@ -8,6 +8,9 @@ import handlebars from "handlebars";
 
 import * as dotenv from "dotenv";
 
+console.log("Email:", process.env.EMAIL);
+console.log("Email Password:", process.env.EMAIL_PASSWORD);
+
 dotenv.config();
 
 let getAllShowingSeats = async (req, res) => {
