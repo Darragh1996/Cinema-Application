@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { justAxios } from "../utils/axios.js";
+import { justAxios } from "../../utils/axios.js";
+import styles from "./Login.module.css";
 
-function UserLogin() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,35 +27,34 @@ function UserLogin() {
     }
   };
   return (
-    <div>
-      <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
-        <label>Email</label>
-        <br />
+    <div className={styles.container}>
+      <h1>Reel Dreams Cinema</h1>
+      <form onSubmit={handleSubmit} className={styles.loginForm}>
+        <h2>Login</h2>
+        <label htmlFor="email">Email</label>
         <input
+          id="email"
           name="email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="username"
+          required
         />
-        <br />
-
-        <label>Password</label>
-        <br />
+        <label htmlFor="password">Password</label>
         <input
+          id="password"
           name="password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
+          required
         />
-        <br />
-        <input className="submitButton" type="submit" value="Login" />
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 }
 
-export default UserLogin;
+export default Login;

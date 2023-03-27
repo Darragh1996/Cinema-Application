@@ -1,0 +1,101 @@
+/* General container styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Login form container */
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  width: 100%;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+/* Form elements */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 1px #4a90e2;
+  background-color: #e6f0fa;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a90e2;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3a78c2;
+}
+
+button:active {
+  background-color: #4a90e2;
+  transform: translateY(1px);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Heading and subheading */
+h1,
+h2 {
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #4a90e2 25%, #00c9ff 50%, #4a90e2 75%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shining 2s linear infinite;
+}
+
+h2 {
+  font-size: 20px;
+  color: #0d6efd;
+}
+
+@keyframes shining {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
