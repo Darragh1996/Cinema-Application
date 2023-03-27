@@ -30,7 +30,6 @@ function Login() {
     <div className={styles.container}>
       <h1>Reel Dreams Cinema</h1>
       <form onSubmit={handleSubmit} className={styles.loginForm}>
-        <h2>Login</h2>
         <label htmlFor="email">Email</label>
         <input
           id="email"

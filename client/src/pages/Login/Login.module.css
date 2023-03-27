@@ -17,7 +17,8 @@
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  width: 30vw;
+  max-width: 600px;
 }
 
 label {
@@ -81,6 +82,7 @@ h1 {
   font-weight: bold;
   background: linear-gradient(90deg, #4a90e2 25%, #00c9ff 50%, #4a90e2 75%);
   background-size: 200% 100%;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shining 2s linear infinite;
@@ -88,6 +90,7 @@ h1 {
 
 h2 {
   font-size: 20px;
+  font-weight: bold;
   color: #0d6efd;
 }
 
