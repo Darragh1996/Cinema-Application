@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { justAxios } from "../../utils/axios.js";
 import styles from "./Login.module.css";
@@ -52,6 +52,9 @@ function Login() {
         />
         <button type="submit">Login</button>
       </form>
+      <p>
+        Don't have an account? <Link to="/register">Sign up</Link>
+      </p>
     </div>
   );
 }
