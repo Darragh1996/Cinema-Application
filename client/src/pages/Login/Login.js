@@ -28,11 +28,14 @@ function Login() {
   };
   return (
     <div className={styles.container}>
-      <h1>Reel Dreams Cinema</h1>
+      <h1 className={styles.formH1}>Reel Dreams Cinema</h1>
       <form onSubmit={handleSubmit} className={styles.loginForm}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" className={styles.formLabel}>
+          Email
+        </label>
         <input
           id="email"
+          className={styles.formInput}
           name="email"
           type="text"
           value={email}
@@ -40,9 +43,12 @@ function Login() {
           autoComplete="username"
           required
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className={styles.formLabel}>
+          Password
+        </label>
         <input
           id="password"
+          className={styles.formInput}
           name="password"
           type="password"
           value={password}
@@ -50,7 +56,9 @@ function Login() {
           autoComplete="current-password"
           required
         />
-        <button type="submit">Login</button>
+        <button type="submit" className={styles.formButton}>
+          Login
+        </button>
       </form>
       <p>
         Don't have an account? <Link to="/register">Sign up</Link>

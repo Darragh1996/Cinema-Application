@@ -38,16 +38,19 @@ function Register() {
 
   return (
     <div className={styles.container}>
-      <h1>Reel Dreams Cinema</h1>
+      <h1 className={styles.formH1}>Reel Dreams Cinema</h1>
       <form
         onSubmit={(e) => {
           handleSubmit(e);
         }}
         className={styles.loginForm}
       >
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name" className={styles.formLabel}>
+          Name
+        </label>
         <input
           id="name"
+          className={styles.formInput}
           name="name"
           type="text"
           value={name}
@@ -55,9 +58,12 @@ function Register() {
           required
         />
 
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" className={styles.formLabel}>
+          Email
+        </label>
         <input
           id="email"
+          className={styles.formInput}
           name="email"
           type="email"
           value={email}
@@ -65,9 +71,12 @@ function Register() {
           required
         />
 
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className={styles.formLabel}>
+          Password
+        </label>
         <input
           id="password"
+          className={styles.formInput}
           name="password"
           type="password"
           value={password}
@@ -75,9 +84,12 @@ function Register() {
           required
         />
 
-        <label htmlFor="number">Phone Number</label>
+        <label htmlFor="number" className={styles.formLabel}>
+          Phone Number
+        </label>
         <input
           id="number"
+          className={styles.formInput}
           name="number"
           type="text"
           value={number}
@@ -85,7 +97,9 @@ function Register() {
           required
         />
 
-        <button type="submit">Register</button>
+        <button type="submit" className={styles.formButton}>
+          Register
+        </button>
       </form>
       <p>
         Already have an account? <Link to="/login">Login</Link>
