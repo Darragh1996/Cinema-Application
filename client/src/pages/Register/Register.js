@@ -38,7 +38,7 @@ function Register() {
 
   return (
     <div className={styles.container}>
-      <h1>Register</h1>
+      <h1>Reel Dreams Cinema</h1>
       <form
         onSubmit={(e) => {
           handleSubmit(e);
@@ -52,6 +52,7 @@ function Register() {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
         />
 
         <label htmlFor="email">Email</label>
@@ -61,6 +62,7 @@ function Register() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <label htmlFor="password">Password</label>
@@ -70,6 +72,7 @@ function Register() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
 
         <label htmlFor="number">Phone Number</label>
@@ -79,9 +82,10 @@ function Register() {
           type="text"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
+          required
         />
 
-        <button type="submit">Create User</button>
+        <button type="submit">Register</button>
       </form>
       <p>
         Already have an account? <Link to="/login">Login</Link>
