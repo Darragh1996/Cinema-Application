@@ -45,13 +45,13 @@ input {
 input:focus {
   border-color: #fcaf3b;
   box-shadow: 0 0 0 1px #fcaf3b;
-  background-color: #fef4e8; /* Very light shade of the theme color */
+  background-color: #fef4e8;
 }
 
 button {
   width: 100%;
   padding: 12px;
-  background-color: #fcaf3b; /* Update button color */
+  background-color: #fcaf3b;
   color: #ffffff;
   font-weight: bold;
   font-size: 16px;
@@ -63,7 +63,7 @@ button {
 }
 
 button:hover {
-  background-color: #e89e2d; /* Slightly darker shade for hover */
+  background-color: #e89e2d;
 }
 
 button:active {
@@ -100,13 +100,13 @@ h2 {
   margin-top: 20px;
   font-size: 16px;
   color: #666;
-  width: 30vw; /* Add this line to match the width of the loginForm */
-  max-width: 600px; /* Add this line to match the max-width of the loginForm */
+  width: 30vw;
+  max-width: 600px;
   text-align: left;
 }
 
 .loginForm + p > a {
-  color: #c86415; /* A darker shade of the theme color */
+  color: #c86415;
   transition: color 0.3s ease;
   text-decoration: none;
 }
