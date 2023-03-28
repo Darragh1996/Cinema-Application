@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { justAxios } from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
+import NavBar from "../../components/NavBar/NavBar.js"
+
 // import styles from "./Home.module.css";
 import "../../styles.css";
 
@@ -66,13 +68,7 @@ function Home() {
 
   return (
     <div>
-      <div id="nav">
-        <img src={logo} alt="Reel Dreams" />
-        <a href>
-          <h3>SHOWTIMES</h3>
-        </a>
-        <img id="userIcon" src={userIcon} alt="User Icon" />
-      </div>
+      < NavBar />
       <div id="quickBook">
         <form>
           <label htmlFor="qBMovieName"></label>
