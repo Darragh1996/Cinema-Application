@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./seatPicker.css";
+import styles from "./seatPicker.module.css";
 import { ReactComponent as SeatSVG } from "../../images/couch-seat-svgrepo-com.svg";
 
 const Seat = ({ seat, selectedSeats, setSelectedSeats }) => {
@@ -33,7 +33,7 @@ const Seat = ({ seat, selectedSeats, setSelectedSeats }) => {
 
   return (
     <SeatSVG
-      className={`seat seat-${seat.seatID}`}
+      className={styles.seat}
       onClick={(e) => handleSeatClick(e)}
       style={{
         fill: seat.occupied ? "red" : isSelected ? "orange" : "green",

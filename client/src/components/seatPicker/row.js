@@ -1,22 +1,24 @@
 import React from "react";
-import "./seatPicker.css";
+import styles from "./seatPicker.module.css";
 
 import Seat from "./seat";
 
 function Row({ row, selectedSeats, setSelectedSeats }) {
   return (
-    <div className="row">
+    <tr className={styles.seatPickerRow}>
       {row.map((seat, index) => {
         return (
-          <Seat
-            seat={seat}
-            selectedSeats={selectedSeats}
-            setSelectedSeats={setSelectedSeats}
-            key={`seat-${index}`}
-          />
+          <td className={styles.seatPickerCell}>
+            <Seat
+              seat={seat}
+              selectedSeats={selectedSeats}
+              setSelectedSeats={setSelectedSeats}
+              key={`seat-${index}`}
+            />
+          </td>
         );
       })}
-    </div>
+    </tr>
   );
 }
 

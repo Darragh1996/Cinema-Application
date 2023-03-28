@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axios";
+import styles from "./screenSeatGenerator.module.css";
 import Row from "./row";
 
 function SeatGenerator() {
@@ -71,26 +72,28 @@ function SeatGenerator() {
 
       <button onClick={generateSeats}>Generate</button>
 
-      <div id="seatLayout">
-        {seats.map((row, index) => {
-          return (
-            <Row
-              row={row}
-              setSeats={setSeats}
-              rowIndex={index}
-              key={`row-${index}`}
-            />
-          );
-        })}
-        <button
-          onClick={handleSubmit}
-          style={{
-            visibility: seats.length ? "" : "hidden",
-          }}
-        >
-          Create Screen
-        </button>
-      </div>
+      <table className={styles.screenSeatGenTable}>
+        <tbody>
+          {seats.map((row, index) => {
+            return (
+              <Row
+                row={row}
+                setSeats={setSeats}
+                rowIndex={index}
+                key={`row-${index}`}
+              />
+            );
+          })}
+        </tbody>
+      </table>
+      <button
+        onClick={handleSubmit}
+        style={{
+          visibility: seats.length ? "" : "hidden",
+        }}
+      >
+        Create Screen
+      </button>
     </div>
   );
 }

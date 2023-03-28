@@ -172,15 +172,15 @@
   padding-top: 100px;
 }
 
-table {
+/* table {
   margin: auto;
   justify-content: auto;
   font-family: "Roboto Flex";
-}
+} */
 
-input {
+/* input {
   width: 300px;
-}
+} */
 
 #loginFormContainer {
   margin: auto;
@@ -240,6 +240,6 @@ input {
   color: white;
 }
 
-.pickYourSeats {
+/* .pickYourSeats {
   text-align: center;
-}
+} */
