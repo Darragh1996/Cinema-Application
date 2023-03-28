@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Slideshow container */
+.carouselContainer {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 3s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
+  font-size: 30px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100vw;
+  text-align: center;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}

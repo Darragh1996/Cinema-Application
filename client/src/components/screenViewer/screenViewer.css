@@ -1,25 +1,38 @@
 .seat {
   background-color: red;
   height: 2rem;
-  width: 2rem;
+  /* width: 2rem; */
   margin: 0;
   padding: 0;
   display: inline-block;
+  /* width: fit-content;
+  block-size: fit-content; */
 }
 
 .row {
-  margin: 0;
+  margin: 1%;
   box-sizing: border-box;
-  display: flex;
+  display: flex!important;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-grow: 3;
   width: auto;
-  justify-content: space-evenly;
+  height: auto;
   min-width: 60%;
-  margin-right: 20%;
-  max-width: 1000px;
 }
 
 .seatsLayout {
   border: 3px solid #0d6efd;
-  width: 500px;
+  width: 550px;
   height: 400px;
+  overflow: auto;
+  margin: auto
+}
+
+#Layer_1 {
+  width: auto;
+  height: auto;
+  max-height: 40px;
+  max-width: 40px;
+  block-size: fit-content;
 }

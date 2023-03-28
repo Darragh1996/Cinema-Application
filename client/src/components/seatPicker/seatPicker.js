@@ -41,12 +41,12 @@ function SeatPicker({ showingID, colCount }) {
         rows.push(row);
         setRows(rows);
       });
-  }, [hasChanged, colCount]);
+  }, [showingID, hasChanged, colCount]);
 
   return (
-    <div>
+    <div className="pickYourSeats">
       <h3>Seats selected: {selectedSeats.size}</h3>
-      <div>
+      <div className="seatsLayout">
         {colCount && rows ? (
           rows.map((row, index) => {
             return (

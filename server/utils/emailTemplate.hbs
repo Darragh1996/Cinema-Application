@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Confirmation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      background-color: #0a3d62;
+      color: #fff;
+      padding: 20px;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .content-wrapper {
+      background-color: #fff;
+      padding: 30px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+  </style>
+</head>
+<body>
+  <h1>Reel Dreams Cinema</h1>
+  <div class="content-wrapper">
+    <p>Hello {{username}},</p>
+    <p>You booked {{seatCount}} seat(s). for `{{movieName}}` @ {{datetime}}</p>
+    <p>Enjoy!</p>
+    <p>Kind Regards,</p>
+    <p>Reel Dreams Cinema Team</p>
+  </div>
+</body>
+</html>

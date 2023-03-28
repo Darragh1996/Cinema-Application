@@ -100,7 +100,7 @@ let seed = (knex) => {
         {
           seatID: 19,
           showingID: 1,
-          occupied: true,
+          occupied: false,
         },
         {
           seatID: 20,

@@ -25,24 +25,23 @@ function ShowingForm() {
     });
   };
 
-  let handleSubmit = async (e) => {
+  let handleSubmit = (e) => {
     e.preventDefault();
     let showing = {
       movieID: parseInt(showingState.movieID),
       screenID: parseInt(showingState.screenID),
       datetime: new Date(showingState.datetime).toISOString(),
     };
-    try {
-      axiosWithAuth()
-        .post("/showings", showing)
-        .then((res) => {
-          console.log(res);
-          navigate("/admin/showings");
-        });
-    } catch (err) {
-      console.log(err);
-    }
-    console.log(showing);
+
+    axiosWithAuth()
+      .post("/showings", showing)
+      .then((res) => {
+        console.log(res.status);
+        navigate("/admin/showings");
+      })
+      .catch((err) => {
+        window.alert(err.response.data.message);
+      });
   };
 
   useEffect(() => {
