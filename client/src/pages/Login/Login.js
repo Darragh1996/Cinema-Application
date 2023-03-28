@@ -38,6 +38,7 @@ function Login() {
           className={styles.formInput}
           name="email"
           type="text"
+          placeholder="john@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="username"
@@ -51,6 +52,7 @@ function Login() {
           className={styles.formInput}
           name="password"
           type="password"
+          placeholder="password123"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"

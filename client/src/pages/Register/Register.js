@@ -53,6 +53,7 @@ function Register() {
           className={styles.formInput}
           name="name"
           type="text"
+          placeholder="John Doe"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -66,6 +67,7 @@ function Register() {
           className={styles.formInput}
           name="email"
           type="email"
+          placeholder="john@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -79,6 +81,7 @@ function Register() {
           className={styles.formInput}
           name="password"
           type="password"
+          placeholder="password123"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -92,6 +95,7 @@ function Register() {
           className={styles.formInput}
           name="number"
           type="text"
+          placeholder="123 456 7890"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
           required
