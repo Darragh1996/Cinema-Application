@@ -12,6 +12,7 @@ import ViewScreens from "../pages/admin/ViewScreens.js";
 import ViewShowings from "../pages/admin/ViewShowings.js";
 import AddShowing from "../pages/admin/AddShowing.js";
 import EditShowing from "../pages/admin/EditShowing.js";
+import GenerateReport from "../pages/admin/GenerateReport.js";
 import ViewBooking from "../pages/viewBookings.js";
 
 import CreateScreen from "../pages/admin/CreateScreen.js";
@@ -78,6 +79,10 @@ const RoutesConfig = [
   {
     path: "/admin/editShowing/:showingID",
     element: <PrivateRoute Component={EditShowing} admin={true} />,
+  },
+  {
+    path: "/admin/generateReport",
+    element: <PrivateRoute Component={GenerateReport} admin={true} />,
   },
 ];
 
