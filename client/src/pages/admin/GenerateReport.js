@@ -6,7 +6,7 @@ import { justAxios } from "../../utils/axios.js";
 
 import "./adminStyles.css";
 
-function generateReport() {
+function GenerateReport() {
     const [showings, setShowings] = useState([]);
   
   useEffect(() => {
@@ -71,4 +71,4 @@ function generateReport() {
 
     );
 }
-export default generateReport
+export default GenerateReport
