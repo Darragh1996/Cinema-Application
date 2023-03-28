@@ -3,48 +3,71 @@ import { useParams } from "react-router-dom";
 import { justAxios } from "../utils/axios";
 
 import SeatPicker from "../components/seatPicker/seatPicker";
+import { PlayCircle } from "react-bootstrap-icons";
+import PopUpModal from "../components/popUpModal/popUpModal.js";
 
 function BookSeats() {
   const params = useParams();
   const [colCount, setColCount] = useState(0);
-  const [movieName, setMovieName] = useState('');
-  const [movieDescription, setMovieDescription] = useState('');
-  const [movieAgeRating, setMovieAgeRating] = useState('');
-  const [movieGenre, setMovieGenre] = useState('');
+  const [screenID, setScreenID] = useState(0);
+  const [movieID, setMovieID] = useState(0);
+  const [movieName, setMovieName] = useState("");
+  const [movieDescription, setMovieDescription] = useState("");
+  const [movieAgeRating, setMovieAgeRating] = useState("");
+  const [movieGenre, setMovieGenre] = useState("");
+  const [moviePoster, setMoviePoster] = useState("");
   const [selectedShowing, setSelectedShowing] = useState(params.showingID);
   const [dateOption, setDateOption] = useState([]);
-
+  const [trailer, setTrailer] = useState("");
+  const [modalDisplay, setModalDisplay] = useState(false);
+  const [movieTrailer, setMovieTrailer] = useState("");
 
   useEffect(() => {
     justAxios()
-      .get(`/showings/${params.showingID}`)
+      .get(`/showings/${selectedShowing}`)
       .then((res) => {
-        setMovieName(res.data.showing.name)
-        justAxios()
-          .get(`/screens/${res.data.showing.screenID}`)
-          .then((res2) => {
-            setColCount(res2.data.screen.colCount);
-            
-          });
-        justAxios()
-          .get(`/movies/${res.data.showing.movieID}`)
-            .then((res3) => {
-              setMovieDescription(res3.data.movie.details);
-              setMovieAgeRating(res3.data.movie.rating);
-              setMovieGenre(res3.data.movie.genre)
-
-          })  
-          justAxios()
-          .get("showings/view/" + res.data.showing.movieID)
-          .then((res4) => {
-            console.log(res4)
-
-            setDateOption(res4.data.showings);
-          });
+        setMovieName(res.data.showing.name);
+        setScreenID(res.data.showing.screenID);
+        setMovieID(res.data.showing.movieID);
       });
-      
-  }, []);
-  
+  }, [selectedShowing]);
+
+  useEffect(() => {
+    if (movieID !== 0) {
+      justAxios()
+        .get(`/movies/${movieID}`)
+        .then((res) => {
+          setMovieDescription(res.data.movie.details);
+          setMovieAgeRating(res.data.movie.rating);
+          setMovieGenre(res.data.movie.genre);
+          setMoviePoster(res.data.movie.img_poster_url);
+          setMovieTrailer(res.data.movie.trailer_url);
+        });
+      justAxios()
+        .get(`showings/view/${movieID}`)
+        .then((res) => {
+          setDateOption(res.data.showings);
+        });
+    }
+  }, [movieID]);
+
+  useEffect(() => {
+    if (movieID !== 0) {
+      justAxios()
+        .get(`/screens/${screenID}`)
+        .then((res) => {
+          setColCount(res.data.screen.colCount);
+        });
+    }
+  }, [screenID]);
+
+  useEffect(() => {
+    if (trailer) {
+      setModalDisplay(true);
+    } else {
+      setModalDisplay(false);
+    }
+  }, [trailer]);
 
   function formatDatetime(datetime) {
     const date = new Date(datetime);
@@ -64,52 +87,71 @@ function BookSeats() {
     setSelectedShowing(showingID);
   }
 
+  let handleModal = (trailer) => {
+    setTrailer(trailer);
+  };
+
   return (
     <div>
-      <div class="container">
-
-        <div class="left-section">
-          <img src="" alt="" class="movie-img"/>
+      <div className="movieInfoContainer">
+        <div className="left-section">
+          <img src={moviePoster} alt={movieName} className="movie-img" />
         </div>
-        <div class="right-section">
+        <div className="right-section">
+          <h2 className="movie-heading">{movieName}</h2>
 
-            <h2 class="movie-heading">{movieName}</h2>
+          <p className="sub-heading-actors">{movieGenre}</p>
 
-            <p class="sub-heading-actors">{movieGenre}</p>
+          <div className="movie-info">
+            <p className={"rating" + movieAgeRating}>{movieAgeRating}</p>
+            <p>{movieDescription}</p>
+          </div>
 
-            <div class="movie-info">                
-                    <p>{movieAgeRating}</p>
-                    <p>{movieDescription}</p>
+          <div className="dropdown-section">
+            <div className="date">
+              <label htmlFor="date">Select</label>
+              <select
+                id="movieTimesBookingChoice"
+                name="movieTimesBookingChoice"
+                onChange={handleDateChange}
+                value={selectedShowing}
+              >
+                {dateOption.map((date) => (
+                  <option key={date.id} value={date.id}>
+                    {formatDatetime(date.datetime)}
+                  </option>
+                ))}
+              </select>
             </div>
-
-            <div class="dropdown-section">
-            
-            <div class="date">
-                <label for="date">showing</label>
-                <select 
-                  id="movieTimesBookingChoice"
-                  name="movieTimesBookingChoice"
-                  onChange={handleDateChange}
-                >
-                  <option value="">Select Showing</option>
-                  {dateOption.map((date) => (
-                    <option key={date.id} value={date.id} selected = {date.id === selectedShowing ? 'selected': 'false'}>
-                      {formatDatetime(date.datetime)}
-                    </option>
-                  ))}
-                </select>
-            </div>
-
-
-
-            </div>
+          </div>
+          <div id="trailerButtonDiv">
+            <span
+              id="playMovieIcon"
+              className="glyphicon glyphicon-play-circle"
+              onClick={() => {
+                handleModal(movieTrailer);
+              }}
+            >
+              <PlayCircle />
+            </span>
+            {console.log(trailer)}
+          </div>
+          {modalDisplay ? (
+            <PopUpModal
+              setModalDisplay={setModalDisplay}
+              linkToYoutubeTrailer={trailer}
+              setTrailer={setTrailer}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div>
-        <h1>Pick your seats.</h1>
-        <SeatPicker showingID={params.showingID} colCount={colCount} />
+        <h1 className="pickYourSeats">Pick your seats</h1>
+        {/* Set the parameters of the SeatPicker Component to the parameters of that selected by the date menu */}
+        <SeatPicker showingID={selectedShowing} colCount={colCount} />
       </div>
-      
     </div>
   );
 }

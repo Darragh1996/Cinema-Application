@@ -49,13 +49,17 @@
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.dropdown-section {
+  padding-bottom: 20px;
 }
 
 #nav h3 {
@@ -85,7 +89,7 @@
   height: 20px;
 }
 
-#quickBook{
+#quickBook {
   background-color: #d9d9d9;
   width: 100%;
   justify-content: center;
@@ -94,26 +98,35 @@
   display: inline-flex;
 }
 
+.carouselBG {
+  background-color: black;
+}
 
 #posterCarousel {
   height: 400px;
+  max-height: 400px;
+  width: 100vw;
   background-color: black;
   color: white;
   display: flex;
-  justify-content: center;
+  margin: auto;
 }
 
 #posterCarousel #leftArrow {
   position: absolute;
   left: 7%;
-  top: 320px;
+  top: 350px;
   height: 40px;
+}
+
+#posterCarousel img:hover {
+  cursor: pointer;
 }
 
 #posterCarousel #rightArrow {
   position: absolute;
   right: 7%;
-  top: 320px;
+  top: 350px;
   height: 40px;
 }
 
@@ -191,4 +204,42 @@ input {
   white-space: nowrap;
   text-decoration: underline;
   text-decoration-color: #fcaf3b;
+}
+
+.movieInfoContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 2%;
+}
+.movieInfoContainer img {
+  height: 300px;
+  padding-right: 100px;
+}
+
+.rating12A {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  text-align: center;
+  vertical-align: center;
+  border-radius: 25px;
+  padding-top: 12px;
+  font-weight: bold;
+}
+
+.ratingPG {
+  width: 50px;
+  height: 50px;
+  background-color: green;
+  text-align: center;
+  vertical-align: center;
+  border-radius: 25px;
+  padding-top: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.pickYourSeats {
+  text-align: center;
 }
