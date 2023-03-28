@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Parallax } from 'react-parallax'
 
 import styles from "./movieSlider.module.css";
 
@@ -20,6 +21,10 @@ function MovieSlider({ movies }) {
 
   return (
     <div>
+      {/* <Parallax 
+        strength={600}
+        bgImage={`url(${movie.img_landscape_url})`}
+      ></Parallax> */}
       <div className={styles.carouselContainer}>
         {movies.map((movie, idx) => {
           return (
