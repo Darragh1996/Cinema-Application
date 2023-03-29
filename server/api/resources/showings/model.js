@@ -7,8 +7,25 @@ let getAll = () => {
       "showings.id",
       "movies.name",
       "showings.screenID",
-      "showings.datetime"
+      "showings.datetime",
+      "showings.price",
+      "showings.private"
     )
+    .orderBy("showings.datetime");
+};
+
+let getAllPublic = () => {
+  return db("showings")
+    .leftJoin("movies", "showings.movieID", "movies.id")
+    .select(
+      "showings.id",
+      "movies.name",
+      "showings.screenID",
+      "showings.datetime",
+      "showings.price",
+      "showings.private"
+    )
+    .where({ "showings.private": false })
     .orderBy("showings.datetime");
 };
 
