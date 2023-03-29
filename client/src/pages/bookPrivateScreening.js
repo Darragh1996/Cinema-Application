@@ -1,63 +1,108 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { axiosWithAuth, justAxios } from "../utils/axios";
 
-//import { screens, movies, dates, times } from //;
+function BookPrivateScreenings() {
+  const [showingState, setShowingState] = useState({
+    movieID: 1,
+    screenID: 1,
+    datetime: "",
+  });
+  const [movies, setMovies] = useState([]);
+  const [screens, setScreens] = useState([]);
 
-// Get the necessary HTML elements
-const screenSelect = document.getElementById('screen-select');
-const movieSelect = document.getElementById('movie-select');
-const dateSelect = document.getElementById('date-select');
-const timeSelect = document.getElementById('time-select');
+  const handleChange = (e) => {
+    setShowingState({
+      ...showingState,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-// Populate the screen options
-screens.forEach(screen => {
-  const option = document.createElement('option');
-  option.value = screen.id;
-  option.textContent = screen.name;
-  screenSelect.appendChild(option);
-});
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    let showing = {
+      movieID: parseInt(showingState.movieID),
+      screenID: parseInt(showingState.screenID),
+      datetime: new Date(showingState.datetime).toISOString(),
+    };
+  };
 
-// Populate the movie options
-movies.forEach(movie => {
-  const option = document.createElement('option');
-  option.value = movie.id;
-  option.textContent = movie.name;
-  movieSelect.appendChild(option);
-});
+  useEffect(() => {
+    justAxios()
+      .get("/movies")
+      .then((res) => {
+        setMovies(res.data.movies);
+      });
 
-// Populate the date options
-dates.forEach(date => {
-  const option = document.createElement('option');
-  option.value = date;
-  option.textContent = date;
-  dateSelect.appendChild(option);
-});
+    axiosWithAuth().get("/screens").then((res) => {
+      if (res.data.screens) {
+        setScreens(res.data.screens);
+      }
+    });
+  }, []);
 
-// Populate the time options
-times.forEach(time => {
-  const option = document.createElement('option');
-  option.value = time;
-  option.textContent = time;
-  timeSelect.appendChild(option);
-});
+  return (
+    <div >
 
-// Add event listener for the form submission
-const form = document.getElementById('booking-form');
-form.addEventListener('submit', event => {
-  event.preventDefault();
+      <div id="header" className="text-center my-5">
+        <h1>Book Private Screening</h1>
+        <div id="headerButtons">
+          <Link to="/">
+            <button className="btn btn-success">Home</button>
+          </Link>
+        </div>
+      </div>
+      <div className="d-flex flex-column align-items-center">
+      <div className="mb-3">
+        Select A Movie:
+        <br></br>
+        <select>
+          <option value="">Select Movie </option>
+          {movies.map((movie) => (
+            <option key={movie.id} value={movie.id}>
+              {movie.name}
+            </option>
+          ))}
+        </select>
+        <div className="mb-3">
+          Screen
+          <br />
+          <select
+            type="text"
+            id="screenID"
+            name="screenID"
+            className="form-select"
+            onChange={(event) => handleChange(event)}
+          >
+            {screens.map((screen) => {
+              return <option value={screen.id}>{screen.id}</option>;
+            })}
+          </select>
+        </div>
+        <div className="mb-3">
+          Date & Time
+          <br />
+          <input
+            type="datetime-local"
+            id="datetime"
+            name="datetime"
+            className="form-control"
+            value={showingState.datetime}
+            onChange={(event) => handleChange(event)}
+          />
+        </div>
 
-  // Get the selected values
-  const screenId = screenSelect.value;
-  const movieId = movieSelect.value;
-  const selectedDate = dateSelect.value;
-  const selectedTime = timeSelect.value;
-
-  // Do something with the selected values, e.g. book the screening
-  bookScreening(screenId, movieId, selectedDate, selectedTime);
-});
-
-function bookScreening(screenId, movieId, selectedDate, selectedTime) {
-  // Here you can add your logic for booking the screening
-  console.log(`Booking screening for Screen ${screenId}, Movie ${movieId}, on ${selectedDate} at ${selectedTime}`);
+        <input
+          type="submit"
+          value="Book Screening"
+          className="btn btn-primary"
+        />
+      </div>
+      </div>
+    </div>
+  );
 }
 
+export default BookPrivateScreenings;

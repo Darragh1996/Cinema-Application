@@ -124,6 +124,7 @@ function ShowingForm() {
         </div>
 
         <input type="submit" value="Add" className="btn btn-primary" />
+        
       </form>
     </div>
   );
