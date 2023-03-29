@@ -118,7 +118,7 @@ let addShowing = async (req, res) => {
   }
 };
 
-let addPrivateShowing = async () => {
+let addPrivateShowing = async (req, res) => {
   try {
     let { movieID, screenID, datetime } = req.body;
 
@@ -154,6 +154,8 @@ let addPrivateShowing = async () => {
         private: true,
         datetime,
       });
+
+      console.log(showingCreated);
 
       res.status(201).json({
         message: "Private showing added successfully",
