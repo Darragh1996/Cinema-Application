@@ -2,6 +2,7 @@ import * as Showings from "./model.js";
 import * as ShowingSeats from "../showingSeats/model.js";
 import * as Seats from "../seats/model.js";
 import * as Movies from "../movies/model.js";
+import * as Bookings from "../bookings/model.js";
 
 let getAllShowings = async (req, res) => {
   try {
@@ -155,7 +156,43 @@ let addPrivateShowing = async (req, res) => {
         datetime,
       });
 
-      console.log(showingCreated);
+      let screenSeats = await Seats.getByScreenID(screenID);
+
+      let showingSeats = screenSeats.map((seat) => {
+        let newSeat = {
+          ...seat,
+          showingID: showingCreated.id,
+          seatID: seat.id,
+          occupied: false,
+        };
+        delete newSeat.aisle;
+        delete newSeat.screenID;
+        delete newSeat.colID;
+        delete newSeat.rowID;
+        delete newSeat.id;
+        return newSeat;
+      });
+
+      let showingSeatIds = [];
+
+      for (let i = 0; i < showingSeats.length; i++) {
+        let newSeat = await ShowingSeats.add(showingSeats[i]);
+        showingSeatIds.push(newSeat.id);
+      }
+
+      let userID = req.decodedToken.subject;
+
+      for (let i = 0; i < showingSeatIds.length; i++) {
+        let updatedShowingSeat = await ShowingSeats.update({
+          id: showingSeatIds[i],
+          occupied: true,
+        });
+        await Bookings.add({
+          userID,
+          showingID: showingCreated.id,
+          showingSeatID: updatedShowingSeat.id,
+        });
+      }
 
       res.status(201).json({
         message: "Private showing added successfully",
