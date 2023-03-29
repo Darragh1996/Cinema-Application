@@ -28,6 +28,8 @@ function BookPrivateScreenings() {
       datetime: new Date(showingState.datetime).toISOString(),
     };
 
+    console.log(showing);
+
     axiosWithAuth()
       .post("/showings/private", showing)
       .then((res) => {
@@ -65,7 +67,13 @@ function BookPrivateScreenings() {
         <div className="mb-3">
           Select A Movie:
           <br></br>
-          <select>
+          <select
+            type="text"
+            id="movieID"
+            name="movieID"
+            className="form-select"
+            onChange={(event) => handleChange(event)}
+          >
             <option value="">Select Movie </option>
             {movies.map((movie) => (
               <option key={movie.id} value={movie.id}>

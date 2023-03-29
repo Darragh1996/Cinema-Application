@@ -85,7 +85,7 @@ function ViewShowings() {
               <tr>
                 <td>{showing.name}</td>
                 <td>{showing.screenID}</td>
-                <td>{showing.type === true ? "Private" : "Public"}</td>
+                <td>{showing.private === true ? "Private" : "Public"}</td>
                 <td>{showing.price}</td>
                 <td>{showing.datetime}</td>
                 <td>
