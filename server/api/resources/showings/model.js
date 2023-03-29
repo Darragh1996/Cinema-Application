@@ -92,4 +92,13 @@ let del = (id) => {
   return db("showings").where({ id }).del();
 };
 
-export { getAll, getByID, getByScreenID, getByMovieID, add, update, del };
+export {
+  getAll,
+  getAllPublic,
+  getByID,
+  getByScreenID,
+  getByMovieID,
+  add,
+  update,
+  del,
+};
