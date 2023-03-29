@@ -13,7 +13,7 @@ import ViewShowings from "../pages/admin/ViewShowings.js";
 import AddShowing from "../pages/admin/AddShowing.js";
 import EditShowing from "../pages/admin/EditShowing.js";
 import ViewBooking from "../pages/viewBookings.js";
-
+import BookPrivateScreenings from "../pages/bookPrivateScreening.js";
 import CreateScreen from "../pages/admin/CreateScreen.js";
 import BookSeats from "../pages/bookSeats.js";
 import PrivateRoute from "../components/privateRoute.js";
@@ -79,6 +79,11 @@ const RoutesConfig = [
     path: "/admin/editShowing/:showingID",
     element: <PrivateRoute Component={EditShowing} admin={true} />,
   },
+  {
+    path: "/bookPrivateScreening",
+    element: <PrivateRoute Component={BookPrivateScreenings} admin={false} />,
+
+  }
 ];
 
 export default RoutesConfig;
