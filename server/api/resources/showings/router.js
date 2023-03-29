@@ -4,6 +4,7 @@ const router = express.Router();
 
 import {
   getAllShowings,
+  getAllPublicShowings,
   getShowingByID,
   getShowingByMovieID,
   addShowing,
@@ -14,6 +15,7 @@ import {
 import { authorized, authorizedAdmin } from "../../middlewares.js";
 
 router.get("/", getAllShowings);
+router.get("/public", getAllPublicShowings);
 router.get("/:id", getShowingByID);
 router.get("/view/:movieID", getShowingByMovieID);
 router.post("/", authorizedAdmin, addShowing);

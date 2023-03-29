@@ -14,6 +14,17 @@ let getAllShowings = async (req, res) => {
   }
 };
 
+let getAllPublicShowings = async (req, res) => {
+  try {
+    let showings = await Showings.getAllPublic();
+    await res.status(200).json({ data: showings });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Error getting showings: ${error.message}` });
+  }
+};
+
 let getShowingByID = async (req, res) => {
   let { id } = req.params;
   try {
@@ -146,6 +157,7 @@ let deleteShowing = async (req, res) => {
 
 export {
   getAllShowings,
+  getAllPublicShowings,
   getShowingByID,
   getShowingByMovieID,
   addShowing,

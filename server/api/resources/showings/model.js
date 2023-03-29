@@ -65,7 +65,7 @@ let getByMovieID = (movieID) => {
       "showings.screenID",
       "showings.datetime"
     )
-    .where({ "movies.id": movieID })
+    .where({ "movies.id": movieID, "showings.private": false })
     .orderBy("showings.datetime");
 };
 
