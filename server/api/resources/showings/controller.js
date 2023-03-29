@@ -40,7 +40,7 @@ let getShowingByMovieID = async (req, res) => {
 
 let addShowing = async (req, res) => {
   try {
-    let { movieID, screenID, datetime } = req.body;
+    let { movieID, screenID, price, datetime } = req.body;
 
     let showings = await Showings.getByScreenID(screenID);
     let movie = await Movies.getByID(movieID);
@@ -70,6 +70,7 @@ let addShowing = async (req, res) => {
       let showingCreated = await Showings.add({
         movieID,
         screenID,
+        price,
         datetime,
       });
 
