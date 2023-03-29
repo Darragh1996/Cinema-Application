@@ -118,6 +118,55 @@ let addShowing = async (req, res) => {
   }
 };
 
+let addPrivateShowing = async () => {
+  try {
+    let { movieID, screenID, datetime } = req.body;
+
+    let showings = await Showings.getByScreenID(screenID);
+    let movie = await Movies.getByID(movieID);
+
+    let movieRuntimeSeconds = movie.runtime * 60 * 1000;
+    let dateTimeSeconds = new Date(datetime).getTime();
+
+    let conflictFound = false;
+
+    for (let i = 0; i < showings.length; i++) {
+      let otherShowingTime = new Date(showings[i].datetime).getTime();
+
+      if (
+        dateTimeSeconds >= otherShowingTime &&
+        dateTimeSeconds < otherShowingTime + movieRuntimeSeconds
+      ) {
+        conflictFound = true;
+        break;
+      }
+    }
+
+    if (conflictFound) {
+      res.status(400).json({
+        message: "A showing already exists at the selected datetime & screen",
+      });
+    } else {
+      let showingCreated = await Showings.add({
+        movieID,
+        screenID,
+        price: 120.0,
+        private: true,
+        datetime,
+      });
+
+      res.status(201).json({
+        message: "Private showing added successfully",
+        data: { showing: showingCreated },
+      });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to add showing", error: error.message });
+  }
+};
+
 let updateShowing = async (req, res) => {
   try {
     let { id } = req.params;
@@ -161,6 +210,7 @@ export {
   getShowingByID,
   getShowingByMovieID,
   addShowing,
+  addPrivateShowing,
   updateShowing,
   deleteShowing,
 };

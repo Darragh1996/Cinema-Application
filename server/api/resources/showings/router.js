@@ -8,6 +8,7 @@ import {
   getShowingByID,
   getShowingByMovieID,
   addShowing,
+  addPrivateShowing,
   updateShowing,
   deleteShowing,
 } from "./controller.js";
@@ -19,6 +20,7 @@ router.get("/public", getAllPublicShowings);
 router.get("/:id", getShowingByID);
 router.get("/view/:movieID", getShowingByMovieID);
 router.post("/", authorizedAdmin, addShowing);
+router.post("/private", authorized, addPrivateShowing);
 router.post("/:id", authorizedAdmin, updateShowing);
 router.delete("/:id", authorizedAdmin, deleteShowing);
 
