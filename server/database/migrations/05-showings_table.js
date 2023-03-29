@@ -16,7 +16,7 @@ let up = (knex) => {
       .inTable("screens")
       .onDelete("CASCADE");
     table.datetime("datetime").notNullable().defaultTo(knex.fn.now(6));
-    table.decimal("float").notNullable().defaultTo(8.0);
+    table.decimal("price").notNullable().defaultTo(8.0);
     table.boolean("private").notNullable().defaultTo(false);
   });
 };
