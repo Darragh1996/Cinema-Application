@@ -14,7 +14,7 @@ import AddShowing from "../pages/admin/AddShowing.js";
 import EditShowing from "../pages/admin/EditShowing.js";
 import GenerateReport from "../pages/admin/GenerateReport.js";
 import ViewBooking from "../pages/viewBookings.js";
-
+import BookPrivateScreenings from "../pages/bookPrivateScreening.js";
 import CreateScreen from "../pages/admin/CreateScreen.js";
 import BookSeats from "../pages/bookSeats.js";
 import PrivateRoute from "../components/privateRoute.js";
@@ -81,9 +81,14 @@ const RoutesConfig = [
     element: <PrivateRoute Component={EditShowing} admin={true} />,
   },
   {
-    path: "/admin/generateReport",
+  path: "/admin/generateReport",
     element: <PrivateRoute Component={GenerateReport} admin={true} />,
   },
+  {
+    path: "/bookPrivateScreening",
+    element: <PrivateRoute Component={BookPrivateScreenings} admin={false} />,
+
+  }
 ];
 
 export default RoutesConfig;

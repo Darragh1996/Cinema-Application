@@ -40,3 +40,13 @@
 .arrow:hover {
   cursor: pointer;
 }
+
+
+
+/* this is for the parallax */
+.carouselBG{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}

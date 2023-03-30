@@ -5,6 +5,7 @@ import { justAxios } from "../utils/axios";
 import SeatPicker from "../components/seatPicker/seatPicker";
 import { PlayCircle } from "react-bootstrap-icons";
 import PopUpModal from "../components/popUpModal/popUpModal.js";
+import NavBar from "../components/NavBar/NavBar"
 
 function BookSeats() {
   const params = useParams();
@@ -92,7 +93,8 @@ function BookSeats() {
   };
 
   return (
-    <div>
+    <div className="marginAbove">
+      <NavBar/>
       <div className="movieInfoContainer">
         <div className="left-section">
           <img src={moviePoster} alt={movieName} className="movie-img" />

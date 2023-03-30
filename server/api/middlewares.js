@@ -15,7 +15,7 @@ const authorized = (req, res, next) => {
     });
   } else {
     res.status(401).json({
-      error: "Unauthenticated = please provide a valid token.",
+      error: "Unauthenticated - please provide a valid token.",
     });
   }
 };

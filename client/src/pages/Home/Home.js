@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { justAxios } from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 import MovieSlider from "../../components/movieSlider/movieSlider";
+import Footer from "../../components/Footer/Footer.js";
+
+import NavBar from "../../components/NavBar/NavBar.js"
 
 // import styles from "./Home.module.css";
 import "../../styles.css";
 
 import logo from "./img/logo.png";
 import userIcon from "./img/userIcon.png";
-// import posterWide from "./img/posterwide.png";
-import leftArrow from "./img/leftArrow.png";
-import rightArrow from "./img/rightArrow.png";
-// import posterTall from "./img/postertall.png";
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -67,13 +66,7 @@ function Home() {
 
   return (
     <div>
-      <div id="nav">
-        <img src={logo} alt="Reel Dreams" />
-        <a href>
-          <h3>SHOWTIMES</h3>
-        </a>
-        <img id="userIcon" src={userIcon} alt="User Icon" />
-      </div>
+      < NavBar />
       <div id="quickBook">
         <form>
           <label htmlFor="qBMovieName"></label>
@@ -119,9 +112,7 @@ function Home() {
           {/* <img src={posterWide} alt="bigPoster" /> */}
           {/* <img id="leftArrow" src={leftArrow} alt="leftArrow" />
           <img id="rightArrow" src={rightArrow} alt="rightArrow" /> */}
-          <MovieSlider 
-            movies={movies}
-          />
+          <MovieSlider movies={movies} />
         </div>
       </div>
       <div id="moviePosterTrio">
@@ -142,6 +133,7 @@ function Home() {
           );
         })}
       </div>
+      <Footer />
     </div>
   );
 }

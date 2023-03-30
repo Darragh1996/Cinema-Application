@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pencil, Trash } from "react-bootstrap-icons";
+import NavBar from "../../components/NavBar/NavBar";
 
 // import styles from "./ViewMovie.module.css";
 import "./adminStyles.css";
@@ -55,7 +56,8 @@ function ViewShowings() {
   };
 
   return (
-    <div>
+    <div className="marginAbove">
+      <NavBar/>
       <div id="header">
         <h1>Showings List</h1>
         <div id="headerButtons">
@@ -72,6 +74,8 @@ function ViewShowings() {
           <tr>
             <th scope="col">Movie Name</th>
             <th scope="col">Screen</th>
+            <th scope="col">Type</th>
+            <th scope="col">Price</th>
             <th scope="col">Date & Time</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -83,6 +87,8 @@ function ViewShowings() {
               <tr>
                 <td>{showing.name}</td>
                 <td>{showing.screenID}</td>
+                <td>{showing.private === true ? "Private" : "Public"}</td>
+                <td>{showing.price}</td>
                 <td>{showing.datetime}</td>
                 <td>
                   <Link to={`/admin/editShowing/${showing.id}`}>
