@@ -97,7 +97,7 @@ function GenerateReport() {
                 <td>{showing.datetime}</td>
                 <td>{showing.totalSeats}</td>
                 <td>{showing.ticketsSold}</td>
-                <td>€{(showing.ticketsSold) * 8.5}</td>
+                <td>€{(showing.ticketsSold) * (showing.price)}</td>
               </tr>
             );
           })}
