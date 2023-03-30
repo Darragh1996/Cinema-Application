@@ -93,7 +93,7 @@ function BookSeats() {
   };
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <div className="movieInfoContainer">
         <div className="left-section">
