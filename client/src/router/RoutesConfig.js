@@ -2,9 +2,9 @@ import React from "react";
 
 import Home from "../pages/Home/Home.js";
 import AddMovie from "../pages/admin/AddMovie.js";
-import CreateUser from "../pages/createUser.js";
+import Register from "../pages/Register/Register.js";
 // import DeleteMovie from "../pages/deleteMovie.js";
-import UserLogin from "../pages/userLogIn.js";
+import Login from "../pages/Login/Login.js";
 import ViewMovies from "../pages/admin/ViewMovie.js";
 import EditMovie from "../pages/admin/EditMovie.js";
 import AdminHome from "../pages/admin/AdminHome.js";
@@ -34,7 +34,7 @@ const RoutesConfig = [
   },
   {
     path: "/register",
-    element: <CreateUser />,
+    element: <Register />,
   },
   // {
   //   path: "/deleteMovie",
@@ -46,7 +46,7 @@ const RoutesConfig = [
   },
   {
     path: "/login",
-    element: <UserLogin />,
+    element: <Login />,
   },
   {
     path: "/viewBookings",
