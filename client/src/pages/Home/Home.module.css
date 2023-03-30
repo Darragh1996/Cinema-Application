@@ -173,3 +173,7 @@ input {
   text-decoration: underline;
   text-decoration-color: #fcaf3b;
 }
+
+#quickBook select{
+  padding: 10px 8px 10px 14px;
+}
