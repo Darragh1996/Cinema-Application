@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import logo from "./img/logo.png";
 import "../../styles.css";
-import "./navBar.module.css"
+import "./navBar.module.css";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -40,6 +40,7 @@ function NavBar() {
 
   const viewBookings = () => {
     console.log("it works");
+    navigate("/viewBookings");
   };
 
   return (
@@ -115,7 +116,7 @@ function NavBar() {
             <button
               onClick={viewBookings}
               style={{
-                backgroundColor: "yellow",
+                backgroundColor: "green",
                 color: "#ffffff",
                 borderRadius: "5px",
                 padding: "5px 10px",
