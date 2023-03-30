@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pencil, Trash } from "react-bootstrap-icons";
+import NavBar from "../../components/NavBar/NavBar";
 
 // import styles from "./ViewMovie.module.css";
 import "./adminStyles.css";
@@ -56,6 +57,7 @@ function ViewShowings() {
 
   return (
     <div>
+      <NavBar/>
       <div id="header">
         <h1>Showings List</h1>
         <div id="headerButtons">

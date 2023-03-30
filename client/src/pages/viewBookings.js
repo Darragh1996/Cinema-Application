@@ -3,6 +3,7 @@ import decode from "jwt-decode";
 import { axiosWithAuth } from "../utils/axios";
 import { Link } from "react-router-dom";
 import { Trash } from "react-bootstrap-icons";
+import NavBar from "../components/NavBar/NavBar"
 
 function ViewBookings() {
   const [booking, setBookings] = useState([]);
@@ -55,6 +56,7 @@ function ViewBookings() {
 
   return (
     <div>
+      <NavBar/>
       <h1>Bookings</h1>
       <table className="table table-striped">
         <thead className="table-dark">

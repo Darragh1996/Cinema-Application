@@ -164,7 +164,7 @@ ul {
 }
 
 li {
-  width: 100%;
+  width: 130px;
   height: 30px;
   /* vertical-align: */
   font-size: 20px;
@@ -182,6 +182,10 @@ li {
   justify-content: center;
 }
 
+.screensListSpan{
+  display: inline;
+}
+
 .deleteScreenButton{
   display: inline;
   left: 5px;
@@ -193,4 +197,8 @@ li {
 
 .deleteScreenButton:hover{
   cursor: pointer;
+}
+
+.screensListSpan{
+  display: inline;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import deleteScreen from "../../../../server/api/resources/screens";
+import NavBar from "../../components/NavBar/NavBar";
 
 import ScreenViewer from "../../components/screenViewer/screenViewer.js";
 
@@ -16,7 +16,7 @@ function ViewScreens() {
   const [choice, setChoice] = useState(0);
   const [selectedScreen, setSelectedScreen] = useState({});
 
-  const deleteButtonPath = "https://drive.google.com/uc?export=view&id=1JDIqx_MMt2JyjUlTP8-Qi8MGZs8JetjZ";
+  const deleteButtonPath = "https://drive.google.com/uc?export=view&id=15Djhpi8eCPjmXHL3NMWWwITpTebUlSXC";
 
   useEffect(() => {
     justAxios()
@@ -43,13 +43,24 @@ function ViewScreens() {
     setChoice(screenID);
   };
 
-  let handleDeleteClick = (screenID) => {
+  let handleDeleteClick = async (screenID) => {
     // deleteScreen(screenID)
-    console.log(screenID)
+    try {
+      axiosWithAuth()
+        .delete(`/screens/`+screenID)
+        console.log("Screen number ", screenID, " deleted")
+
+        window.location.reload();
+
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
 
   return (
     <div>
+      <NavBar/>
       <div id="header">
         <h1>Screens List</h1>
         <div id="headerButtons">
@@ -65,24 +76,32 @@ function ViewScreens() {
         <ul style={{ listStyleType: "none" }}>
           {screens.map((screen) => {
             return (
-              <li
-                className={choice === screen.id ? "highlighted" : ""}
-                onClick={() => handleClick(screen.id)}
-                onMouseOver={() => {return document.getElementById(`deleteScreen${screen.id}`).hidden = false;}}
-                onMouseLeave={() => {return document.getElementById(`deleteScreen${screen.id}`).hidden = true;}}
-                // a key is needed
-                key={screen.id}
-              >
-                Screen {screen.id} 
-                <img 
-                  className="deleteScreenButton" 
-                  id={`deleteScreen${screen.id}`} 
-                  hidden 
-                  src={deleteButtonPath} 
-                  alt="del"
-                  onClick={() => handleDeleteClick(screen.id)}
-                ></img>
-              </li>
+              <span className="screensListSpan">
+                <li
+                  className={choice === screen.id ? "highlighted" : ""}
+                  onClick={() => {
+                    handleClick(screen.id) 
+                    document.getElementById(`deleteScreen${screen.id}`).hidden = false;
+                    screens.forEach(e => {
+                      if(e.id !== screen.id){
+                        document.getElementById(`deleteScreen${e.id}`).hidden = true;
+                      }
+                    });
+                  }}
+                  // a key is needed
+                  key={screen.id}
+                >
+                  Screen {screen.id} 
+                  <img 
+                    className="deleteScreenButton" 
+                    id={`deleteScreen${screen.id}`} 
+                    hidden 
+                    src={deleteButtonPath} 
+                    alt="del"
+                    onClick={() => handleDeleteClick(screen.id)}
+                  ></img>
+                </li>
+              </span>
             );
           })}
         </ul>

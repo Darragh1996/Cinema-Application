@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
 import { justAxios } from "../../utils/axios.js";
+import NavBar from "../../components/NavBar/NavBar";
 
 // import styles from "./AddMovie.module.css";
 import "./adminStyles.css";
@@ -62,6 +63,7 @@ function ShowingForm() {
 
   return (
     <div>
+      <NavBar/>
       <div id="header">
         <h1>Add Showing</h1>
         <div id="headerButtons">

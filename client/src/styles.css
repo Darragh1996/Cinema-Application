@@ -26,9 +26,9 @@
   left: 0%;
   right: 0%;
   top: 0%;
-  bottom: 0%;
   max-height: 100px;
   display: flex;
+  margin-bottom: 200px ;
 }
 
 #nav img {
@@ -37,6 +37,10 @@
   margin-bottom: auto;
   height: 40px;
   width: 60px;
+}
+
+#nav img:hover {
+  cursor: pointer
 }
 
 .dropdown {
@@ -112,23 +116,10 @@
   margin: auto;
 }
 
-#posterCarousel #leftArrow {
-  position: absolute;
-  left: 7%;
-  top: 350px;
-  height: 40px;
-}
-
 #posterCarousel img:hover {
   cursor: pointer;
 }
 
-#posterCarousel #rightArrow {
-  position: absolute;
-  right: 7%;
-  top: 350px;
-  height: 40px;
-}
 
 #moviePosterTrio {
   background-color: white;
@@ -211,6 +202,9 @@ input {
   display: flex;
   justify-content: center;
   padding-top: 2%;
+  top: 100px;
+  padding-bottom: 100px;
+  
 }
 .movieInfoContainer img {
   height: 300px;

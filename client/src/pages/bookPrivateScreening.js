@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { axiosWithAuth, justAxios } from "../utils/axios";
+import NavBar from "../components/NavBar/NavBar"
 
 function BookPrivateScreenings() {
   const [showingState, setShowingState] = useState({
@@ -45,6 +46,7 @@ function BookPrivateScreenings() {
 
   return (
     <div >
+      <NavBar/>
 
       <div id="header" className="text-center my-5">
         <h1>Book Private Screening</h1>
