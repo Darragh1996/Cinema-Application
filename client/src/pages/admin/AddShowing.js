@@ -13,6 +13,7 @@ function ShowingForm() {
   const [showingState, setShowingState] = useState({
     movieID: 1,
     screenID: 1,
+    price: 8.0,
     datetime: "",
   });
   const [movies, setMovies] = useState([]);
@@ -31,6 +32,7 @@ function ShowingForm() {
     let showing = {
       movieID: parseInt(showingState.movieID),
       screenID: parseInt(showingState.screenID),
+      price: parseFloat(showingState.price),
       datetime: new Date(showingState.datetime).toISOString(),
     };
 
@@ -111,6 +113,21 @@ function ShowingForm() {
           </select>
         </div>
         <div className="mb-3">
+          <label htmlFor="price" className="form-label">
+            Price (€)
+          </label>
+          <br />
+          <input
+            type="number"
+            step="0.50"
+            id="price"
+            name="price"
+            className="form-select"
+            defaultValue="8"
+            onChange={(event) => handleChange(event)}
+          />
+        </div>
+        <div className="mb-3">
           <label htmlFor="datetime" className="form-label">
             Showing Date & Time
           </label>
@@ -126,7 +143,6 @@ function ShowingForm() {
         </div>
 
         <input type="submit" value="Add" className="btn btn-primary" />
-        
       </form>
     </div>
   );
