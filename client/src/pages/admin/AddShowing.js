@@ -64,7 +64,7 @@ function ShowingForm() {
   }, []);
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <div id="header">
         <h1>Add Showing</h1>

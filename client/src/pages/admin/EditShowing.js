@@ -86,7 +86,7 @@ function EditShowingForm() {
   }, []);
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <div id="header">
         <h1>Edit Showing</h1>

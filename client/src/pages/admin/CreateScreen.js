@@ -6,7 +6,7 @@ import SeatGenerator from "../../components/screenSeatGenerator/seatGenerator";
 
 function CreateScreen() {
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <div id="header">
         <h1>Add Screen</h1>

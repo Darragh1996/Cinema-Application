@@ -64,7 +64,7 @@ function MovieEditForm() {
   }, []);
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <div id="header">
         <h1>Edit Movie</h1>

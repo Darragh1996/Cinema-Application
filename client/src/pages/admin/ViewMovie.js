@@ -50,7 +50,7 @@ function ViewMovie() {
   };
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <div id="header">
         <h1>Movie List</h1>
