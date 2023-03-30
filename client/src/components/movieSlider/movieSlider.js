@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Parallax } from 'react-parallax'
 
 import styles from "./movieSlider.module.css";
 
-import leftArrow from "../../joes/img/leftArrow.png";
-import rightArrow from "../../joes/img/rightArrow.png";
 
 function MovieSlider({ movies }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,20 +43,6 @@ function MovieSlider({ movies }) {
           );
         })}
       </div>
-      <img
-        className={styles.arrow}
-        id="leftArrow"
-        onClick={() => updateImage(-1)}
-        src={leftArrow}
-        alt="leftArrow"
-      />
-      <img
-        className={styles.arrow}
-        id="rightArrow"
-        onClick={() => updateImage(1)}
-        src={rightArrow}
-        alt="rightArrow"
-      />
     </div>
   );
 }

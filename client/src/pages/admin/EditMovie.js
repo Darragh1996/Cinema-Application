@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { justAxios, axiosWithAuth } from "../../utils/axios.js";
+import NavBar from "../../components/NavBar/NavBar";
 
 // import styles from "./EditMovie.module.css";
 import "./adminStyles.css";
@@ -64,6 +65,7 @@ function MovieEditForm() {
 
   return (
     <div>
+      <NavBar/>
       <div id="header">
         <h1>Edit Movie</h1>
         <div id="headerButtons">

@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import { justAxios } from "../../utils/axios";
+// import { justAxios } from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
 import logo from "./img/logo.png";
 import "../../styles.css";
+import "./navBar.module.css"
 
 function NavBar() {
   const navigate = useNavigate();

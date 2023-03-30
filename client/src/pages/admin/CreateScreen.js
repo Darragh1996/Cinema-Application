@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
 
 import SeatGenerator from "../../components/screenSeatGenerator/seatGenerator";
 
 function CreateScreen() {
   return (
     <div>
+      <NavBar/>
       <div id="header">
         <h1>Add Screen</h1>
         <div id="headerButtons">

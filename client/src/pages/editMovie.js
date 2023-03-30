@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import { justAxios } from "../utils/axios.js";
 
+import NavBar from "../components/NavBar/NavBar"
+
 //show list of movies along with their ids
-function viewMovie() {
+function ViewMovie() {
     const [films, setFilms] = useState([]);
     const [id, setID] = useState("");
 
@@ -20,7 +22,7 @@ function viewMovie() {
         e.preventDefault();
         // let movieToEdit = ("/movies/" + id)
         try {
-            function editMovie({ id }) {
+            function EditMovie({ id }) {
                 const [name, setName] = useState("");
                 const [director, setDirector] = useState("");
                 const [rating, setRating] = useState("");
@@ -53,6 +55,8 @@ function viewMovie() {
                 };
 
                 return (
+                    <div>
+                    <NavBar/>
 
                     <form onSubmit={f => { handleSubmit(f) }}>
                         <label>Name</label>
@@ -122,9 +126,10 @@ function viewMovie() {
                             value='Add Movie'
                         />
                     </form>
+                    </div>
                 )
             }
-            editMovie({id})
+            EditMovie({id})
 
         } catch (err) {
             console.log(err);
