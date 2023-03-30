@@ -177,7 +177,9 @@ let addPrivateShowing = async (req, res) => {
 
       for (let i = 0; i < showingSeats.length; i++) {
         let newSeat = await ShowingSeats.add(showingSeats[i]);
-        showingSeatIds.push(newSeat.id);
+        if (screenSeats[i].aisle === false) {
+          showingSeatIds.push(newSeat.id);
+        }
       }
 
       let userID = req.decodedToken.subject;
