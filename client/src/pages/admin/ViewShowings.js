@@ -56,7 +56,7 @@ function ViewShowings() {
   };
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <div id="header">
         <h1>Showings List</h1>

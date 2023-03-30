@@ -6,7 +6,7 @@ import "./adminStyles.css";
 
 function AdminHome() {
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <h1 id="indexHeader">Reel Dreams Admin Page</h1>
       <div id="indexBtns">

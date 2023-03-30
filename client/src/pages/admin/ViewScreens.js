@@ -59,7 +59,7 @@ function ViewScreens() {
   }
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <div id="header">
         <h1>Screens List</h1>
