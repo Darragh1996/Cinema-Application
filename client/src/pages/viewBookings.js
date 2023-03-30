@@ -55,7 +55,7 @@ function ViewBookings() {
   }
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <h1>Bookings</h1>
       <table className="table table-striped">
