@@ -2,14 +2,20 @@ import React, { useEffect, useState, useRef } from "react";
 // import { justAxios } from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
+import decode from "jwt-decode";
+
 import logo from "./img/logo.png";
 import "../../styles.css";
-import "./navBar.module.css";
+import styles from "./navBar.module.css";
 
 function NavBar() {
   const navigate = useNavigate();
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  let token = localStorage.getItem("reel_dreams_jwt");
+  const decodedToken = decode(token);
+  const userName = decodedToken.name;
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -81,7 +87,7 @@ function NavBar() {
           }}
           onClick={handleAccountClick}
         >
-          Account
+          {userName}
         </button>
         {isAccountOpen && (
           <div
@@ -110,6 +116,7 @@ function NavBar() {
                 cursor: "pointer",
                 transition: "all 0.3s",
               }}
+              className={styles.navBtn}
             >
               Log Out
             </button>
@@ -124,6 +131,7 @@ function NavBar() {
                 cursor: "pointer",
                 transition: "all 0.3s",
               }}
+              className={styles.navBtn}
             >
               View Bookings
             </button>
