@@ -37,11 +37,25 @@ function NavBar() {
     navigate("/login");
   };
 
+  const viewBookings = () => {
+    console.log("it works");
+  };
+
   return (
     <div id="nav" style={{ display: "flex", alignItems: "center" }}>
       <img src={logo} alt="Reel Dreams" style={{ width: "90px" }} />
       <div style={{ flex: 1 }}></div>
-      <h1 style={{ textAlign: "left", margin: 0, flex: 2, color: "orange", paddingLeft: "40px" }}>Reel Dreams Cinema</h1>
+      <h1
+        style={{
+          textAlign: "left",
+          margin: 0,
+          flex: 2,
+          color: "orange",
+          paddingLeft: "40px",
+        }}
+      >
+        Reel Dreams Cinema
+      </h1>
       <div
         style={{
           position: "relative",
@@ -96,6 +110,20 @@ function NavBar() {
               }}
             >
               Log Out
+            </button>
+            <button
+              onClick={viewBookings}
+              style={{
+                backgroundColor: "yellow",
+                color: "#ffffff",
+                borderRadius: "5px",
+                padding: "5px 10px",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+            >
+              View Bookings
             </button>
           </div>
         )}
