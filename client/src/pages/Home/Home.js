@@ -9,8 +9,6 @@ import NavBar from "../../components/NavBar/NavBar.js"
 // import styles from "./Home.module.css";
 import "../../styles.css";
 
-import logo from "./img/logo.png";
-import userIcon from "./img/userIcon.png";
 
 function Home() {
   const [movies, setMovies] = useState([]);

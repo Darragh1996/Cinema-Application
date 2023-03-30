@@ -5,7 +5,8 @@ import { justAxios } from "../utils/axios";
 import SeatPicker from "../components/seatPicker/seatPicker";
 import { PlayCircle } from "react-bootstrap-icons";
 import PopUpModal from "../components/popUpModal/popUpModal.js";
-import NavBar from "../components/NavBar/NavBar"
+import NavBar from "../components/NavBar/NavBar";
+import Footer from "../components/Footer/Footer";
 
 function BookSeats() {
   const params = useParams();
@@ -94,7 +95,7 @@ function BookSeats() {
 
   return (
     <div className="marginAbove">
-      <NavBar/>
+      <NavBar />
       <div className="movieInfoContainer">
         <div className="left-section">
           <img src={moviePoster} alt={movieName} className="movie-img" />
@@ -154,6 +155,7 @@ function BookSeats() {
         {/* Set the parameters of the SeatPicker Component to the parameters of that selected by the date menu */}
         <SeatPicker showingID={selectedShowing} colCount={colCount} />
       </div>
+      <Footer />
     </div>
   );
 }

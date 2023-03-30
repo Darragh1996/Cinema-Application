@@ -2,14 +2,20 @@ import React, { useEffect, useState, useRef } from "react";
 // import { justAxios } from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
+import decode from "jwt-decode";
+
 import logo from "./img/logo.png";
 import "../../styles.css";
-import "./navBar.module.css"
+import styles from "./navBar.module.css";
 
 function NavBar() {
   const navigate = useNavigate();
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  let token = localStorage.getItem("reel_dreams_jwt");
+  const decodedToken = decode(token);
+  const userName = decodedToken.name;
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -38,11 +44,26 @@ function NavBar() {
     navigate("/login");
   };
 
+  const viewBookings = () => {
+    console.log("it works");
+    navigate("/viewBookings");
+  };
+
   return (
     <div id="nav" style={{ display: "flex", alignItems: "center" }}>
       <img src={logo} alt="Reel Dreams" style={{ width: "90px" }} />
       <div style={{ flex: 1 }}></div>
-      <h1 style={{ textAlign: "left", margin: 0, flex: 2, color: "orange", paddingLeft: "40px" }}>Reel Dreams Cinema</h1>
+      <h1
+        style={{
+          textAlign: "left",
+          margin: 0,
+          flex: 2,
+          color: "orange",
+          paddingLeft: "40px",
+        }}
+      >
+        Reel Dreams Cinema
+      </h1>
       <div
         style={{
           position: "relative",
@@ -66,7 +87,7 @@ function NavBar() {
           }}
           onClick={handleAccountClick}
         >
-          Account
+          {userName}
         </button>
         {isAccountOpen && (
           <div
@@ -95,8 +116,24 @@ function NavBar() {
                 cursor: "pointer",
                 transition: "all 0.3s",
               }}
+              className={styles.navBtn}
             >
               Log Out
+            </button>
+            <button
+              onClick={viewBookings}
+              style={{
+                backgroundColor: "green",
+                color: "#ffffff",
+                borderRadius: "5px",
+                padding: "5px 10px",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+              className={styles.navBtn}
+            >
+              View Bookings
             </button>
           </div>
         )}

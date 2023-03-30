@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 // import { useParams } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import { axiosWithAuth, justAxios } from "../utils/axios";
-import NavBar from "../components/NavBar/NavBar"
+import NavBar from "../components/NavBar/NavBar";
+import Footer from "../components/Footer/Footer";
 
 function BookPrivateScreenings() {
   const [showingState, setShowingState] = useState({
@@ -55,8 +56,8 @@ function BookPrivateScreenings() {
   }, []);
 
   return (
-    <div >
-      <NavBar/>
+    <div>
+      <NavBar />
 
       <div id="header" className="text-center my-5">
         <h1>Book Private Screening</h1>
@@ -114,6 +115,7 @@ function BookPrivateScreenings() {
           <button onClick={handleSubmit}>Book Private Showing</button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

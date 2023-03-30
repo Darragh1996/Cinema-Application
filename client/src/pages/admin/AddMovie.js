@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../../components/NavBar/NavBar"
+import NavBar from "../../components/NavBar/NavBar";
 
 // import styles from "./AddMovie.module.css";
 import "./adminStyles.css";
@@ -47,7 +47,7 @@ function MovieForm() {
         })
         .then((res) => {
           console.log(res);
-          navigate("/admin/viewMovies");
+          navigate("/admin/movies");
         });
     } catch (err) {
       console.log(err);
@@ -56,7 +56,7 @@ function MovieForm() {
 
   return (
     <div className="marginAbove">
-    < NavBar />
+      <NavBar />
       <div id="header">
         <h1>Add Movie</h1>
         <div id="headerButtons">
