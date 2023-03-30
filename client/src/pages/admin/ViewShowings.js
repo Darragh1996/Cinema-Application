@@ -72,6 +72,8 @@ function ViewShowings() {
           <tr>
             <th scope="col">Movie Name</th>
             <th scope="col">Screen</th>
+            <th scope="col">Type</th>
+            <th scope="col">Price</th>
             <th scope="col">Date & Time</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -83,6 +85,8 @@ function ViewShowings() {
               <tr>
                 <td>{showing.name}</td>
                 <td>{showing.screenID}</td>
+                <td>{showing.private === true ? "Private" : "Public"}</td>
+                <td>{showing.price}</td>
                 <td>{showing.datetime}</td>
                 <td>
                   <Link to={`/admin/editShowing/${showing.id}`}>

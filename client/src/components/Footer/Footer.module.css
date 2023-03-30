@@ -1,0 +1,33 @@
+/* Footer.module.css */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #f1c40f;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .link {
+    margin: 10px 0;
+  }
+}
