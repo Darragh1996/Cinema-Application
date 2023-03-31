@@ -8,6 +8,7 @@ import NavBar from "../../components/NavBar/NavBar.js";
 
 // import styles from "./Home.module.css";
 import "../../styles.css";
+import "./Home.module.css";
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -67,7 +68,7 @@ function Home() {
       <NavBar />
       <div id="quickBook">
         <form>
-          <label htmlFor="qBMovieName"></label>
+          <label className="qbDropdown" htmlFor="qBMovieName"></label>
           <select
             id="qBMovieName"
             name="qBMovieName"
@@ -81,7 +82,7 @@ function Home() {
             ))}
           </select>
 
-          <label htmlFor="qbDate"></label>
+          <label className="qbDropdown" htmlFor="qbDate"></label>
           <select
             id="qbDate"
             name="qbDate"

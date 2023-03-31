@@ -19,6 +19,9 @@ function AdminHome() {
         <Link to="/admin/screens">
           <button className="btn btn-primary">Screens</button>
         </Link>
+        <Link to="/admin/generateReport">
+          <button className="btn btn-primary">Weekly Report</button>
+        </Link>
       </div>
     </div>
   );

@@ -51,7 +51,7 @@ function NavBar() {
 
   return (
     <div id="nav" style={{ display: "flex", alignItems: "center" }}>
-      <img src={logo} alt="Reel Dreams" style={{ width: "90px" }} />
+      <img src={logo} alt="Reel Dreams" style={{ width: "90px" }} onClick={()=>navigate('/')}/>
       <div style={{ flex: 1 }}></div>
       <h1
         style={{
