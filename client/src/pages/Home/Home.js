@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { justAxios } from "../../utils/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import MovieSlider from "../../components/movieSlider/movieSlider";
 import Footer from "../../components/Footer/Footer.js";
 
-import NavBar from "../../components/NavBar/NavBar.js"
+import NavBar from "../../components/NavBar/NavBar.js";
 
 // import styles from "./Home.module.css";
 import "../../styles.css";
-import "./Home.module.css"
-
+import "./Home.module.css";
 
 function Home() {
   const [movies, setMovies] = useState([]);
-  const [movOption, setMovOption] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [dateOption, setDateOption] = useState([]);
   // const [selected, setSelectedDate] = useState(null);
@@ -25,7 +23,6 @@ function Home() {
       .get("/movies")
       .then((res) => {
         setMovies(res.data.movies);
-        setMovOption(res.data.movies);
       });
   }, []);
 
@@ -54,13 +51,16 @@ function Home() {
 
   function handleDateChange(event) {
     const showingID = event.target.value;
-    console.log(showingID);
     setSelectedShowing(showingID);
     console.log(selectedShowing);
   }
 
-  function pickSeats() {
-    navigate("/bookSeats/" + selectedShowing);
+  function pickSeats(selectedMovieID, selectedShowingID = 0) {
+    navigate(`/bookSeats/${selectedMovieID}`, {
+      state: {
+        showingID: selectedShowingID,
+      },
+    });
   }
 
   return (
@@ -83,7 +83,7 @@ function Home() {
             onChange={handleMovieChange}
           >
             <option value="">Select Movie </option>
-            {movOption.map((movie) => (
+            {movies.map((movie) => (
               <option key={movie.id} value={movie.id}>
                 {movie.name}
               </option>
@@ -112,8 +112,7 @@ function Home() {
             value="Book Now"
             className="bookNowButton"
             disabled={selectedShowing === 0}
-            onClick={pickSeats}
-            style={{marginLeft: '30px'}}
+            onClick={() => pickSeats(selectedMovie, selectedShowing)}
           ></input>
         </form>
       </div>
@@ -127,7 +126,10 @@ function Home() {
             >
               <div className="container">
                 <h4 className="trioMovieTitle">{movie.name}</h4>
-                <button className="bookNowButton" onClick={(e) => pickSeats(e)}>
+                <button
+                  onClick={() => pickSeats(movie.id)}
+                  className="bookNowButton"
+                >
                   Book Now
                 </button>
               </div>

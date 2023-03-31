@@ -1,11 +1,11 @@
 import React from "react";
-import "./screenViewer.css";
+import styles from "./screenViewer.module.css";
 import { ReactComponent as SeatSVG } from "../../images/couch-seat-svgrepo-com.svg";
 
 const Seat = ({ seat }) => {
   return (
     <SeatSVG
-      className={`seat seat-${seat.seatID}`}
+      className={styles.seat}
       style={{
         fill: "green",
         backgroundColor: "white",

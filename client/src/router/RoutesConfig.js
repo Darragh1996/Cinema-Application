@@ -65,7 +65,7 @@ const RoutesConfig = [
     element: <PrivateRoute Component={CreateScreen} admin={true} />,
   },
   {
-    path: "/bookSeats/:showingID",
+    path: "/bookSeats/:movieID",
     element: <PrivateRoute Component={BookSeats} admin={false} />,
   },
   {
@@ -87,8 +87,7 @@ const RoutesConfig = [
   {
     path: "/bookPrivateScreening",
     element: <PrivateRoute Component={BookPrivateScreenings} admin={false} />,
-
-  }
+  },
 ];
 
 export default RoutesConfig;

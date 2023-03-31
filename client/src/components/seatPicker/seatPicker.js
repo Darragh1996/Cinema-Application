@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { justAxios, axiosWithAuth } from "../../utils/axios";
+import styles from "./seatPicker.module.css";
 import Row from "./row";
 
 function SeatPicker({ showingID, colCount }) {
@@ -44,24 +45,26 @@ function SeatPicker({ showingID, colCount }) {
   }, [showingID, hasChanged, colCount]);
 
   return (
-    <div className="pickYourSeats">
+    <div>
       <h3>Seats selected: {selectedSeats.size}</h3>
-      <div className="seatsLayout">
-        {colCount && rows ? (
-          rows.map((row, index) => {
-            return (
-              <Row
-                row={row}
-                selectedSeats={selectedSeats}
-                setSelectedSeats={setSelectedSeats}
-                key={`row-${index}`}
-              />
-            );
-          })
-        ) : (
-          <h1>Loading...</h1>
-        )}
-      </div>
+      {colCount && rows ? (
+        <table className={styles.seatPickerTable}>
+          <tbody>
+            {rows.map((row, index) => {
+              return (
+                <Row
+                  row={row}
+                  selectedSeats={selectedSeats}
+                  setSelectedSeats={setSelectedSeats}
+                  key={`row-${index}`}
+                />
+              );
+            })}
+          </tbody>
+        </table>
+      ) : (
+        <h1>Loading...</h1>
+      )}
       <button onClick={handleSubmit}>Book Seats</button>
     </div>
   );

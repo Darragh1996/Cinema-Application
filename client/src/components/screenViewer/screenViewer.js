@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosWithAuth } from "../../utils/axios";
+import styles from "./screenViewer.module.css";
 import Row from "./row";
 
 function SeatPicker({ screenID, colCount }) {
@@ -33,11 +34,15 @@ function SeatPicker({ screenID, colCount }) {
   }, [screenID, colCount]);
 
   return (
-    <div className="seatsLayout">
+    <div>
       {colCount && rows ? (
-        rows.map((row, index) => {
-          return <Row row={row} key={`row-${index}`} />;
-        })
+        <table className={styles.screenViewerTable}>
+          <tbody>
+            {rows.map((row, index) => {
+              return <Row row={row} key={`row-${index}`} />;
+            })}
+          </tbody>
+        </table>
       ) : (
         <h1>Loading...</h1>
       )}

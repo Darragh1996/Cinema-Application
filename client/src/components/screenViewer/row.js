@@ -1,22 +1,24 @@
 import React from "react";
-import "./screenViewer.css";
+import styles from "./screenViewer.module.css";
 
 import Seat from "./seat";
 
 function Row({ row, selectedSeats, setSelectedSeats }) {
   return (
-    <div className="row">
+    <tr className={styles.screenViewerRow}>
       {row.map((seat, index) => {
         return (
-          <Seat
-            seat={seat}
-            selectedSeats={selectedSeats}
-            setSelectedSeats={setSelectedSeats}
-            key={`seat-${index}`}
-          />
+          <td className={styles.screenViewerCell}>
+            <Seat
+              seat={seat}
+              selectedSeats={selectedSeats}
+              setSelectedSeats={setSelectedSeats}
+              key={`seat-${index}`}
+            />
+          </td>
         );
       })}
-    </div>
+    </tr>
   );
 }
 
