@@ -55,9 +55,9 @@ function MovieForm() {
   };
 
   return (
-    <div className="marginAbove">
+    <div >
       <NavBar />
-      <div id="header">
+      <div className="marginAbove" id="header">
         <h1>Add Movie</h1>
         <div id="headerButtons">
           <Link to="/admin">

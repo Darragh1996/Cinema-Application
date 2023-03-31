@@ -73,17 +73,22 @@
   /* margin: auto;
       align-items: center; */
   justify-content: space-around;
-  background-color: #d9d9d9;
   right: 0%;
   white-space: nowrap;
+  background-color: black;
+  height: 100px;
 }
 
+
 #posterCarousel {
-  height: 400px;
-  background-color: black;
   color: white;
-  display: flex;
-  justify-content: center;
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
 }
 
 #posterCarousel #leftArrow {
@@ -174,6 +179,7 @@ input {
   text-decoration-color: #fcaf3b;
 }
 
-#quickBook select{
-  padding: 10px 8px 10px 14px;
+.quickBook select{
+  height: 30px;
+  /* padding: 10px 8px 10px 14px; */
 }

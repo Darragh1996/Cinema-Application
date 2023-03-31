@@ -6,6 +6,8 @@ import { axiosWithAuth, justAxios } from "../utils/axios";
 import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
 
+import "./../styles.css";
+
 function BookPrivateScreenings() {
   const [showingState, setShowingState] = useState({
     movieID: 1,
@@ -56,7 +58,7 @@ function BookPrivateScreenings() {
   }, []);
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar />
 
       <div id="header" className="text-center my-5">

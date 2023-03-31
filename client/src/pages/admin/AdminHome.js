@@ -6,9 +6,9 @@ import "./adminStyles.css";
 
 function AdminHome() {
   return (
-    <div className="marginAbove">
+    <div >
       <NavBar/>
-      <h1 id="indexHeader">Reel Dreams Admin Page</h1>
+      <h1  id="indexHeader">Reel Dreams Admin Page</h1>
       <div id="indexBtns">
         <Link to="/admin/movies">
           <button className="btn btn-primary">Movie List</button>

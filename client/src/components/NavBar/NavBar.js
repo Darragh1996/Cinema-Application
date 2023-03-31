@@ -49,17 +49,24 @@ function NavBar() {
     navigate("/viewBookings");
   };
 
+  console.log(window.location.pathname)
+
   return (
-    <div id="nav" style={{ display: "flex", alignItems: "center" }}>
+    <div id="nav" style={{ 
+        display: "flex", 
+        alignItems: "center",
+        top: '0px',
+        backgroundColor: window.location.pathname === '/' ? 'rgba(255, 255, 255, 0)' : 'rgba(0,0,0,1)'
+      }}>
       <img src={logo} alt="Reel Dreams" style={{ width: "90px" }} onClick={()=>navigate('/')}/>
-      <div style={{ flex: 1 }}></div>
       <h1
         style={{
-          textAlign: "left",
-          margin: 0,
-          flex: 2,
-          color: "orange",
-          paddingLeft: "40px",
+          // textAlign: "left",
+          // marginTop: 'auto',
+          // marginBottom: 'auto',
+          paddingLeft: '25px',
+          color: "orange",  
+          fontWeight: 'bolder'   
         }}
       >
         Reel Dreams Cinema
@@ -105,11 +112,26 @@ function NavBar() {
               textAlign: "center",
             }}
           >
+          <button
+            onClick={viewBookings}
+            style={{
+              backgroundColor: "black",
+              color: "#ffffff",
+              borderRadius: "5px",
+              padding: "5px 10px",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.3s",
+            }}
+            className={styles.navBtn}
+          >
+            View Bookings
+          </button>
             <button
               onClick={handleLogoutClick}
               style={{
                 backgroundColor: "orange",
-                color: "#ffffff",
+                color: "#000",
                 borderRadius: "5px",
                 padding: "5px 10px",
                 border: "none",
@@ -119,21 +141,6 @@ function NavBar() {
               className={styles.navBtn}
             >
               Log Out
-            </button>
-            <button
-              onClick={viewBookings}
-              style={{
-                backgroundColor: "green",
-                color: "#ffffff",
-                borderRadius: "5px",
-                padding: "5px 10px",
-                border: "none",
-                cursor: "pointer",
-                transition: "all 0.3s",
-              }}
-              className={styles.navBtn}
-            >
-              View Bookings
             </button>
           </div>
         )}

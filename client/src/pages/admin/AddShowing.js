@@ -64,9 +64,9 @@ function ShowingForm() {
   }, []);
 
   return (
-    <div className="marginAbove">
+    <div >
       <NavBar/>
-      <div id="header">
+      <div className="marginAbove" id="header">
         <h1>Add Showing</h1>
         <div id="headerButtons">
           <Link to="/admin">
