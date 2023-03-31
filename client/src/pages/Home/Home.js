@@ -65,7 +65,7 @@ function Home() {
 
   return (
     <div>
-      < NavBar />
+      <NavBar />
       <div className="carouselBG">
         <div id="posterCarousel">
           {/* <img src={posterWide} alt="bigPoster" /> */}
@@ -75,7 +75,7 @@ function Home() {
         </div>
       </div>
       <div className="quickBook">
-        <form style={{display: 'flex', paddingRight: '20px',}}>
+        <form style={{ display: "flex", paddingRight: "20px" }}>
           {/* <label className="qbDropdown" htmlFor="qBMovieName"></label> */}
           <select
             id="qBMovieName"
@@ -96,8 +96,7 @@ function Home() {
             name="qbDate"
             disabled={!selectedMovie}
             onChange={handleDateChange}
-            
-            style={{marginLeft: '30px'}}
+            style={{ marginLeft: "30px" }}
           >
             <option value="">Select Time </option>
             {dateOption.map((date) => (
@@ -107,14 +106,15 @@ function Home() {
             ))}
           </select>
 
-          <input
+          <button
             // type="submit"
-            value="Book Now"
             className="bookNowButton"
             disabled={selectedShowing === 0}
             onClick={() => pickSeats(selectedMovie, selectedShowing)}
-            style={{marginLeft: '30px'}}
-          ></input>
+            style={{ marginLeft: "30px" }}
+          >
+            Book Now
+          </button>
         </form>
       </div>
       <div id="moviePosterTrio">

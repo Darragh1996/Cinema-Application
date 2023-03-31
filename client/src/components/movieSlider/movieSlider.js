@@ -1,10 +1,26 @@
 import { getToPathname } from "@remix-run/router";
 import React, { useState, useEffect } from "react";
+import PopUpModal from "../popUpModal/popUpModal";
 
 import styles from "./movieSlider.module.css";
 
 function MovieSlider({ movies }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [trailer, setTrailer] = useState("");
+  const [modalDisplay, setModalDisplay] = useState(false);
+
+  useEffect(() => {
+    if (trailer) {
+      setModalDisplay(true);
+    } else {
+      setModalDisplay(false);
+    }
+  }, [trailer]);
+
+  let handleModal = (trailer) => {
+    console.log("clicked");
+    setTrailer(trailer);
+  };
 
   const updateImage = (val) => {
     console.log("update image");
@@ -12,7 +28,6 @@ function MovieSlider({ movies }) {
   };
 
   const goToSlide = (n) => {
-    console.log("update the Image");
     setCurrentIndex(n);
   };
 
@@ -73,7 +88,12 @@ function MovieSlider({ movies }) {
                   </div>
                   <div>
                     <button className={styles.bookBtn}>BOOK NOW</button>
-                    <button className={styles.trailerBtn}>TRAILER</button>
+                    <button
+                      className={styles.trailerBtn}
+                      onClick={() => handleModal(movie.trailer_url)}
+                    >
+                      TRAILER
+                    </button>
                   </div>
                 </div>
               </div>
@@ -105,6 +125,15 @@ function MovieSlider({ movies }) {
           );
         })}
       </div>
+      {modalDisplay ? (
+        <PopUpModal
+          setModalDisplay={setModalDisplay}
+          linkToYoutubeTrailer={trailer}
+          setTrailer={setTrailer}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
