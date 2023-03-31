@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
 import { justAxios } from "../../utils/axios.js";
+import NavBar from "../../components/NavBar/NavBar";
 
 // import styles from "./AddMovie.module.css";
 import "./adminStyles.css";
@@ -12,6 +13,7 @@ function ShowingForm() {
   const [showingState, setShowingState] = useState({
     movieID: 1,
     screenID: 1,
+    price: 8.0,
     datetime: "",
   });
   const [movies, setMovies] = useState([]);
@@ -30,6 +32,7 @@ function ShowingForm() {
     let showing = {
       movieID: parseInt(showingState.movieID),
       screenID: parseInt(showingState.screenID),
+      price: parseFloat(showingState.price),
       datetime: new Date(showingState.datetime).toISOString(),
     };
 
@@ -61,7 +64,8 @@ function ShowingForm() {
   }, []);
 
   return (
-    <div>
+    <div className="marginAbove">
+      <NavBar/>
       <div id="header">
         <h1>Add Showing</h1>
         <div id="headerButtons">
@@ -107,6 +111,21 @@ function ShowingForm() {
               return <option value={screen.id}>{screen.id}</option>;
             })}
           </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="price" className="form-label">
+            Price (€)
+          </label>
+          <br />
+          <input
+            type="number"
+            step="0.50"
+            id="price"
+            name="price"
+            className="form-select"
+            defaultValue="8"
+            onChange={(event) => handleChange(event)}
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="datetime" className="form-label">

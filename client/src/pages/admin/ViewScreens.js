@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
 
 import ScreenViewer from "../../components/screenViewer/screenViewer.js";
 
 // import styles from "./ViewMovie.module.css";
 import "./adminStyles.css";
 
-import { justAxios } from "../../utils/axios.js";
+import { justAxios, axiosWithAuth } from "../../utils/axios.js";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -14,6 +15,8 @@ function ViewScreens() {
   const [screens, setScreens] = useState([]);
   const [choice, setChoice] = useState(0);
   const [selectedScreen, setSelectedScreen] = useState({});
+
+  const deleteButtonPath = "https://drive.google.com/uc?export=view&id=15Djhpi8eCPjmXHL3NMWWwITpTebUlSXC";
 
   useEffect(() => {
     justAxios()
@@ -40,8 +43,24 @@ function ViewScreens() {
     setChoice(screenID);
   };
 
+  let handleDeleteClick = async (screenID) => {
+    // deleteScreen(screenID)
+    try {
+      axiosWithAuth()
+        .delete(`/screens/`+screenID)
+        console.log("Screen number ", screenID, " deleted")
+
+        window.location.reload();
+
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
-    <div>
+    <div className="marginAbove">
+      <NavBar/>
       <div id="header">
         <h1>Screens List</h1>
         <div id="headerButtons">
@@ -57,12 +76,32 @@ function ViewScreens() {
         <ul style={{ listStyleType: "none" }}>
           {screens.map((screen) => {
             return (
-              <li
-                className={choice === screen.id ? "highlighted" : ""}
-                onClick={() => handleClick(screen.id)}
-              >
-                Screen {screen.id}
-              </li>
+              <span className="screensListSpan">
+                <li
+                  className={choice === screen.id ? "highlighted" : ""}
+                  onClick={() => {
+                    handleClick(screen.id) 
+                    document.getElementById(`deleteScreen${screen.id}`).hidden = false;
+                    screens.forEach(e => {
+                      if(e.id !== screen.id){
+                        document.getElementById(`deleteScreen${e.id}`).hidden = true;
+                      }
+                    });
+                  }}
+                  // a key is needed
+                  key={screen.id}
+                >
+                  Screen {screen.id} 
+                  <img 
+                    className="deleteScreenButton" 
+                    id={`deleteScreen${screen.id}`} 
+                    hidden 
+                    src={deleteButtonPath} 
+                    alt="del"
+                    onClick={() => handleDeleteClick(screen.id)}
+                  ></img>
+                </li>
+              </span>
             );
           })}
         </ul>

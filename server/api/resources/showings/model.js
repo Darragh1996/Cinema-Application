@@ -7,8 +7,25 @@ let getAll = () => {
       "showings.id",
       "movies.name",
       "showings.screenID",
-      "showings.datetime"
+      "showings.datetime",
+      "showings.price",
+      "showings.private"
     )
+    .orderBy("showings.datetime");
+};
+
+let getAllPublic = () => {
+  return db("showings")
+    .leftJoin("movies", "showings.movieID", "movies.id")
+    .select(
+      "showings.id",
+      "movies.name",
+      "showings.screenID",
+      "showings.datetime",
+      "showings.price",
+      "showings.private"
+    )
+    .where({ "showings.private": false })
     .orderBy("showings.datetime");
 };
 
@@ -48,7 +65,7 @@ let getByMovieID = (movieID) => {
       "showings.screenID",
       "showings.datetime"
     )
-    .where({ "movies.id": movieID })
+    .where({ "movies.id": movieID, "showings.private": false })
     .orderBy("showings.datetime");
 };
 
@@ -75,4 +92,13 @@ let del = (id) => {
   return db("showings").where({ id }).del();
 };
 
-export { getAll, getByID, getByScreenID, getByMovieID, add, update, del };
+export {
+  getAll,
+  getAllPublic,
+  getByID,
+  getByScreenID,
+  getByMovieID,
+  add,
+  update,
+  del,
+};

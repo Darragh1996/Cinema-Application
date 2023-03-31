@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
 
 import "./adminStyles.css";
 
 function AdminHome() {
   return (
-    <div>
+    <div className="marginAbove">
+      <NavBar/>
       <h1 id="indexHeader">Reel Dreams Admin Page</h1>
       <div id="indexBtns">
         <Link to="/admin/movies">
@@ -16,6 +18,9 @@ function AdminHome() {
         </Link>
         <Link to="/admin/screens">
           <button className="btn btn-primary">Screens</button>
+        </Link>
+        <Link to="/admin/generateReport">
+          <button className="btn btn-primary">Weekly Report</button>
         </Link>
       </div>
     </div>

@@ -148,7 +148,7 @@ let seed = (knex) => {
         },
         {
           name: "The Nice Guys",
-          rating: "15",
+          rating: "15A",
           director: "Shane Black",
           runtime: 116,
           genre: "Comedy",

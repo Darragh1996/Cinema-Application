@@ -4,9 +4,11 @@ const router = express.Router();
 
 import {
   getAllShowings,
+  getAllPublicShowings,
   getShowingByID,
   getShowingByMovieID,
   addShowing,
+  addPrivateShowing,
   updateShowing,
   deleteShowing,
 } from "./controller.js";
@@ -14,9 +16,11 @@ import {
 import { authorized, authorizedAdmin } from "../../middlewares.js";
 
 router.get("/", getAllShowings);
+router.get("/public", getAllPublicShowings);
 router.get("/:id", getShowingByID);
 router.get("/view/:movieID", getShowingByMovieID);
 router.post("/", authorizedAdmin, addShowing);
+router.post("/private", authorized, addPrivateShowing);
 router.post("/:id", authorizedAdmin, updateShowing);
 router.delete("/:id", authorizedAdmin, deleteShowing);
 

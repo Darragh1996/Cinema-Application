@@ -96,9 +96,9 @@ let bookShowingSeat = async (req, res) => {
     });
 
     let message = {
-      from: "from-example@email.com",
+      from: "donotreply@reeldreams.com",
       to: "to-example@email.com",
-      subject: "Subject",
+      subject: "Reel Dreams Cinema Booking",
       html: html,
     };
 

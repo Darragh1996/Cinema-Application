@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PopUpModal from "../../components/popUpModal/popUpModal.js";
 import { PlayCircle, Pencil, Trash } from "react-bootstrap-icons";
+import NavBar from "../../components/NavBar/NavBar";
 
 // import styles from "./ViewMovie.module.css";
 import "./adminStyles.css";
@@ -49,7 +50,8 @@ function ViewMovie() {
   };
 
   return (
-    <div>
+    <div className="marginAbove">
+      <NavBar/>
       <div id="header">
         <h1>Movie List</h1>
         <div id="headerButtons">
