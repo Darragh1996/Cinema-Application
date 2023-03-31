@@ -113,6 +113,7 @@ function Home() {
             className="bookNowButton"
             disabled={selectedShowing === 0}
             onClick={() => pickSeats(selectedMovie, selectedShowing)}
+            style={{marginLeft: '30px'}}
           ></input>
         </form>
       </div>
