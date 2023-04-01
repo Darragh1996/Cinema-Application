@@ -18,7 +18,7 @@ function ViewShowings() {
     justAxios()
       .get("/showings")
       .then((res) => {
-        console.log(res);
+        console.log("res1",res);
         let showings = res.data.data;
         for (let i = 0; i < showings.length; i++) {
           const date = new Date(showings[i].datetime);
@@ -46,7 +46,7 @@ function ViewShowings() {
       axiosWithAuth()
         .delete(`/showings/${showingID}`)
         .then((res) => {
-          console.log(res);
+          console.log( res);
           // navigate("/admin/viewMovies");
           setUpdate(!update);
         });

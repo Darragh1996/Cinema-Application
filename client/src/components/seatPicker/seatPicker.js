@@ -7,9 +7,9 @@ function SeatPicker({ showingID, colCount }) {
   const [selectedSeats, setSelectedSeats] = useState(new Set());
   const [hasChanged, setHasChanged] = useState(false);
   const [rows, setRows] = useState([]);
+  const [showingPrice, setShowingPrice] = useState(0);
 
   let handleSubmit = (event) => {
-    console.log(selectedSeats);
     axiosWithAuth()
       .post("/showingSeats/book", { ids: [...selectedSeats], showingID })
       .then((res) => {
@@ -44,12 +44,28 @@ function SeatPicker({ showingID, colCount }) {
       });
   }, [showingID, hasChanged, colCount]);
 
+  useEffect(() => {
+    justAxios()
+      .get(`/showings/view/${showingID}`)
+      .then((res2) => {
+        console.log("res2", res2)
+        setShowingPrice(res2.price)
+      })
+  })
+
   return (
     <div className={styles.seatPickerContainer}>
 
       {/* leftide */}
       <div className={styles.pickerLeftSide}>
-        <h3>Seats selected: {selectedSeats.size}</h3>
+        <div className={styles.seatsSelectedCount}>Seats selected: {selectedSeats.size}</div>
+        <div className={styles.prices}>
+          <table>
+            <tr>
+              <td>Standard</td><td>{selectedSeats.size}</td><td>{showingPrice}</td>
+            </tr>
+          </table>
+        </div>
         <button className="bookNowButton" onClick={handleSubmit}>Book Seats</button>
       </div>
 

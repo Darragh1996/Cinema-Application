@@ -115,11 +115,11 @@ function BookSeats() {
       <div>
         <NavBar />
         <div className="movieInfoContainer" style={{
+          width: '100%',
           backgroundImage: `linear-gradient(to bottom, rgba(50, 50, 50, 0.85), rgba(50, 50, 50, 0.85)), url(${moviePosterWide})`,
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
         }}>
           <div className="bookSeatsPoster">
             <img src={moviePoster} alt={movieName} className="movie-img" />
