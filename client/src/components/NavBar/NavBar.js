@@ -56,8 +56,8 @@ function NavBar() {
         display: "flex", 
         alignItems: "center",
         top: '0px',
-        backgroundColor: window.location.pathname === '/' ? 'rgba(255, 255, 255, 0)' : 'rgba(0,0,0,1)'
-      }}>
+        backgroundColor: (window.location.pathname === '/' || window.location.pathname.startsWith('/bookSeats')) ? 'rgba(255, 255, 255, 0)' : 'rgba(0,0,0,1)'
+      }}><link href='https://fonts.googleapis.com/css?family=Roboto Flex' rel='stylesheet'></link>
       <img src={logo} alt="Reel Dreams" style={{ width: "90px" }} onClick={()=>navigate('/')}/>
       <h1
         style={{
@@ -65,8 +65,9 @@ function NavBar() {
           // marginTop: 'auto',
           // marginBottom: 'auto',
           paddingLeft: '25px',
-          color: "orange",  
-          fontWeight: 'bolder'   
+          color: "#fcaf3b",  
+          fontWeight: 'bolder'  ,
+          fontSize: '22px'
         }}
       >
         Reel Dreams Cinema

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { justAxios } from "../../utils/axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MovieSlider from "../../components/movieSlider/movieSlider";
 import Footer from "../../components/Footer/Footer.js";
 

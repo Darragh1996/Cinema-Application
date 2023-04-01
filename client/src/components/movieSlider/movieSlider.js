@@ -1,6 +1,6 @@
-import { getToPathname } from "@remix-run/router";
 import React, { useState, useEffect } from "react";
 import PopUpModal from "../popUpModal/popUpModal";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./movieSlider.module.css";
 
@@ -8,6 +8,7 @@ function MovieSlider({ movies }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [trailer, setTrailer] = useState("");
   const [modalDisplay, setModalDisplay] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (trailer) {
@@ -31,6 +32,16 @@ function MovieSlider({ movies }) {
     setCurrentIndex(n);
   };
 
+  
+  function pickSeats(selectedMovieID, selectedShowingID = 0) {
+    navigate(`/bookSeats/${selectedMovieID}`, {
+      state: {
+        showingID: selectedShowingID,
+      },
+    });
+  }
+
+
   useEffect(() => {
     const interval = setInterval(() => updateImage(1), 8000);
     return () => clearInterval(interval);
@@ -38,10 +49,6 @@ function MovieSlider({ movies }) {
 
   return (
     <div>
-      {/* <Parallax 
-        strength={600}
-        bgImage={`url(${movie.img_landscape_url})`}
-      ></Parallax> */}
       <div className={styles.carouselContainer}>
         {movies.map((movie, idx) => {
           return (
@@ -67,9 +74,9 @@ function MovieSlider({ movies }) {
                     <div>{movie.genre}</div>
                     <div
                       style={{
-                        paddingLeft: "10px",
-                        paddingRight: "10px",
-                        fontSize: "7px",
+                        paddingLeft: "12px",
+                        paddingRight: "12px",
+                        fontSize: "5px",
                       }}
                     >
                       ⬤
@@ -77,9 +84,9 @@ function MovieSlider({ movies }) {
                     <div>{movie.director}</div>
                     <div
                       style={{
-                        paddingLeft: "10px",
-                        paddingRight: "10px",
-                        fontSize: "7px",
+                        paddingLeft: "12px",
+                        paddingRight: "12px",
+                        fontSize: "5px",
                       }}
                     >
                       ⬤
@@ -87,7 +94,10 @@ function MovieSlider({ movies }) {
                     <div>{movie.runtime} mins</div>
                   </div>
                   <div>
-                    <button className={styles.bookBtn}>BOOK NOW</button>
+                    <button 
+                      className={styles.bookBtn}
+                      onClick={() => pickSeats(movie.id)}
+                    >BOOK NOW</button>
                     <button
                       className={styles.trailerBtn}
                       onClick={() => handleModal(movie.trailer_url)}

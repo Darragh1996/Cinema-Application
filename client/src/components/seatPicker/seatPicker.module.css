@@ -35,3 +35,61 @@
   padding: 5px;
   text-align: center;
 }
+
+.pickYourSeats {
+  display: flex;
+  justify-content: center;
+}
+
+.seatPickerContainer{
+  width: 100%;
+  display: flex;
+  white-space: nowrap;
+  justify-content: center;
+  margin: 30px;
+}
+
+.pickerLeftSide{
+  padding-right: 100px;
+  text-align: left;
+}
+  .seatsSelectedCount{
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+  .prices td{
+    width: 65px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+  }
+  .pricesTotal td{
+    width: 65px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .seatPickerContainer button{
+    margin-top: 20px;
+    width: 100%
+  }
+  .leftSideLine{
+    background-color: black;
+    height: 2px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+.pickerRightSide{
+ 
+}
+  .screen{
+    width: 100%;
+    background-color: black;
+    height: 20px;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+
+  }

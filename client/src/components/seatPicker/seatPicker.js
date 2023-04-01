@@ -7,9 +7,9 @@ function SeatPicker({ showingID, colCount }) {
   const [selectedSeats, setSelectedSeats] = useState(new Set());
   const [hasChanged, setHasChanged] = useState(false);
   const [rows, setRows] = useState([]);
+  const [showingPrice, setShowingPrice] = useState('');
 
   let handleSubmit = (event) => {
-    console.log(selectedSeats);
     axiosWithAuth()
       .post("/showingSeats/book", { ids: [...selectedSeats], showingID })
       .then((res) => {
@@ -44,28 +44,67 @@ function SeatPicker({ showingID, colCount }) {
       });
   }, [showingID, hasChanged, colCount]);
 
+  useEffect(() => {
+    justAxios()
+      .get(`/showings/view/${showingID}`)
+      .then((res2) => {
+        console.log("res2", res2)
+        setShowingPrice('10.00')
+      })
+  })
+
   return (
-    <div>
-      <h3>Seats selected: {selectedSeats.size}</h3>
-      {colCount && rows ? (
-        <table className={styles.seatPickerTable}>
-          <tbody>
-            {rows.map((row, index) => {
-              return (
-                <Row
-                  row={row}
-                  selectedSeats={selectedSeats}
-                  setSelectedSeats={setSelectedSeats}
-                  key={`row-${index}`}
-                />
-              );
-            })}
-          </tbody>
-        </table>
-      ) : (
-        <h1>Loading...</h1>
-      )}
-      <button onClick={handleSubmit}>Book Seats</button>
+    <div className={styles.seatPickerContainer}>
+      
+
+      {/* leftide */}
+      <div className={styles.pickerLeftSide}>
+        <div className={styles.seatsSelectedCount}>{selectedSeats.size} Seats</div>
+        <div className={styles.prices}>
+          <table>
+            <tr>
+              <td>Standard</td><td>{selectedSeats.size === 0 ? '-' : selectedSeats.size}</td><td>{` \u20AC${showingPrice}`}</td>
+            </tr>
+          </table>
+        </div>
+        <div className={styles.leftSideLine}>{/* Empty line for display */}</div>
+        <div className={styles.pricesTotal}>
+          <table>
+            <tr>
+              <td style={{textAlign: 'left'}}>Total</td><td></td><td>{'\u20AC' +showingPrice * selectedSeats.size }</td>
+            </tr>
+          </table>
+        </div>
+        
+        <button className="bookNowButton" onClick={handleSubmit}>Purchase</button>
+      </div>
+
+      {/* rightSide */}
+      <div className={styles.pickerRightSide}>
+        {colCount && rows ? (
+          <table className={styles.seatPickerTable}>
+            <tbody>
+              {rows.map((row, index) => {
+                return (
+                  <Row
+                    row={row}
+                    selectedSeats={selectedSeats}
+                    setSelectedSeats={setSelectedSeats}
+                    key={`row-${index}`}
+                  />
+                );
+              })}
+              <tr colspan={colCount}>
+                <div className={styles.screen}>Screen This Way</div>
+              </tr>
+            </tbody>
+          </table>
+        ) : (
+          <h1>Loading...</h1>
+        )}
+      </div>
+
+      
     </div>
   );
 }

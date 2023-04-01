@@ -16,29 +16,12 @@ function BookPrivateScreenings() {
   });
   const [movies, setMovies] = useState([]);
   const [screens, setScreens] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(1);
 
-  const handleChange = (e) => {
-    setShowingState({
-      ...showingState,
-      [e.target.name]: e.target.value,
-    });
-  };
 
-  let handleSubmit = (e) => {
-    e.preventDefault();
-    let showing = {
-      movieID: parseInt(showingState.movieID),
-      screenID: parseInt(showingState.screenID),
-      datetime: new Date(showingState.datetime).toISOString(),
-    };
-
-    console.log(showing);
-
-    axiosWithAuth()
-      .post("/showings/private", showing)
-      .then((res) => {
-        console.log(res);
-      });
+  const updateImage = (val) => {
+    console.log("update background image");
+    setCurrentIndex((currentIndex + val) % movies.length);
   };
 
   useEffect(() => {
@@ -57,20 +40,50 @@ function BookPrivateScreenings() {
       });
   }, []);
 
+  const handleChange = (e) => {
+    setShowingState({
+      ...showingState,
+      [e.target.name]: e.target.value,
+    });    
+  };
+
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    let showing = {
+      movieID: parseInt(showingState.movieID),
+      screenID: parseInt(showingState.screenID),
+      datetime: new Date(showingState.datetime).toISOString(),
+    };
+
+
+    axiosWithAuth()
+      .post("/showings/private", showing)
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
+
+  
+
+  // console.log(movies[showingState.movieID].img_landscape_url)
+
   return (
-    <div className="marginAbove">
+    <div className="marginAbove"
+      style={{
+        backgroundImage: document.readyState === 'complete' ? `linear-gradient(to bottom, rgba(50, 50, 50, 0.8), rgba(50, 50, 50, 1)), url(${movies[currentIndex].img_landscape_url})` : '',
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        height: '100vh'
+      }}
+    >
       <NavBar />
 
-      <div id="header" className="text-center my-5">
-        <h1>Book Private Screening</h1>
-        <div id="headerButtons">
-          <Link to="/">
-            <button className="btn btn-success">Home</button>
-          </Link>
-        </div>
-      </div>
-      <div className="d-flex flex-column align-items-center">
-        <div className="mb-3">
+      <div className="bookPrivateScreenHeader">Book Private Screening</div>
+      <div className="d-flex flex-column align-items-center ">
+        <div className="bookPrivateLabels">
           Select A Movie:
           <br></br>
           <select
@@ -114,10 +127,13 @@ function BookPrivateScreenings() {
               onChange={(event) => handleChange(event)}
             />
           </div>
-          <button onClick={handleSubmit}>Book Private Showing</button>
+          <button className="bookNowButton" onClick={handleSubmit}>Book Private Showing</button>
         </div>
       </div>
+      <div style={{position: 'absolute', bottom: '0px', width: '100%'}}>
       <Footer />
+      </div>
+      
     </div>
   );
 }
