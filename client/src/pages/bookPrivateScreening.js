@@ -18,10 +18,9 @@ function BookPrivateScreenings() {
   const [screens, setScreens] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(1);
 
-
   const updateImage = (val) => {
     console.log("update background image");
-    setCurrentIndex((currentIndex + val) % movies.length);
+    setCurrentIndex(val);
   };
 
   useEffect(() => {
@@ -41,10 +40,17 @@ function BookPrivateScreenings() {
   }, []);
 
   const handleChange = (e) => {
-    setShowingState({
-      ...showingState,
-      [e.target.name]: e.target.value,
-    });    
+    if (e.target.name === "movieID") {
+      setShowingState({
+        ...showingState,
+        movieID: movies[e.target.value].id,
+      });
+    } else {
+      setShowingState({
+        ...showingState,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   let handleSubmit = (e) => {
@@ -55,7 +61,6 @@ function BookPrivateScreenings() {
       datetime: new Date(showingState.datetime).toISOString(),
     };
 
-
     axiosWithAuth()
       .post("/showings/private", showing)
       .then((res) => {
@@ -63,20 +68,21 @@ function BookPrivateScreenings() {
       });
   };
 
-
-  
-
   // console.log(movies[showingState.movieID].img_landscape_url)
 
   return (
-    <div className="marginAbove"
+    <div
+      className="marginAbove"
       style={{
-        backgroundImage: document.readyState === 'complete' ? `linear-gradient(to bottom, rgba(50, 50, 50, 0.8), rgba(50, 50, 50, 1)), url(${movies[currentIndex].img_landscape_url})` : '',
+        backgroundImage:
+          movies.length > 0
+            ? `linear-gradient(to bottom, rgba(50, 50, 50, 0.8), rgba(50, 50, 50, 1)), url(${movies[currentIndex].img_landscape_url})`
+            : "",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        height: '100vh'
+        height: "100vh",
       }}
     >
       <NavBar />
@@ -91,11 +97,15 @@ function BookPrivateScreenings() {
             id="movieID"
             name="movieID"
             className="form-select"
-            onChange={(event) => handleChange(event)}
+            onChange={(event) => {
+              handleChange(event);
+              updateImage(event.target.value);
+            }}
+            defaultValue="1"
           >
-            <option value="">Select Movie </option>
-            {movies.map((movie) => (
-              <option key={movie.id} value={movie.id}>
+            {/* <option value="">Select Movie </option> */}
+            {movies.map((movie, i) => (
+              <option key={movie.id} value={i}>
                 {movie.name}
               </option>
             ))}
@@ -108,7 +118,9 @@ function BookPrivateScreenings() {
               id="screenID"
               name="screenID"
               className="form-select"
-              onChange={(event) => handleChange(event)}
+              onChange={(event) => {
+                handleChange(event);
+              }}
             >
               {screens.map((screen) => {
                 return <option value={screen.id}>{screen.id}</option>;
@@ -127,13 +139,14 @@ function BookPrivateScreenings() {
               onChange={(event) => handleChange(event)}
             />
           </div>
-          <button className="bookNowButton" onClick={handleSubmit}>Book Private Showing</button>
+          <button className="bookNowButton" onClick={handleSubmit}>
+            Book Private Showing
+          </button>
         </div>
       </div>
-      <div style={{position: 'absolute', bottom: '0px', width: '100%'}}>
-      <Footer />
+      <div style={{ position: "absolute", bottom: "0px", width: "100%" }}>
+        <Footer />
       </div>
-      
     </div>
   );
 }
