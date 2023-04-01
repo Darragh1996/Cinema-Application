@@ -7,7 +7,7 @@ function SeatPicker({ showingID, colCount }) {
   const [selectedSeats, setSelectedSeats] = useState(new Set());
   const [hasChanged, setHasChanged] = useState(false);
   const [rows, setRows] = useState([]);
-  const [showingPrice, setShowingPrice] = useState('');
+  const [showingPrice, setShowingPrice] = useState("");
 
   let handleSubmit = (event) => {
     axiosWithAuth()
@@ -46,37 +46,45 @@ function SeatPicker({ showingID, colCount }) {
 
   useEffect(() => {
     justAxios()
-      .get(`/showings/view/${showingID}`)
-      .then((res2) => {
-        console.log("res2", res2)
-        setShowingPrice('10.00')
-      })
-  })
+      .get(`/showings/${showingID}`)
+      .then((res) => {
+        console.log(res);
+        setShowingPrice(res.data.showing.price);
+      });
+  }, []);
 
   return (
     <div className={styles.seatPickerContainer}>
-      
-
       {/* leftide */}
       <div className={styles.pickerLeftSide}>
-        <div className={styles.seatsSelectedCount}>{selectedSeats.size} Seats</div>
+        <div className={styles.seatsSelectedCount}>
+          {selectedSeats.size} Seats
+        </div>
         <div className={styles.prices}>
           <table>
             <tr>
-              <td>Standard</td><td>{selectedSeats.size === 0 ? '-' : selectedSeats.size}</td><td>{` \u20AC${showingPrice}`}</td>
+              <td>Standard</td>
+              <td>{selectedSeats.size === 0 ? "-" : selectedSeats.size}</td>
+              <td>{` \u20AC${showingPrice}`}</td>
             </tr>
           </table>
         </div>
-        <div className={styles.leftSideLine}>{/* Empty line for display */}</div>
+        <div className={styles.leftSideLine}>
+          {/* Empty line for display */}
+        </div>
         <div className={styles.pricesTotal}>
           <table>
             <tr>
-              <td style={{textAlign: 'left'}}>Total</td><td></td><td>{'\u20AC' +showingPrice * selectedSeats.size }</td>
+              <td style={{ textAlign: "left" }}>Total</td>
+              <td></td>
+              <td>{"\u20AC" + showingPrice * selectedSeats.size}</td>
             </tr>
           </table>
         </div>
-        
-        <button className="bookNowButton" onClick={handleSubmit}>Purchase</button>
+
+        <button className="bookNowButton" onClick={handleSubmit}>
+          Purchase
+        </button>
       </div>
 
       {/* rightSide */}
@@ -103,8 +111,6 @@ function SeatPicker({ showingID, colCount }) {
           <h1>Loading...</h1>
         )}
       </div>
-
-      
     </div>
   );
 }
