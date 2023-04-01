@@ -57,7 +57,7 @@ function NavBar() {
         alignItems: "center",
         top: '0px',
         backgroundColor: (window.location.pathname === '/' || window.location.pathname.startsWith('/bookSeats')) ? 'rgba(255, 255, 255, 0)' : 'rgba(0,0,0,1)'
-      }}>
+      }}><link href='https://fonts.googleapis.com/css?family=Roboto Flex' rel='stylesheet'></link>
       <img src={logo} alt="Reel Dreams" style={{ width: "90px" }} onClick={()=>navigate('/')}/>
       <h1
         style={{

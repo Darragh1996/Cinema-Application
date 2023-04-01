@@ -293,3 +293,21 @@
   color: white;
   margin-right: 30px;
 }
+
+.bookPrivateScreenHeader{
+  font-size: 60px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 100px;
+  padding-top: 50px;
+  color: white;
+}
+
+.bookPrivateLabels .bookNowButton{
+  width: 100%
+}
+
+.bookPrivateLabels{
+  color: white;
+}
