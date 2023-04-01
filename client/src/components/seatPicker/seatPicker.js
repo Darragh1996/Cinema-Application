@@ -102,8 +102,8 @@ function SeatPicker({ showingID, colCount }) {
                   />
                 );
               })}
-              <tr colspan={colCount}>
-                <div className={styles.screen}>Screen This Way</div>
+              <tr colSpan={colCount}>
+                <td className={styles.screen}>Screen This Way</td>
               </tr>
             </tbody>
           </table>
