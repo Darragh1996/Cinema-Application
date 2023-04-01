@@ -3,7 +3,6 @@ import { useParams, useLocation } from "react-router-dom";
 import { justAxios } from "../utils/axios";
 
 import SeatPicker from "../components/seatPicker/seatPicker";
-import { PlayCircle } from "react-bootstrap-icons";
 import PopUpModal from "../components/popUpModal/popUpModal.js";
 import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
@@ -20,6 +19,8 @@ function BookSeats() {
   const [movieAgeRating, setMovieAgeRating] = useState("");
   const [movieGenre, setMovieGenre] = useState("");
   const [moviePoster, setMoviePoster] = useState("");
+  const [moviePosterWide, setMoviePosterWide] = useState("");
+  const [movieRunTime, setMovieRunTime] = useState(0);
   const [selectedShowing, setSelectedShowing] = useState(
     location.state ? location.state.showingID : 0
   );
@@ -47,6 +48,8 @@ function BookSeats() {
         setMoviePoster(res.data.movie.img_poster_url);
         setMovieTrailer(res.data.movie.trailer_url);
         setMovieName(res.data.movie.name);
+        setMoviePosterWide(res.data.movie.img_landscape_url)
+        setMovieRunTime(res.data.movie.runtime)
       });
     justAxios()
       .get(`showings/view/${params.movieID}`)
@@ -59,7 +62,7 @@ function BookSeats() {
   }, []);
 
   useEffect(() => {
-    if (selectedShowing != 0) {
+    if (selectedShowing !== 0) {
       justAxios()
         .get(`/showings/${selectedShowing}`)
         .then((res) => {
@@ -109,25 +112,78 @@ function BookSeats() {
   };
 
   return (
-    <div className="marginAbove">
-      <NavBar />
-      <div className="movieInfoContainer">
-        <div className="left-section">
-          <img src={moviePoster} alt={movieName} className="movie-img" />
-        </div>
-        <div className="right-section">
-          <h2 className="movie-heading">{movieName}</h2>
-
-          <p className="sub-heading-actors">{movieGenre}</p>
-
-          <div className="movie-info">
-            <p className={"rating" + movieAgeRating}>{movieAgeRating}</p>
-            <p>{movieDescription}</p>
+      <div>
+        <NavBar />
+        <div className="movieInfoContainer" style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(50, 50, 50, 0.85), rgba(50, 50, 50, 0.85)), url(${moviePosterWide})`,
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}>
+          <div className="bookSeatsPoster">
+            <img src={moviePoster} alt={movieName} className="movie-img" />
           </div>
+          <div className="bookSeatsMovieDetails">
+            <div style={{fontSize: '40px', color: 'white'}}>{movieName}</div>
+            <div style={{
+              display: 'flex',
+              verticalAlign: 'middle',
+              lineHeight: '30px',
+              color: '#c4c4c4',
+              fontSize: '12px',
 
-          <div className="dropdown-section">
-            <div className="date">
-              <label htmlFor="date">Select</label>
+            }}>
+              <div><p className={"rating" + movieAgeRating} >{movieAgeRating}</p></div>
+              <div style={{paddingLeft: '12px'}}>{movieGenre}</div>
+              <div
+                style={{
+                  paddingLeft: "12px",
+                  paddingRight: "12px",
+                  fontSize: "5px",
+                }}
+              >
+                ⬤
+              </div>
+              <div>{movieRunTime} mins</div>
+            </div>
+            <div className="movieDesc" >
+              
+              <p>{movieDescription}</p>
+            </div>
+            <div id="trailerButtonDiv">
+              <span
+                id="playMovieIcon"
+                className="glyphicon glyphicon-play-circle"
+                onClick={() => {
+                  handleModal(movieTrailer);
+                }}
+              >
+                <button
+                  className='trailerBtn'
+                  onClick={() => handleModal(movieTrailer)}
+                >
+                  TRAILER
+                </button>
+                {modalDisplay ? (
+                  <PopUpModal
+                    setModalDisplay={setModalDisplay}
+                    linkToYoutubeTrailer={trailer}
+                    setTrailer={setTrailer}
+                  />
+                ) : (
+                  ""
+                )}
+              </span>
+              {console.log(trailer)}
+            </div>
+
+            
+          </div>
+        </div>
+        <div className="selectDateOuterDiv">
+            <div>
+              <label className="selectShowingBookSeats" htmlFor="date">Selected Showing:</label>
               <select
                 id="movieTimesBookingChoice"
                 name="movieTimesBookingChoice"
@@ -142,36 +198,14 @@ function BookSeats() {
               </select>
             </div>
           </div>
-          <div id="trailerButtonDiv">
-            <span
-              id="playMovieIcon"
-              className="glyphicon glyphicon-play-circle"
-              onClick={() => {
-                handleModal(movieTrailer);
-              }}
-            >
-              <PlayCircle />
-            </span>
-            {console.log(trailer)}
-          </div>
-          {modalDisplay ? (
-            <PopUpModal
-              setModalDisplay={setModalDisplay}
-              linkToYoutubeTrailer={trailer}
-              setTrailer={setTrailer}
-            />
-          ) : (
-            ""
-          )}
+            
+        <div>
+          {/* Set the parameters of the SeatPicker Component to the parameters of that selected by the date menu */}
+          <SeatPicker showingID={selectedShowing} colCount={colCount} />
         </div>
+          <Footer />
+        
       </div>
-      <div>
-        <h1 className="pickYourSeats">Pick your seats</h1>
-        {/* Set the parameters of the SeatPicker Component to the parameters of that selected by the date menu */}
-        <SeatPicker showingID={selectedShowing} colCount={colCount} />
-      </div>
-      <Footer />
-    </div>
   );
 }
 

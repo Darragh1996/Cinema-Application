@@ -45,27 +45,37 @@ function SeatPicker({ showingID, colCount }) {
   }, [showingID, hasChanged, colCount]);
 
   return (
-    <div>
-      <h3>Seats selected: {selectedSeats.size}</h3>
-      {colCount && rows ? (
-        <table className={styles.seatPickerTable}>
-          <tbody>
-            {rows.map((row, index) => {
-              return (
-                <Row
-                  row={row}
-                  selectedSeats={selectedSeats}
-                  setSelectedSeats={setSelectedSeats}
-                  key={`row-${index}`}
-                />
-              );
-            })}
-          </tbody>
-        </table>
-      ) : (
-        <h1>Loading...</h1>
-      )}
-      <button onClick={handleSubmit}>Book Seats</button>
+    <div className={styles.seatPickerContainer}>
+
+      {/* leftide */}
+      <div className={styles.pickerLeftSide}>
+        <h3>Seats selected: {selectedSeats.size}</h3>
+        <button className="bookNowButton" onClick={handleSubmit}>Book Seats</button>
+      </div>
+
+      {/* rightSide */}
+      <div className={styles.pickerRightSide}>
+        {colCount && rows ? (
+          <table className={styles.seatPickerTable}>
+            <tbody>
+              {rows.map((row, index) => {
+                return (
+                  <Row
+                    row={row}
+                    selectedSeats={selectedSeats}
+                    setSelectedSeats={setSelectedSeats}
+                    key={`row-${index}`}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <h1>Loading...</h1>
+        )}
+      </div>
+
+      
     </div>
   );
 }
