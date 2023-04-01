@@ -19,12 +19,10 @@ function MovieSlider({ movies }) {
   }, [trailer]);
 
   let handleModal = (trailer) => {
-    console.log("clicked");
     setTrailer(trailer);
   };
 
   const updateImage = (val) => {
-    console.log("update image");
     setCurrentIndex((currentIndex + val) % movies.length);
   };
 
@@ -32,7 +30,6 @@ function MovieSlider({ movies }) {
     setCurrentIndex(n);
   };
 
-  
   function pickSeats(selectedMovieID, selectedShowingID = 0) {
     navigate(`/bookSeats/${selectedMovieID}`, {
       state: {
@@ -40,7 +37,6 @@ function MovieSlider({ movies }) {
       },
     });
   }
-
 
   useEffect(() => {
     const interval = setInterval(() => updateImage(1), 8000);
@@ -94,10 +90,12 @@ function MovieSlider({ movies }) {
                     <div>{movie.runtime} mins</div>
                   </div>
                   <div>
-                    <button 
+                    <button
                       className={styles.bookBtn}
                       onClick={() => pickSeats(movie.id)}
-                    >BOOK NOW</button>
+                    >
+                      BOOK NOW
+                    </button>
                     <button
                       className={styles.trailerBtn}
                       onClick={() => handleModal(movie.trailer_url)}
