@@ -48,7 +48,7 @@ function SeatPicker({ showingID, colCount }) {
     justAxios()
       .get(`/showings/${showingID}`)
       .then((res) => {
-        console.log(res);
+        console.log('This the price ', res.data.showing.price);
         setShowingPrice(res.data.showing.price);
       });
   }, []);
