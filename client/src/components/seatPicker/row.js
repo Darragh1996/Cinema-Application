@@ -8,7 +8,7 @@ function Row({ row, selectedSeats, setSelectedSeats }) {
     <tr className={styles.seatPickerRow}>
       {row.map((seat, index) => {
         return (
-          <td className={styles.seatPickerCell}>
+          <td className={styles.seatPickerCell} key={index}>
             <Seat
               seat={seat}
               selectedSeats={selectedSeats}
