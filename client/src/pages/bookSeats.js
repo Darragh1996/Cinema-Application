@@ -9,8 +9,6 @@ import Footer from "../components/Footer/Footer";
 
 function BookSeats() {
   const location = useLocation();
-  console.log(location);
-  // const selectedShowingID = location.state?.showingID;
   const params = useParams();
   const [colCount, setColCount] = useState(0);
   const [screenID, setScreenID] = useState(0);
@@ -29,15 +27,6 @@ function BookSeats() {
   const [modalDisplay, setModalDisplay] = useState(false);
   const [movieTrailer, setMovieTrailer] = useState("");
 
-  // useEffect(() => {
-  //   justAxios()
-  //     .get(`/showings/view/${params.movieID}`)
-  //     .then((res) => {
-  //       setMovieName(res.data.showings[0].name);
-  //       setScreenID(res.data.showings[0].screenID);
-  //     });
-  // }, [selectedShowing]);
-
   useEffect(() => {
     justAxios()
       .get(`/movies/${params.movieID}`)
@@ -48,12 +37,13 @@ function BookSeats() {
         setMoviePoster(res.data.movie.img_poster_url);
         setMovieTrailer(res.data.movie.trailer_url);
         setMovieName(res.data.movie.name);
-        setMoviePosterWide(res.data.movie.img_landscape_url)
-        setMovieRunTime(res.data.movie.runtime)
+        setMoviePosterWide(res.data.movie.img_landscape_url);
+        setMovieRunTime(res.data.movie.runtime);
       });
     justAxios()
       .get(`showings/view/${params.movieID}`)
       .then((res) => {
+        console.log("inside the showing axios request");
         setDateOption(res.data.showings);
         if (selectedShowing === 0) {
           setSelectedShowing(res.data.showings[0].id);
@@ -112,100 +102,104 @@ function BookSeats() {
   };
 
   return (
-      <div>
-        <NavBar />
-        <div className="movieInfoContainer" style={{
-          width: '100%',
+    <div>
+      <NavBar />
+      <div
+        className="movieInfoContainer"
+        style={{
+          width: "100%",
           backgroundImage: `linear-gradient(to bottom, rgba(50, 50, 50, 0.85), rgba(50, 50, 50, 0.85)), url(${moviePosterWide})`,
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
-        }}>
-          <div className="bookSeatsPoster">
-            <img src={moviePoster} alt={movieName} className="movie-img" />
-          </div>
-          <div className="bookSeatsMovieDetails">
-            <div style={{fontSize: '40px', color: 'white'}}>{movieName}</div>
-            <div style={{
-              display: 'flex',
-              verticalAlign: 'middle',
-              lineHeight: '30px',
-              color: '#c4c4c4',
-              fontSize: '12px',
-
-            }}>
-              <div><p className={"rating" + movieAgeRating} >{movieAgeRating}</p></div>
-              <div style={{paddingLeft: '12px'}}>{movieGenre}</div>
-              <div
-                style={{
-                  paddingLeft: "12px",
-                  paddingRight: "12px",
-                  fontSize: "5px",
-                }}
-              >
-                ⬤
-              </div>
-              <div>{movieRunTime} mins</div>
-            </div>
-            <div className="movieDesc" >
-              
-              <p>{movieDescription}</p>
-            </div>
-            <div id="trailerButtonDiv">
-              <span
-                id="playMovieIcon"
-                className="glyphicon glyphicon-play-circle"
-                onClick={() => {
-                  handleModal(movieTrailer);
-                }}
-              >
-                <button
-                  className='trailerBtn'
-                  onClick={() => handleModal(movieTrailer)}
-                >
-                  TRAILER
-                </button>
-                {modalDisplay ? (
-                  <PopUpModal
-                    setModalDisplay={setModalDisplay}
-                    linkToYoutubeTrailer={trailer}
-                    setTrailer={setTrailer}
-                  />
-                ) : (
-                  ""
-                )}
-              </span>
-              {console.log(trailer)}
-            </div>
-
-            
-          </div>
+        }}
+      >
+        <div className="bookSeatsPoster">
+          <img src={moviePoster} alt={movieName} className="movie-img" />
         </div>
-        <div className="selectDateOuterDiv">
+        <div className="bookSeatsMovieDetails">
+          <div style={{ fontSize: "40px", color: "white" }}>{movieName}</div>
+          <div
+            style={{
+              display: "flex",
+              verticalAlign: "middle",
+              lineHeight: "30px",
+              color: "#c4c4c4",
+              fontSize: "12px",
+            }}
+          >
             <div>
-              <label className="selectShowingBookSeats" htmlFor="date">Selected Showing:</label>
-              <select
-                id="movieTimesBookingChoice"
-                name="movieTimesBookingChoice"
-                onChange={handleDateChange}
-                value={selectedShowing}
-              >
-                {dateOption.map((date) => (
-                  <option key={date.id} value={date.id}>
-                    {formatDatetime(date.datetime)}
-                  </option>
-                ))}
-              </select>
+              <p className={"rating" + movieAgeRating}>{movieAgeRating}</p>
             </div>
+            <div style={{ paddingLeft: "12px" }}>{movieGenre}</div>
+            <div
+              style={{
+                paddingLeft: "12px",
+                paddingRight: "12px",
+                fontSize: "5px",
+              }}
+            >
+              ⬤
+            </div>
+            <div>{movieRunTime} mins</div>
           </div>
-            
-        <div>
-          {/* Set the parameters of the SeatPicker Component to the parameters of that selected by the date menu */}
-          <SeatPicker showingID={selectedShowing} colCount={colCount} />
+          <div className="movieDesc">
+            <p>{movieDescription}</p>
+          </div>
+          <div id="trailerButtonDiv">
+            <span
+              id="playMovieIcon"
+              className="glyphicon glyphicon-play-circle"
+              onClick={() => {
+                handleModal(movieTrailer);
+              }}
+            >
+              <button
+                className="trailerBtn"
+                onClick={() => handleModal(movieTrailer)}
+              >
+                TRAILER
+              </button>
+              {modalDisplay ? (
+                <PopUpModal
+                  setModalDisplay={setModalDisplay}
+                  linkToYoutubeTrailer={trailer}
+                  setTrailer={setTrailer}
+                />
+              ) : (
+                ""
+              )}
+            </span>
+            {console.log(trailer)}
+          </div>
         </div>
-          <Footer />
-        
       </div>
+      <div className="selectDateOuterDiv">
+        <div>
+          <label className="selectShowingBookSeats" htmlFor="date">
+            Selected Showing:
+          </label>
+          <select
+            id="movieTimesBookingChoice"
+            name="movieTimesBookingChoice"
+            onChange={handleDateChange}
+            value={selectedShowing}
+          >
+            {dateOption.map((date) => (
+              <option key={date.id} value={date.id}>
+                {formatDatetime(date.datetime)}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div>
+        {/* Set the parameters of the SeatPicker Component to the parameters of that selected by the date menu */}
+        <SeatPicker showingID={selectedShowing} colCount={colCount} />
+      </div>
+      <Footer />
+    </div>
   );
 }
 

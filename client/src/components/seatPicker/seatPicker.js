@@ -7,7 +7,7 @@ function SeatPicker({ showingID, colCount }) {
   const [selectedSeats, setSelectedSeats] = useState(new Set());
   const [hasChanged, setHasChanged] = useState(false);
   const [rows, setRows] = useState([]);
-  const [showingPrice, setShowingPrice] = useState("");
+  const [showingPrice, setShowingPrice] = useState(0.0);
 
   let handleSubmit = (event) => {
     axiosWithAuth()
@@ -48,10 +48,12 @@ function SeatPicker({ showingID, colCount }) {
     justAxios()
       .get(`/showings/${showingID}`)
       .then((res) => {
-        console.log(res);
         setShowingPrice(res.data.showing.price);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  }, []);
+  }, [showingID]);
 
   return (
     <div className={styles.seatPickerContainer}>
@@ -62,11 +64,13 @@ function SeatPicker({ showingID, colCount }) {
         </div>
         <div className={styles.prices}>
           <table>
-            <tr>
-              <td>Standard</td>
-              <td>{selectedSeats.size === 0 ? "-" : selectedSeats.size}</td>
-              <td>{` \u20AC${showingPrice}`}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>Standard</td>
+                <td>{selectedSeats.size === 0 ? "-" : selectedSeats.size}</td>
+                <td>{` \u20AC${showingPrice}`}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div className={styles.leftSideLine}>
@@ -74,11 +78,13 @@ function SeatPicker({ showingID, colCount }) {
         </div>
         <div className={styles.pricesTotal}>
           <table>
-            <tr>
-              <td style={{ textAlign: "left" }}>Total</td>
-              <td></td>
-              <td>{"\u20AC" + showingPrice * selectedSeats.size}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td style={{ textAlign: "left" }}>Total</td>
+                <td></td>
+                <td>{"\u20AC" + showingPrice * selectedSeats.size}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
@@ -102,8 +108,10 @@ function SeatPicker({ showingID, colCount }) {
                   />
                 );
               })}
-              <tr colspan={colCount}>
-                <div className={styles.screen}>Screen This Way</div>
+              <tr>
+                <td colSpan={colCount} className={styles.screen}>
+                  Screen
+                </td>
               </tr>
             </tbody>
           </table>
