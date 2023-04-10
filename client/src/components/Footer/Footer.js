@@ -27,7 +27,7 @@ function Footer() {
       ) : (
         ""
       )}
-      <Link className={styles.link} to="#">
+      <Link className={styles.link} to="/bookPrivateScreening">
         Book a Private Screen
       </Link>
       <Link className={styles.link} to="#">

@@ -1,22 +1,24 @@
 import React from "react";
-// import "./seatPicker.css";
+import styles from "./screenSeatGenerator.module.css";
 
 import Seat from "./seat";
 
 function Row({ row, rowIndex, setSeats }) {
   return (
-    <div className="row">
+    <tr className={styles.screenSeatGenRow}>
       {row.map((seat, index) => {
         return (
-          <Seat
-            rowIndex={rowIndex}
-            colIndex={index}
-            setSeats={setSeats}
-            key={`seat-${index}`}
-          />
+          <td className={styles.screenSeatGenCell}>
+            <Seat
+              rowIndex={rowIndex}
+              colIndex={index}
+              setSeats={setSeats}
+              key={`seat-${index}`}
+            />
+          </td>
         );
       })}
-    </div>
+    </tr>
   );
 }
 

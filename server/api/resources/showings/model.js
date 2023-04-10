@@ -37,7 +37,9 @@ let getByID = (id) => {
       "movies.id as movieID",
       "movies.name",
       "showings.screenID",
-      "showings.datetime"
+      "showings.datetime",
+      "showings.price",
+      "showings.private"
     )
     .where({ "showings.id": id })
     .first();
@@ -50,7 +52,9 @@ let getByScreenID = (screenID) => {
       "showings.id",
       "movies.id as movieID",
       "movies.name",
-      "showings.datetime"
+      "showings.datetime",
+      "showings.price",
+      "showings.private"
     )
     .where({ "showings.screenID": screenID });
 };
@@ -63,7 +67,9 @@ let getByMovieID = (movieID) => {
       "movies.name",
       "movies.id as movieID",
       "showings.screenID",
-      "showings.datetime"
+      "showings.datetime",
+      "showings.price",
+      "showings.private"
     )
     .where({ "movies.id": movieID, "showings.private": false })
     .orderBy("showings.datetime");

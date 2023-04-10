@@ -4,17 +4,14 @@ import { useNavigate } from "react-router-dom";
 import MovieSlider from "../../components/movieSlider/movieSlider";
 import Footer from "../../components/Footer/Footer.js";
 
-import NavBar from "../../components/NavBar/NavBar.js"
+import NavBar from "../../components/NavBar/NavBar.js";
 
 // import styles from "./Home.module.css";
 import "../../styles.css";
-
-import logo from "./img/logo.png";
-import userIcon from "./img/userIcon.png";
+import "./Home.module.css";
 
 function Home() {
   const [movies, setMovies] = useState([]);
-  const [movOption, setMovOption] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [dateOption, setDateOption] = useState([]);
   // const [selected, setSelectedDate] = useState(null);
@@ -26,7 +23,6 @@ function Home() {
       .get("/movies")
       .then((res) => {
         setMovies(res.data.movies);
-        setMovOption(res.data.movies);
       });
   }, []);
 
@@ -55,40 +51,52 @@ function Home() {
 
   function handleDateChange(event) {
     const showingID = event.target.value;
-    console.log(showingID);
     setSelectedShowing(showingID);
     console.log(selectedShowing);
   }
 
-  function pickSeats() {
-    navigate("/bookSeats/" + selectedShowing);
+  function pickSeats(selectedMovieID, selectedShowingID = 0) {
+    navigate(`/bookSeats/${selectedMovieID}`, {
+      state: {
+        showingID: selectedShowingID,
+      },
+    });
   }
 
   return (
     <div>
-      < NavBar />
-      <div id="quickBook">
-        <form>
-          <label htmlFor="qBMovieName"></label>
+      <NavBar />
+      <div className="carouselBG">
+        <div id="posterCarousel">
+          {/* <img src={posterWide} alt="bigPoster" /> */}
+          {/* <img id="leftArrow" src={leftArrow} alt="leftArrow" />
+          <img id="rightArrow" src={rightArrow} alt="rightArrow" /> */}
+          <MovieSlider movies={movies} />
+        </div>
+      </div>
+      <div className="quickBook">
+        <form style={{ display: "flex", paddingRight: "20px" }}>
+          {/* <label className="qbDropdown" htmlFor="qBMovieName"></label> */}
           <select
             id="qBMovieName"
             name="qBMovieName"
             onChange={handleMovieChange}
           >
             <option value="">Select Movie </option>
-            {movOption.map((movie) => (
+            {movies.map((movie) => (
               <option key={movie.id} value={movie.id}>
                 {movie.name}
               </option>
             ))}
           </select>
 
-          <label htmlFor="qbDate"></label>
+          {/* <label className="qbDropdown" htmlFor="qbDate"></label> */}
           <select
             id="qbDate"
             name="qbDate"
             disabled={!selectedMovie}
             onChange={handleDateChange}
+            style={{ marginLeft: "30px" }}
           >
             <option value="">Select Time </option>
             {dateOption.map((date) => (
@@ -98,22 +106,16 @@ function Home() {
             ))}
           </select>
 
-          <input
+          <button
             // type="submit"
-            value="Book Now"
             className="bookNowButton"
             disabled={selectedShowing === 0}
-            onClick={pickSeats}
-          ></input>
+            onClick={() => pickSeats(selectedMovie, selectedShowing)}
+            style={{ marginLeft: "30px" }}
+          >
+            Book Now
+          </button>
         </form>
-      </div>
-      <div className="carouselBG">
-        <div id="posterCarousel">
-          {/* <img src={posterWide} alt="bigPoster" /> */}
-          {/* <img id="leftArrow" src={leftArrow} alt="leftArrow" />
-          <img id="rightArrow" src={rightArrow} alt="rightArrow" /> */}
-          <MovieSlider movies={movies} />
-        </div>
       </div>
       <div id="moviePosterTrio">
         {movies.map((movie, index) => {
@@ -125,7 +127,10 @@ function Home() {
             >
               <div className="container">
                 <h4 className="trioMovieTitle">{movie.name}</h4>
-                <button className="bookNowButton" onClick={(e) => pickSeats(e)}>
+                <button
+                  onClick={() => pickSeats(movie.id)}
+                  className="bookNowButton"
+                >
                   Book Now
                 </button>
               </div>

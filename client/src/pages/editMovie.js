@@ -55,7 +55,7 @@ function ViewMovie() {
                 };
 
                 return (
-                    <div>
+                    <div className="marginAbove">
                     <NavBar/>
 
                     <form onSubmit={f => { handleSubmit(f) }}>

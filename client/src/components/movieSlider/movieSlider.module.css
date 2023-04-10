@@ -4,7 +4,7 @@
 
 /* Slideshow container */
 .carouselContainer {
-  max-width: 1000px;
+  width: 100%;
   position: relative;
   margin: auto;
 }
@@ -24,27 +24,98 @@
   }
 }
 
+.leftSide {
+  left: -25%;
+}
+
 /* Caption text */
 .text {
   color: #f2f2f2;
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
-    1px 1px 0 black;
-  font-size: 30px;
+  font-size: 60px;
+  letter-spacing: -0.5px;
   padding: 8px 12px;
   position: absolute;
-  bottom: 8px;
-  width: 100vw;
+  padding-top: 300px;
+  /* width: 100vw; */
+  text-align: left;
+  left: 12%;
+}
+
+.movieInfo {
+  color: #c4c4c4;
+  font-size: 15px;
+  font-weight: lighter;
+  letter-spacing: -0.5px;
+  padding: 8px 12px;
+  position: absolute;
+  /* width: 100vw; */
+  text-align: left;
+  left: 12%;
+  padding-top: 380px;
+  display: flex;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+.trailerBtn {
+  color: #d9d9d9;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  border-style: none;
+
+  font-style: bold;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
   text-align: center;
+  justify-content: center;
+
+  width: 100px;
+  height: 30px;
+  margin: auto;
+
+  position: absolute;
+  left: 12%;
+  margin-top: 430px;
+  margin-left: 130px;
+}
+
+.trailerBtn:hover {
+  color: #fcaf3b;
+}
+
+.bookBtn {
+  color: black;
+  background-color: #fcaf3b;
+  border-radius: 3px;
+  border-style: none;
+
+  font-style: bold;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  width: 100px;
+  height: 30px;
+  margin: auto;
+
+  position: absolute;
+  left: 12%;
+
+  margin-top: 430px;
+  margin-left: 10px;
 }
 
 .arrow:hover {
   cursor: pointer;
 }
 
-
-
 /* this is for the parallax */
-.carouselBG{
+.carouselBG {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

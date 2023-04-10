@@ -2,9 +2,8 @@
   color: black;
   background-color: #fcaf3b;
   border-radius: 3px;
-  border-color: #fcaf3b;
+  border-style: none;
 
-  font-family: "Inter";
   font-style: bold;
   font-weight: 700;
   font-size: 16px;
@@ -21,14 +20,10 @@
 #nav {
   height: 80px;
   width: 100%;
-  background-color: black;
   position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
   max-height: 100px;
   display: flex;
-  margin-bottom: 200px ;
+  z-index: 100;
 }
 
 #nav img {
@@ -40,7 +35,7 @@
 }
 
 #nav img:hover {
-  cursor: pointer
+  cursor: pointer;
 }
 
 .dropdown {
@@ -93,20 +88,30 @@
   height: 20px;
 }
 
-#quickBook {
-  background-color: #d9d9d9;
+.quickBook {
+  font-family: Arial, Helvetica, sans-serif;
+  /* position: relative; */
   width: 100%;
   justify-content: center;
-  padding-top: 100px;
-  padding-bottom: 25px;
-  display: inline-flex;
-}
-
-.carouselBG {
+  display: flex;
+  height: 100px;
+  vertical-align: middle;
   background-color: black;
 }
 
-#posterCarousel {
+.quickBook select {
+  height: 30px;
+  margin: auto;
+}
+
+.carouselBG {
+  position: relative;
+  background-color: black;
+  width: 100%;
+  top: -50;
+}
+
+/* #posterCarousel {
   height: 400px;
   max-height: 400px;
   width: 100vw;
@@ -114,12 +119,7 @@
   color: white;
   display: flex;
   margin: auto;
-}
-
-#posterCarousel img:hover {
-  cursor: pointer;
-}
-
+} */
 
 #moviePosterTrio {
   background-color: white;
@@ -129,6 +129,9 @@
   justify-content: center;
   gap: 50px;
   margin: 50px;
+  position: relative;
+  top: 20px;
+  padding-bottom: 20px;
 }
 
 .trioPoster {
@@ -163,15 +166,15 @@
   padding-top: 100px;
 }
 
-table {
+/* table {
   margin: auto;
   justify-content: auto;
   font-family: "Roboto Flex";
-}
+} */
 
-input {
+/* input {
   width: 300px;
-}
+} */
 
 #loginFormContainer {
   margin: auto;
@@ -184,17 +187,16 @@ input {
 }
 
 #footer {
-  position: relative;
+  position: absolute;
   height: 100px;
   width: 100%;
   background-color: white;
   display: flex;
   justify-content: center;
-  padding-top: 100px;
-  bottom: 0px;
   white-space: nowrap;
   text-decoration: underline;
   text-decoration-color: #fcaf3b;
+  bottom: 0;
 }
 
 .movieInfoContainer {
@@ -202,24 +204,18 @@ input {
   display: flex;
   justify-content: center;
   padding-top: 2%;
-  top: 100px;
-  padding-bottom: 100px;
-  
-}
-.movieInfoContainer img {
-  height: 300px;
-  padding-right: 100px;
+  padding-bottom: 90px;
 }
 
 .rating12A {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   background-color: red;
   text-align: center;
   vertical-align: center;
   border-radius: 25px;
-  padding-top: 12px;
-  font-weight: bold;
+  font-size: 12px;
+  color: white;
 }
 
 .ratingPG {
@@ -230,10 +226,88 @@ input {
   vertical-align: center;
   border-radius: 25px;
   padding-top: 12px;
-  font-weight: bold;
   color: white;
 }
 
-.pickYourSeats {
+
+
+.bookSeatsPoster{
+  position: relative;
+  margin-top: 100px;
+  right: 100px;
+}
+.bookSeatsPoster img{
+  height: 260px;
+}
+
+.bookSeatsMovieDetails{
+  position: relative;
+  margin-top: 100px
+}
+
+.movieDesc{
+  padding-top: 10px;
+  color: white;
+}
+
+.bookSeatsMovieDetails{
+  padding-top: 20px;
+}
+
+.trailerBtn {
+  color: #d9d9d9;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  border-style: none;
+
+  font-style: bold;
+  font-weight: 700;
+  font-size: 15px;
+
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+
+  position: relative;
+}
+
+.trailerBtn:hover {
+  color: #fcaf3b;
+}
+
+.selectDateOuterDiv{
+  background-color: black;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selectDateOuterDiv select{
+  height: 30px;
+}
+
+.selectShowingBookSeats{
+  color: white;
+  margin-right: 30px;
+}
+
+.bookPrivateScreenHeader{
+  font-size: 60px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 100px;
+  padding-top: 50px;
+  color: white;
+}
+
+.bookPrivateLabels .bookNowButton{
+  width: 100%
+}
+
+.bookPrivateLabels{
+  color: white;
 }

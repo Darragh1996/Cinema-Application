@@ -14,7 +14,7 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1s9SFXESMdz8zP5sB4V9M7yIvcwf-tn-D",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=1LKaJoQLdjMQK528EYm0rCm7Xdm2o-CIM",
+            "https://drive.google.com/uc?export=view&id=1sqMf-WyuA-sFgjHrFghvEPiuaq9CLX7r",
         },
         {
           name: "Iron Man 2",
@@ -25,9 +25,9 @@ let seed = (knex) => {
           details: "Tony Stark becomes Iron man again",
           trailer_url: "https://www.youtube.com/embed/qsRZghNciIo",
           img_poster_url:
-            "https://drive.google.com/uc?export=view&id=1J_NooYoTQYY7wdSSNy5IEdTs2KVRsQBm",
+            "https://drive.google.com/uc?export=view&id=1CBIzNaAGb57yn7RxZ-JBumwT7EmjWFW6",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=12kI0Rg1N967jFVI0gsuv5wbUsT8Uj3An",
+            "https://drive.google.com/uc?export=view&id=1J_NooYoTQYY7wdSSNy5IEdTs2KVRsQBm",
         },
         {
           name: "Iron Man 3",
@@ -40,7 +40,7 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1fcpIC-eUmzcgmqwiIoM3xwdyZhjDkCyF",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=1HWc1hpVEm7QIbieypxiXBCNavQg1R9qG",
+            "https://drive.google.com/uc?export=view&id=1AzlhL8SsMeZ7Rt4XK3eBeOICnQsiqJ0d",
         },
         {
           name: "Frozen 2",
@@ -53,7 +53,7 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1u3wGd6AFeekafkYuzknrI37QMGB4Zdum",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=1zxo_XYMvo-15VqXvHifVHmu_VEarpqlm",
+            "https://drive.google.com/uc?export=view&id=1Np4WQx7MhxqBKFYSXFnsOc8V6vveBA1S",
         },
         {
           name: "Just Go With It",
@@ -66,7 +66,7 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=15MFuDSP9zUtOaWKMwGz_z4EcTE2h8w2k",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=1-dfj5A8jOamngUVeCGEm2LDnWQCH2j9W",
+            "https://drive.google.com/uc?export=view&id=1SQ-nk3vdWEYFXGGiUTfxkPn71rmGGE6v",
         },
         {
           name: "Free Guy",
@@ -79,7 +79,7 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1glF8huE1EnOID-f6_wWi-xH-aprzYgzP",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=1Uy-wn8u6NTiuA2UAkaCgU42utDsWU5mk",
+            "https://drive.google.com/uc?export=view&id=1cAeWXGudZSCc6Lz8PAgqMNfeWCKPrSZM",
         },
         {
           name: "Star Wars III",
@@ -92,7 +92,7 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1MqfkPMPn62Fnr_RDy2tWO1cOJ27aftm9",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=10K87ha0v4xaPbxe0h1FeUWE6o_r5LvdM",
+            "https://drive.google.com/uc?export=view&id=1FO57TmGYE9gexlkd0p8J9_7OeIi2N9Q4",
         },
         {
           name: "Get Out",
@@ -105,7 +105,7 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1zC27bgNt1E5kIFI05QXDUfXanMGLS0Yy",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=16bpawNgt-WYhtNQO5o13vnWxs-A1vNZo",
+            "https://drive.google.com/uc?export=view&id=1FJvPrlgOGGnOxXFn-8rD4qYV435fT7EV",
         },
         {
           name: "Knives Out",
@@ -131,7 +131,7 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1X0EeWXOmoaJz_jYftOM5N-QwNZsxGJB4",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=1B3CT1f2yuI9NNC7PdIilcDbSojG7Z1dp",
+            "https://drive.google.com/uc?export=view&id=1MlQlhlvPqjJaa1BaGI6KK55rZZC771EE",
         },
         {
           name: "Mad Max: Fury Road",
@@ -144,11 +144,11 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1aPqs6E0sQdxWae_JmYQvzE-4zZ4riTew",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=1cBmEr2CAdvPPmNpjK3DUsJTt21Isdj2W",
+            "https://drive.google.com/uc?export=view&id=1IwSzsJRD_kG2avREe-viJD5Qg1_2rOpE",
         },
         {
           name: "The Nice Guys",
-          rating: "15",
+          rating: "15A",
           director: "Shane Black",
           runtime: 116,
           genre: "Comedy",
@@ -157,7 +157,7 @@ let seed = (knex) => {
           img_poster_url:
             "https://drive.google.com/uc?export=view&id=1hp1vvvn9QIQQqwtRJjuJXgfTR3rQdEJ1",
           img_landscape_url:
-            "https://drive.google.com/uc?export=view&id=1w5Vs7Snn9bW21Y7tmYbeL4CNagnRanbm",
+            "https://drive.google.com/uc?export=view&id=1zBXHadAFLXyiBXr08a9_DgqtMrG6kOM0",
         },
       ]);
     });

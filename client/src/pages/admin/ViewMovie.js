@@ -50,7 +50,7 @@ function ViewMovie() {
   };
 
   return (
-    <div>
+    <div className="marginAbove">
       <NavBar/>
       <div id="header">
         <h1>Movie List</h1>
@@ -86,7 +86,7 @@ function ViewMovie() {
                 <td>
                   <span
                     id="playMovieIcon"
-                    class="glyphicon glyphicon-play-circle"
+                    className="glyphicon glyphicon-play-circle"
                     onClick={() => {
                       handleModal(movie.trailer_url);
                     }}

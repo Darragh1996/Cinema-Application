@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-// import { useParams } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 import { axiosWithAuth, justAxios } from "../utils/axios";
-import NavBar from "../components/NavBar/NavBar"
+import NavBar from "../components/NavBar/NavBar";
+import Footer from "../components/Footer/Footer";
+
+import "./../styles.css";
 
 function BookPrivateScreenings() {
   const [showingState, setShowingState] = useState({
@@ -13,29 +13,11 @@ function BookPrivateScreenings() {
   });
   const [movies, setMovies] = useState([]);
   const [screens, setScreens] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(1);
 
-  const handleChange = (e) => {
-    setShowingState({
-      ...showingState,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  let handleSubmit = (e) => {
-    e.preventDefault();
-    let showing = {
-      movieID: parseInt(showingState.movieID),
-      screenID: parseInt(showingState.screenID),
-      datetime: new Date(showingState.datetime).toISOString(),
-    };
-
-    console.log(showing);
-
-    axiosWithAuth()
-      .post("/showings/private", showing)
-      .then((res) => {
-        console.log(res);
-      });
+  const updateImage = (val) => {
+    console.log("update background image");
+    setCurrentIndex(val);
   };
 
   useEffect(() => {
@@ -54,20 +36,57 @@ function BookPrivateScreenings() {
       });
   }, []);
 
-  return (
-    <div >
-      <NavBar/>
+  const handleChange = (e) => {
+    if (e.target.name === "movieID") {
+      setShowingState({
+        ...showingState,
+        movieID: movies[e.target.value].id,
+      });
+    } else {
+      setShowingState({
+        ...showingState,
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
 
-      <div id="header" className="text-center my-5">
-        <h1>Book Private Screening</h1>
-        <div id="headerButtons">
-          <Link to="/">
-            <button className="btn btn-success">Home</button>
-          </Link>
-        </div>
-      </div>
-      <div className="d-flex flex-column align-items-center">
-        <div className="mb-3">
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    let showing = {
+      movieID: parseInt(showingState.movieID),
+      screenID: parseInt(showingState.screenID),
+      datetime: new Date(showingState.datetime).toISOString(),
+    };
+
+    axiosWithAuth()
+      .post("/showings/private", showing)
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
+  // console.log(movies[showingState.movieID].img_landscape_url)
+
+  return (
+    <div
+      className="marginAbove"
+      style={{
+        backgroundImage:
+          movies.length > 0
+            ? `linear-gradient(to bottom, rgba(50, 50, 50, 0.8), rgba(50, 50, 50, 1)), url(${movies[currentIndex].img_landscape_url})`
+            : "",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        height: "100vh",
+      }}
+    >
+      <NavBar />
+
+      <div className="bookPrivateScreenHeader">Book Private Screening</div>
+      <div className="d-flex flex-column align-items-center ">
+        <div className="bookPrivateLabels">
           Select A Movie:
           <br></br>
           <select
@@ -75,11 +94,15 @@ function BookPrivateScreenings() {
             id="movieID"
             name="movieID"
             className="form-select"
-            onChange={(event) => handleChange(event)}
+            onChange={(event) => {
+              handleChange(event);
+              updateImage(event.target.value);
+            }}
+            defaultValue="1"
           >
-            <option value="">Select Movie </option>
-            {movies.map((movie) => (
-              <option key={movie.id} value={movie.id}>
+            {/* <option value="">Select Movie </option> */}
+            {movies.map((movie, i) => (
+              <option key={movie.id} value={i}>
                 {movie.name}
               </option>
             ))}
@@ -92,7 +115,9 @@ function BookPrivateScreenings() {
               id="screenID"
               name="screenID"
               className="form-select"
-              onChange={(event) => handleChange(event)}
+              onChange={(event) => {
+                handleChange(event);
+              }}
             >
               {screens.map((screen) => {
                 return <option value={screen.id}>{screen.id}</option>;
@@ -111,8 +136,13 @@ function BookPrivateScreenings() {
               onChange={(event) => handleChange(event)}
             />
           </div>
-          <button onClick={handleSubmit}>Book Private Showing</button>
+          <button className="bookNowButton" onClick={handleSubmit}>
+            Book Private Showing
+          </button>
         </div>
+      </div>
+      <div style={{ position: "absolute", bottom: "0px", width: "100%" }}>
+        <Footer />
       </div>
     </div>
   );

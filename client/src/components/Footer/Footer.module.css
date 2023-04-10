@@ -1,6 +1,7 @@
 /* Footer.module.css */
 
 .container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +9,8 @@
   color: #fff;
   padding: 20px;
   flex-wrap: wrap;
+  width: 100%;
+  bottom: 0px
 }
 
 .link {
