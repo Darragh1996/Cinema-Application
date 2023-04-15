@@ -39,21 +39,14 @@ let add = (showingSeat) => {
     });
 };
 
-let update = async (showingSeat, trx = null) => {
-  const query = db("showingSeats")
-    .update({ occupied: showingSeat.occupied })
+let update = (showingSeat, trx) => {
+  return (trx ? trx : db)("showingSeats")
+    .update(showingSeat)
     .where({ id: showingSeat.id })
     .returning("*")
     .then((updatedShowingSeat) => {
       return updatedShowingSeat[0];
     });
-
-  // If a db transaction is provided, use it
-  if (trx) {
-    return query.transacting(trx);
-  } else {
-    return query;
-  }
 };
 
 let del = (showingID) => {

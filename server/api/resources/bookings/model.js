@@ -40,20 +40,13 @@ let getByUserIdAndShowingId = (userID, showingID) => {
     .where({ "bookings.userID": userID, "bookings.showingID": showingID });
 };
 
-let add = async (booking, trx = null) => {
-  const query = db("bookings")
+let add = (booking, trx) => {
+  return (trx ? trx : db)("bookings")
     .insert(booking)
     .returning("*")
     .then((newBooking) => {
       return newBooking[0];
     });
-
-  // If a db transaction is provided, use it
-  if (trx) {
-    return query.transacting(trx);
-  } else {
-    return query;
-  }
 };
 
 let update = (booking) => {
