@@ -70,13 +70,20 @@ let getByUserIdAndShowingId = (userID, showingID) => {
   //   .groupBy("bookings.showingID", "movies.name", "showings.id");
 };
 
-let add = (booking) => {
-  return db("bookings")
+let add = async (booking, trx = null) => {
+  const query = db("bookings")
     .insert(booking)
     .returning("*")
     .then((newBooking) => {
       return newBooking[0];
     });
+
+  // If a db transaction is provided, use it
+  if (trx) {
+    return query.transacting(trx);
+  } else {
+    return query;
+  }
 };
 
 let update = (booking) => {
