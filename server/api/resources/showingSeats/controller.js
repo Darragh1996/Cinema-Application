@@ -120,47 +120,124 @@ let addShowingSeats = async (req, res) => {
 //   }
 // };
 
+// let bookShowingSeat = async (req, res) => {
+//   try {
+//     let { ids, showingID } = req.body;
+//     let userID = req.decodedToken.subject;
+
+//     // Start the transaction
+//     await db.transaction(async (trx) => {
+//       for (let i = 0; i < ids.length; i++) {
+//         // Lock the row for update
+//         const showingSeat = await trx("showingSeats")
+//           .where({ id: ids[i] })
+//           .forUpdate()
+//           .first();
+
+//         // Check if the seat is already occupied
+//         if (showingSeat.occupied === true) {
+//           throw new Error("Seat is already occupied.");
+//         }
+
+//         let updatedShowingSeat = await ShowingSeats.update(
+//           {
+//             id: ids[i],
+//             occupied: true,
+//           },
+//           trx // Pass the transaction
+//         );
+
+//         await Booking.add(
+//           {
+//             userID,
+//             showingID,
+//             showingSeatID: updatedShowingSeat.id,
+//           },
+//           trx // Pass the transaction
+//         );
+//       }
+
+//       // Commit the transaction
+//       await trx.commit();
+//     });
+
+//     let transporter = nodemailer.createTransport({
+//       host: "sandbox.smtp.mailtrap.io",
+//       port: 2525,
+//       auth: {
+//         user: process.env.EMAIL,
+//         pass: process.env.EMAIL_PASSWORD,
+//       },
+//     });
+
+//     // Read the Handlebars template file
+//     const templateFile = await fs.readFile("./utils/emailTemplate.hbs", "utf8");
+
+//     // Compile the template
+//     const template = handlebars.compile(templateFile);
+
+//     const { name, datetime } = await Showings.getByID(showingID);
+
+//     const html = template({
+//       username: req.decodedToken.name,
+//       seatCount: ids.length,
+//       movieName: name,
+//       datetime: datetime,
+//     });
+
+//     let message = {
+//       from: "donotreply@reeldreams.com",
+//       to: "to-example@email.com",
+//       subject: "Reel Dreams Cinema Booking",
+//       html: html,
+//     };
+
+//     transporter.sendMail(message, (err, info) => {
+//       if (err) {
+//         console.log(err);
+//       }
+//     });
+
+//     res.status(200).json({
+//       message: "Showing Seats booked successfully",
+//     });
+//   } catch (error) {
+//     // If there's an error, the transaction will automatically be rolled back
+//     res
+//       .status(500)
+//       .json({ message: "Failed to book showing seat", error: error.message });
+//   }
+// };
+
 let bookShowingSeat = async (req, res) => {
+  const { ids, showingID } = req.body;
+  const userID = req.decodedToken.subject;
+
+  const trx = await db.transaction();
+
   try {
-    let { ids, showingID } = req.body;
-    let userID = req.decodedToken.subject;
+    for (const id of ids) {
+      const showingSeat = await trx("showingSeats")
+        .where({ id })
+        .forUpdate() // Add row-level locking
+        .first();
 
-    // Start the transaction
-    await db.transaction(async (trx) => {
-      for (let i = 0; i < ids.length; i++) {
-        // Lock the row for update
-        const showingSeat = await trx("showingSeats")
-          .where({ id: ids[i] })
-          .forUpdate()
-          .first();
-
-        // Check if the seat is already occupied
-        if (showingSeat.occupied) {
-          throw new Error("Seat is already occupied.");
-        }
-
-        let updatedShowingSeat = await ShowingSeats.update(
-          {
-            id: ids[i],
-            occupied: true,
-          },
-          trx // Pass the transaction
-        );
-
-        await Booking.add(
-          {
-            userID,
-            showingID,
-            showingSeatID: updatedShowingSeat.id,
-          },
-          trx // Pass the transaction
-        );
+      if (showingSeat.occupied) {
+        throw new Error("Seat is already occupied");
       }
 
-      // Commit the transaction
-      await trx.commit();
-    });
+      await trx("showingSeats").where({ id }).update({ occupied: true });
 
+      await trx("bookings").insert({
+        userID,
+        showingID,
+        showingSeatID: showingSeat.id,
+      });
+    }
+
+    await trx.commit();
+
+    // Email sending and template rendering code
     let transporter = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
@@ -170,13 +247,14 @@ let bookShowingSeat = async (req, res) => {
       },
     });
 
-    // Read the Handlebars template file
     const templateFile = await fs.readFile("./utils/emailTemplate.hbs", "utf8");
-
-    // Compile the template
     const template = handlebars.compile(templateFile);
 
     const { name, datetime } = await Showings.getByID(showingID);
+
+    res.status(200).json({
+      message: "Showing Seats booked successfully",
+    });
 
     const html = template({
       username: req.decodedToken.name,
@@ -197,15 +275,12 @@ let bookShowingSeat = async (req, res) => {
         console.log(err);
       }
     });
-
-    res.status(200).json({
-      message: "Showing Seats booked successfully",
-    });
   } catch (error) {
-    // If there's an error, the transaction will automatically be rolled back
-    res
-      .status(500)
-      .json({ message: "Failed to book showing seat", error: error.message });
+    await trx.rollback();
+    res.status(500).json({
+      message: "Failed to book showing seat",
+      error: error.message,
+    });
   }
 };
 

@@ -4,7 +4,7 @@
   "description": "Backend for ATU Third Year Team Project - Cinema",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./tests/*.test.js",
     "database-setup": "npx knex migrate:rollback --all && npx knex migrate:latest && npx knex seed:run",
     "server": "nodemon index.js"
   },
@@ -22,5 +22,11 @@
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
     "pg": "^8.9.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.2.0"
   }
 }
