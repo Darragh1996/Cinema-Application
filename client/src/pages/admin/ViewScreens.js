@@ -73,7 +73,7 @@ function ViewScreens() {
         </div>
       </div>
       <div className="screenViewer">
-        <ul style={{ listStyleType: "none" }}>
+        <ul className="screenViewerLeftUL" style={{ listStyleType: "none" }}>
           {screens.map((screen) => {
             return (
               <span className="screensListSpan">
@@ -95,7 +95,7 @@ function ViewScreens() {
                   <img 
                     className="deleteScreenButton" 
                     id={`deleteScreen${screen.id}`} 
-                    hidden 
+                    hidden={choice === screen.id ? "" : "hidden"}
                     src={deleteButtonPath} 
                     alt="del"
                     onClick={() => handleDeleteClick(screen.id)}
