@@ -65,12 +65,14 @@ function NavBar() {
           // marginTop: 'auto',
           // marginBottom: 'auto',
           paddingLeft: '25px',
-          color: "#fcaf3b",  
+          color: "rgba(255, 255, 255, 0.8)",  
           fontWeight: 'bolder'  ,
-          fontSize: '22px'
+          fontSize: '30px',
+          letterSpacing: '2px',
+          textDecoration: 'none'
         }}
       >
-        Reel Dreams Cinema
+        REEL DREAMS CINEMA
       </h1>
       <div
         style={{

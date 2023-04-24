@@ -34,7 +34,7 @@ function GenerateReport() {
               //get the number of seats using length
               let totalSeats = seats.length;
               //filter out the seats to find number of aisle seats
-              let aisleSeats = seats.filter(seat => seat.aisle == true)
+              let aisleSeats = seats.filter(seat => seat.aisle === true)
               //take away the number of aisle seats to get actual number of seats
               totalSeats = totalSeats - aisleSeats.length;
               //update showings to include total number of seats
@@ -52,7 +52,7 @@ function GenerateReport() {
               //get the showing seats data
               let showingSeat = res.data.showingSeats;
               //filter the seats to find the number of occupied seats
-              let occupiedSeats = showingSeat.filter(seat => seat.occupied == true);
+              let occupiedSeats = showingSeat.filter(seat => seat.occupied === true);
               //set the length of occupied seats to tickets sold
               let ticketsSold = occupiedSeats.length
               //update showings to include tickets sold
@@ -72,7 +72,7 @@ function GenerateReport() {
       <div id="header">
         <h1>Weekly Report</h1>
         <div id="headerButtons">
-          <Link to="/admin">
+          <Link to="/admin"  style={{ textDecoration: 'none' }}>
             <button className="btn btn-success">Home</button>
           </Link>
         </div>

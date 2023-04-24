@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
+import { Trash } from "react-bootstrap-icons";
 
 import ScreenViewer from "../../components/screenViewer/screenViewer.js";
 
@@ -16,8 +17,6 @@ function ViewScreens() {
   const [choice, setChoice] = useState(0);
   const [selectedScreen, setSelectedScreen] = useState({});
 
-  const deleteButtonPath = "https://drive.google.com/uc?export=view&id=15Djhpi8eCPjmXHL3NMWWwITpTebUlSXC";
-
   useEffect(() => {
     justAxios()
       .get("/screens")
@@ -26,7 +25,7 @@ function ViewScreens() {
         setChoice(res.data.screens[0].id);
         setSelectedScreen(res.data.screens[0]);
       });
-  }, []);
+  }, []); 
 
   useEffect(() => {
     justAxios()
@@ -64,10 +63,10 @@ function ViewScreens() {
       <div id="header">
         <h1>Screens List</h1>
         <div id="headerButtons">
-          <Link to="/admin">
+          <Link to="/admin" style={{ textDecoration: 'none' }}>
             <button className="btn btn-success">Home</button>
           </Link>
-          <Link to="/admin/addScreen">
+          <Link to="/admin/addScreen" style={{ textDecoration: 'none' }}>
             <button className="btn btn-primary">+ Add Screen</button>
           </Link>
         </div>
@@ -92,14 +91,22 @@ function ViewScreens() {
                   key={screen.id}
                 >
                   Screen {screen.id} 
-                  <img 
+                  {/* <img 
                     className="deleteScreenButton" 
                     id={`deleteScreen${screen.id}`} 
                     hidden={choice === screen.id ? "" : "hidden"}
                     src={deleteButtonPath} 
                     alt="del"
                     onClick={() => handleDeleteClick(screen.id)}
-                  ></img>
+                  ></img> */}
+                  <span
+                    className="deleteScreenButton" 
+                    id={`deleteScreen${screen.id}`} 
+                    hidden={choice === screen.id ? "" : "hidden"}
+                    onClick={() => handleDeleteClick(screen.id)}
+                  >
+                    <Trash/>
+                  </span>
                 </li>
               </span>
             );
