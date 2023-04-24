@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
 
 import { justAxios, axiosWithAuth } from "../../utils/axios.js";
 
@@ -69,7 +70,8 @@ function GenerateReport() {
 
   return (
     <div>
-      <div id="header">
+      <NavBar/>
+      <div className="marginAbove" id="header">
         <h1>Weekly Report</h1>
         <div id="headerButtons">
           <Link to="/admin"  style={{ textDecoration: 'none' }}>

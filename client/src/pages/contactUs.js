@@ -16,37 +16,38 @@ function ContactUs() {
             <div className="contactMiddleDiv">
                 <div className="contactForm">
                     <form>
-                        <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="firstname" placeholder="Your name.."></input>
-
-                        <label for="lname">Last Name</label>
-                        <input type="text" id="lname" name="lastname" placeholder="Your last name.."></input>
-
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your email address..."></input>
-
-                        <label for="subject">Subject</label><br></br>
-                        <textarea id="subject" name="Message" placeholder="Let us know what you think..." />
+                        <div className="inputDivContact">
+                            <label for="fname">First Name</label><br></br>
+                            <input type="text" id="fname" name="firstname" placeholder="Your name..."></input>
+                        </div>
+                        <div className="inputDivContact">
+                            <label for="lname">Last Name</label><br></br>
+                            <input type="text" id="lname" name="lastname" placeholder="Your last name..."></input>
+                        </div>
+                        <div className="inputDivContact">
+                            <label for="email">Email</label><br></br>
+                            <input type="email" id="email" name="email" placeholder="Your email address..."></input>
+                        </div>
+                        <div className="inputDivContact">
+                            <label for="subject">Subject</label>
+                            <textarea id="subject" name="Message" placeholder="Let us know what you think..." />
+                        </div>
 
                         <input className="bookNowButton" type="submit" value="Submit"></input>
                     </form>
                 </div>
                 <div className="contactInfo">
                     <ul>
-                        <li>
+                        <li> 
                             P: +353 XXX XXXX
                         </li>
-                    </ul>
-                    <ul>
                         <li>
                             E: email@email.com
                         </li>
                     </ul>
                 </div>
             </div>
-            <div style={{ position: "absolute", bottom: "0px", width: "100%" }}>
                 <Footer />
-            </div>
         </div>
     );
 }

@@ -334,14 +334,43 @@
 }
 
 .contactMiddleDiv{
-  display: inline-flex;
+  display: flex;
   justify-content: space-evenly;
-  margin: auto;
-  padding-top: 100px;
+  padding-top: 50px;
   width: 100%;
   padding-right: 200px;
-  padding-left: 200px
+  padding-left: 200px;
+  padding-bottom: 20px
 }
+
+
+.contactForm{
+  display: inline-block;
+  width: 400px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+
+.contactForm label{
+  color: black;
+  padding-bottom: -30px;
+}
+
+.contactForm input{
+  color: black;
+  width: 400px
+}
+
+
+.contactForm textarea{
+  width: 400px;
+  height: 100px
+}
+
+
+
+
 .contactInfo{
   width: 300px;
   vertical-align: middle;
@@ -370,19 +399,3 @@
   display: inline-block; /* Needed to add space between the bullet and the text */
   width: 2em; /* Also needed for space (tweak if needed) */
 }
-
-
-.contactForm{
-  width: 500px;
-}
-
-.contactForm label{
-  color: black;
-  padding-top: 20px;
-}
-
-.contactForm textarea{
-  width: 500px;
-  height: 100px
-}
-
