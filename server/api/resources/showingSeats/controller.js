@@ -1,3 +1,5 @@
+import db from "../../../database/dbConfig.js";
+
 import * as ShowingSeats from "./model.js";
 import * as Booking from "../bookings/model.js";
 import * as Showings from "../showings/model.js";
@@ -55,22 +57,34 @@ let addShowingSeats = async (req, res) => {
 };
 
 let bookShowingSeat = async (req, res) => {
-  try {
-    let { ids, showingID } = req.body;
-    let userID = req.decodedToken.subject;
+  const { ids, showingID } = req.body;
+  const userID = req.decodedToken.subject;
 
-    for (let i = 0; i < ids.length; i++) {
-      let updatedShowingSeat = await ShowingSeats.update({
-        id: ids[i],
-        occupied: true,
-      });
-      await Booking.add({
+  const trx = await db.transaction();
+
+  try {
+    for (const id of ids) {
+      const showingSeat = await trx("showingSeats")
+        .where({ id })
+        .forUpdate() // Add row-level locking
+        .first();
+
+      if (showingSeat.occupied) {
+        throw new Error("Seat is already occupied");
+      }
+
+      await trx("showingSeats").where({ id }).update({ occupied: true });
+
+      await trx("bookings").insert({
         userID,
         showingID,
-        showingSeatID: updatedShowingSeat.id,
+        showingSeatID: showingSeat.id,
       });
     }
 
+    await trx.commit();
+
+    // Email sending and template rendering code
     let transporter = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
@@ -80,13 +94,14 @@ let bookShowingSeat = async (req, res) => {
       },
     });
 
-    // Read the Handlebars template file
     const templateFile = await fs.readFile("./utils/emailTemplate.hbs", "utf8");
-
-    // Compile the template
     const template = handlebars.compile(templateFile);
 
     const { name, datetime } = await Showings.getByID(showingID);
+
+    res.status(200).json({
+      message: "Showing Seats booked successfully",
+    });
 
     const html = template({
       username: req.decodedToken.name,
@@ -107,14 +122,12 @@ let bookShowingSeat = async (req, res) => {
         console.log(err);
       }
     });
-
-    res.status(200).json({
-      message: "Showing Seats booked successfully",
-    });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to book showing seat", error: error.message });
+    await trx.rollback();
+    res.status(500).json({
+      message: "Failed to book showing seat",
+      error: error.message,
+    });
   }
 };
 

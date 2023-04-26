@@ -7,6 +7,7 @@ function privateRoute({ Component, admin }) {
     try {
       let token = localStorage.getItem("reel_dreams_jwt");
       const decodedToken = decode(token);
+      console.log("Decoded token: ", decodedToken);
       if (
         decodedToken.hasOwnProperty("subject") &&
         decodedToken.hasOwnProperty("name") &&
@@ -17,16 +18,23 @@ function privateRoute({ Component, admin }) {
       ) {
         // this if check is for preventing users from
         // getting to admin only pages
-        if (admin === true && decodedToken.admin === false) {
+        if (
+          decodedToken.exp < Date.now() / 1000 ||
+          (admin === true && decodedToken.admin === false)
+        ) {
           return false;
         }
         return true;
       } else {
+        console.log("something wrong with the jwt");
         localStorage.clear();
+        window.alert("Your login session has expired");
         return false;
       }
     } catch (error) {
+      console.log("something wrong with the jwt");
       localStorage.clear();
+      window.alert("Your login session has expired");
       return false;
     }
   };

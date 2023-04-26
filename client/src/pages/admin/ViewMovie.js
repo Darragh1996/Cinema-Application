@@ -55,10 +55,10 @@ function ViewMovie() {
       <div id="header">
         <h1>Movie List</h1>
         <div id="headerButtons">
-          <Link to="/admin">
+          <Link to="/admin" style={{ textDecoration: 'none' }} >
             <button className="btn btn-success">Home</button>
           </Link>
-          <Link to="/admin/addMovie">
+          <Link to="/admin/addMovie" style={{ textDecoration: 'none' }} >
             <button className="btn btn-primary">+ Add Movie</button>
           </Link>
         </div>

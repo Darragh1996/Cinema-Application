@@ -91,10 +91,10 @@ function EditShowingForm() {
       <div id="header">
         <h1>Edit Showing</h1>
         <div id="headerButtons">
-          <Link to="/admin">
+          <Link to="/admin" style={{ textDecoration: 'none' }}>
             <button className="btn btn-success">Home</button>
           </Link>
-          <Link to="/admin/showings">
+          <Link to="/admin/showings" style={{ textDecoration: 'none' }}>
             <button className="btn btn-danger">Cancel</button>
           </Link>
         </div>
@@ -163,7 +163,7 @@ function EditShowingForm() {
           />
         </div>
 
-        <input type="submit" value="Edit" className="btn btn-primary" />
+        <input type="submit" value="Edit" className="bookNowButton" />
       </form>
     </div>
   );

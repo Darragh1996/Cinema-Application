@@ -35,3 +35,28 @@
   padding: 5px;
   text-align: center;
 }
+
+.seatGeneratorParent{
+  display: inline;
+  flex-wrap: wrap;
+}
+
+.seatGeneratorTop{
+  padding-top: 20px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+input{
+  width: 50px;
+}
+
+label{
+  margin: 20px
+}
+
+h1{
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: #fcaf3b;
+}

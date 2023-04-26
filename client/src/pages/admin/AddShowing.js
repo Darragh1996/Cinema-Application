@@ -69,10 +69,10 @@ function ShowingForm() {
       <div className="marginAbove" id="header">
         <h1>Add Showing</h1>
         <div id="headerButtons">
-          <Link to="/admin">
+          <Link to="/admin" style={{ textDecoration: 'none' }}>
             <button className="btn btn-success">Home</button>
           </Link>
-          <Link to="/admin/showings">
+          <Link to="/admin/showings" style={{ textDecoration: 'none' }}>
             <button className="btn btn-danger">Cancel</button>
           </Link>
         </div>
@@ -142,7 +142,7 @@ function ShowingForm() {
           />
         </div>
 
-        <input type="submit" value="Add" className="btn btn-primary" />
+        <input type="submit" value="Add" className="bookNowButton" />
       </form>
     </div>
   );

@@ -39,9 +39,9 @@ let add = (showingSeat) => {
     });
 };
 
-let update = (showingSeat) => {
-  return db("showingSeats")
-    .update({ occupied: showingSeat.occupied })
+let update = (showingSeat, trx) => {
+  return (trx ? trx : db)("showingSeats")
+    .update(showingSeat)
     .where({ id: showingSeat.id })
     .returning("*")
     .then((updatedShowingSeat) => {

@@ -18,6 +18,7 @@ import BookPrivateScreenings from "../pages/bookPrivateScreening.js";
 import CreateScreen from "../pages/admin/CreateScreen.js";
 import BookSeats from "../pages/bookSeats.js";
 import PrivateRoute from "../components/privateRoute.js";
+import ContactUs from "../pages/contactUs.js";
 
 const RoutesConfig = [
   {
@@ -87,6 +88,10 @@ const RoutesConfig = [
   {
     path: "/bookPrivateScreening",
     element: <PrivateRoute Component={BookPrivateScreenings} admin={false} />,
+  },
+  {
+    path: "/contactUs",
+    element: <PrivateRoute Component={ContactUs} admin={false} />,
   },
 ];
 
