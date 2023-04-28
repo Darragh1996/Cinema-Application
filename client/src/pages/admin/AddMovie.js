@@ -60,10 +60,10 @@ function MovieForm() {
       <div className="marginAbove" id="header">
         <h1>Add Movie</h1>
         <div id="headerButtons">
-          <Link to="/admin">
+          <Link to="/admin" style={{ textDecoration: 'none' }}>
             <button className="btn btn-success">Home</button>
           </Link>
-          <Link to="/admin/movies">
+          <Link to="/admin/movies" style={{ textDecoration: 'none' }}>
             <button className="btn btn-danger">Cancel</button>
           </Link>
         </div>
@@ -181,7 +181,7 @@ function MovieForm() {
             onChange={(event) => handleChange(event)}
           />
         </div>
-        <input type="submit" value="Add" className="btn btn-primary" />
+        <input type="submit" value="Add" className="bookNowButton" />
       </form>
     </div>
   );

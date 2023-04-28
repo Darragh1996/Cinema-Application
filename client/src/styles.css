@@ -311,3 +311,91 @@
 .bookPrivateLabels{
   color: white;
 }
+
+.contactUsBannerName{
+  margin-top: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  font-size: 40px;
+  color: #fcaf3b;
+}
+
+.contactUsBannerDetails{
+  display: flex;
+  justify-content: center;
+  color: lightgrey;
+  padding-bottom: 60px
+}
+
+.marginAbove:has(.contactUsBannerName){
+  background-color: black;
+}
+
+.contactMiddleDiv{
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 50px;
+  width: 100%;
+  padding-right: 200px;
+  padding-left: 200px;
+  padding-bottom: 20px
+}
+
+
+.contactForm{
+  display: inline-block;
+  width: 400px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+
+.contactForm label{
+  color: black;
+  padding-bottom: -30px;
+}
+
+.contactForm input{
+  color: black;
+  width: 400px
+}
+
+
+.contactForm textarea{
+  width: 400px;
+  height: 100px
+}
+
+
+
+
+.contactInfo{
+  width: 300px;
+  vertical-align: middle;
+  background-color: black;
+  padding: 20px;
+  border-radius: 15px;
+  height: 150px;
+  margin-top: 30px
+}
+
+.contactInfo li{
+  width: 300px;
+  font-size: 16px;
+  margin-left: 10px;
+  color: white;
+}
+
+.contactInfo ul{
+  list-style: none;
+}
+.contactInfo li::before {
+  list-style-type: disc;
+  content: "\2022";
+  color: #fcaf3b;
+  font-weight: bold; /* If you want it to be bold */
+  display: inline-block; /* Needed to add space between the bullet and the text */
+  width: 2em; /* Also needed for space (tweak if needed) */
+}

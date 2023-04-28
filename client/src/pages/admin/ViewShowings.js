@@ -61,10 +61,10 @@ function ViewShowings() {
       <div id="header">
         <h1>Showings List</h1>
         <div id="headerButtons">
-          <Link to="/admin">
+          <Link to="/admin" style={{ textDecoration: 'none' }}>
             <button className="btn btn-success">Home</button>
           </Link>
-          <Link to="/admin/addShowing">
+          <Link to="/admin/addShowing" style={{ textDecoration: 'none' }}>
             <button className="btn btn-primary">+ Add Showing</button>
           </Link>
         </div>

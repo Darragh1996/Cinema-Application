@@ -60,17 +60,24 @@ function SeatGenerator() {
   };
 
   return (
-    <div>
-      <h3>This is a seat generator</h3>
-      <label htmlFor="rows">Select a row value:</label>
+    <div className={styles.seatGeneratorParent}>
+      <div className={styles.seatGeneratorTop}>
+        <div>
+          <h3>Enter amount of seats in rows and columns</h3>
+        </div>
+        
 
-      <input type="number" id="rowSelect" name="rows" min="1" max="99" />
+        <label htmlFor="rows">Row value:</label>
+        <input type="number" id="rowSelect" name="rows" min="1" max="99" />
 
-      <label htmlFor="cols">Select a column value:</label>
+        <label htmlFor="cols">Column value:</label>
+        <input type="number" id="colSelect" name="cols" min="1" max="99" />
 
-      <input type="number" id="colSelect" name="cols" min="1" max="99" />
-
-      <button onClick={generateSeats}>Generate</button>
+        <button 
+          onClick={generateSeats}
+          className="bookNowButton"
+        >Generate</button>
+      </div>
 
       <table className={styles.screenSeatGenTable}>
         <tbody>
@@ -84,12 +91,15 @@ function SeatGenerator() {
               />
             );
           })}
+          
         </tbody>
       </table>
       <button
+        className="bookNowButton"
         onClick={handleSubmit}
         style={{
           visibility: seats.length ? "" : "hidden",
+          width: '200px'
         }}
       >
         Create Screen

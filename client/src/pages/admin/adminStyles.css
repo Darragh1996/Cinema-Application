@@ -4,7 +4,7 @@ body {
 
 #indexHeader {
   font-size: 50px;
-  color: #0d6efd;
+  color: black;
   width: 50vw;
   text-align: center;
   margin-left: 25vw;
@@ -21,6 +21,12 @@ body {
 
 #indexBtns button {
   font-size: 30px;
+  margin: 5px;
+  background-color: black;
+  border: 0px;
+  color: white;
+  height: 100px;
+  margin: 10px;
 }
 
 #header {
@@ -36,7 +42,7 @@ body {
   text-align: center;
   margin-left: 40vw;
   font-size: 45px;
-  color: #0d6efd;
+  color: black;
 }
 
 #headerButtons {
@@ -45,6 +51,18 @@ body {
   width: 20vw;
   margin-right: 2vw;
   text-decoration: none;
+}
+
+#headerButtons .btn-success{
+  background-color: #fcaf3b;
+  color: black;
+  
+}
+
+#headerButtons .btn-primary{
+  background-color: black;
+  color: white;
+  
 }
 
 #header button {
@@ -72,12 +90,19 @@ td {
   margin-left: 35vw;
   margin-top: 5vh;
   padding: 1rem;
-  border: 1px solid #0d6efd;
+  border: 1px solid #fcaf3b;
   border-radius: 5px;
+  margin-bottom: 100px
+}
+
+.cinemaForm .btn{
+  background-color: #fcaf3b;
+  border: none;
+  color: black;
 }
 
 label {
-  color: #0d6efd;
+  color: black;
   font-weight: bold;
 }
 
@@ -86,7 +111,7 @@ input {
 }
 
 #playMovieIcon {
-  color: #0d6efd;
+  color: #fcaf3b;
 }
 
 #playMovieIcon:hover {
@@ -129,7 +154,7 @@ input {
   display: block;
   z-index: 100;
   background-color: white;
-  border: 3px solid #0d6efd;
+  border: 3px solid #fcaf3b;
   border-radius: 5px;
   position: absolute;
   top: 22.5vh;
@@ -164,39 +189,50 @@ ul {
 }
 
 li {
-  width: 130px;
+  width: 140px;
   height: 30px;
   /* vertical-align: */
   font-size: 20px;
-  left: 30px;
+  padding-left: 10px;
 }
 
 .highlighted {
-  background-color: #0d6efd;
-  color: white;
+  background-color: #fcaf3b;
+  color: black;
 }
 
 .screenViewer {
   box-sizing: border-box;
   display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
   justify-content: center;
+}
+
+.screenViewerLeftUL{
+  margin-right: 10px;
+  width: 160px;
 }
 
 .screensListSpan{
   display: inline;
+  padding-right: 15px
 }
 
 .deleteScreenButton{
   display: inline;
-  left: 5px;
+  left: 18px;
+  bottom: 1px;
   height: 20px;
   width: 20px;
   position: relative;
   right: 5px;
+  color: black;
 }
 
 .deleteScreenButton:hover{
   cursor: pointer;
+  color: red;
 }
 
 .screensListSpan{
@@ -206,3 +242,22 @@ li {
 .marginAbove{
   padding-top: 100px
 }
+
+.glyphicon{
+  color: black;
+}
+
+.glyphicon:hover{
+  color: #fcaf3b;
+}
+
+/* 
+.btn-primary{
+  background-color: #fcaf3b;
+} */
+
+.btn{
+  border: none !important;
+  text-decoration: none !important;
+}
+
