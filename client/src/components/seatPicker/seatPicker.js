@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { justAxios, axiosWithAuth } from "../../utils/axios";
 import styles from "./seatPicker.module.css";
 import Row from "./row";
+import CreditCardForm from "../CreditCardForm/CreditCardForm.js"
 
 function SeatPicker({ showingID, colCount }) {
   const [selectedSeats, setSelectedSeats] = useState(new Set());
   const [hasChanged, setHasChanged] = useState(false);
   const [rows, setRows] = useState([]);
   const [showingPrice, setShowingPrice] = useState(0.0);
+  const [displayCreditCardForm, setDisplayCreditCardForm] = useState(false)
 
   let handleSubmit = (event) => {
+    event.preventDefault()
     axiosWithAuth()
       .post("/showingSeats/book", { ids: [...selectedSeats], showingID })
       .then((res) => {
@@ -57,6 +60,7 @@ function SeatPicker({ showingID, colCount }) {
 
   return (
     <div className={styles.seatPickerContainer}>
+      {displayCreditCardForm ? <CreditCardForm handleSubmit={handleSubmit} setDisplayCreditCardForm={setDisplayCreditCardForm}/>: ""}
       {/* leftide */}
       <div className={styles.pickerLeftSide}>
         <div className={styles.seatsSelectedCount}>
@@ -88,7 +92,7 @@ function SeatPicker({ showingID, colCount }) {
           </table>
         </div>
 
-        <button className="bookNowButton" onClick={handleSubmit}>
+        <button className="bookNowButton" onClick={() => setDisplayCreditCardForm(true)}>
           Purchase
         </button>
       </div>

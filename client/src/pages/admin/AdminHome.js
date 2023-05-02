@@ -6,9 +6,9 @@ import "./adminStyles.css";
 
 function AdminHome() {
   return (
-    <div >
-      <NavBar/>
-      <h1  id="indexHeader">Reel Dreams Admin Page</h1>
+    <div>
+      <NavBar />
+      <h1 id="indexHeader">Reel Dreams Admin Page</h1>
       <div id="indexBtns">
         <Link to="/admin/movies">
           <button className="btn btn-primary">Movie List</button>
@@ -20,7 +20,7 @@ function AdminHome() {
           <button className="btn btn-primary">Screens</button>
         </Link>
         <Link to="/admin/generateReport">
-          <button className="btn btn-primary">Weekly Report</button>
+          <button className="btn btn-primary">Report</button>
         </Link>
       </div>
     </div>
