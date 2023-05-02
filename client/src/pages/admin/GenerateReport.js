@@ -35,7 +35,7 @@ function GenerateReport() {
               //get the number of seats using length
               let totalSeats = seats.length;
               //filter out the seats to find number of aisle seats
-              let aisleSeats = seats.filter(seat => seat.aisle === true)
+              let aisleSeats = seats.filter((seat) => seat.aisle === true);
               //take away the number of aisle seats to get actual number of seats
               totalSeats = totalSeats - aisleSeats.length;
               //update showings to include total number of seats
@@ -44,7 +44,7 @@ function GenerateReport() {
                 updatedShowings[i].totalSeats = totalSeats;
                 return updatedShowings;
               });
-            })
+            });
 
           //get total number of seats that are available
           axiosWithAuth()
@@ -53,28 +53,30 @@ function GenerateReport() {
               //get the showing seats data
               let showingSeat = res.data.showingSeats;
               //filter the seats to find the number of occupied seats
-              let occupiedSeats = showingSeat.filter(seat => seat.occupied === true);
+              let occupiedSeats = showingSeat.filter(
+                (seat) => seat.occupied === true
+              );
               //set the length of occupied seats to tickets sold
-              let ticketsSold = occupiedSeats.length
+              let ticketsSold = occupiedSeats.length;
               //update showings to include tickets sold
               setShowings((prevShowings) => {
                 let updatedShowings = [...prevShowings];
                 updatedShowings[i].ticketsSold = ticketsSold;
                 return updatedShowings;
               });
-            })
+            });
         }
         setShowings(showings);
-      })
+      });
   }, []);
 
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <div className="marginAbove" id="header">
-        <h1>Weekly Report</h1>
+        <h1>Report</h1>
         <div id="headerButtons">
-          <Link to="/admin"  style={{ textDecoration: 'none' }}>
+          <Link to="/admin" style={{ textDecoration: "none" }}>
             <button className="btn btn-success">Home</button>
           </Link>
         </div>
@@ -99,7 +101,7 @@ function GenerateReport() {
                 <td>{showing.datetime}</td>
                 <td>{showing.totalSeats}</td>
                 <td>{showing.ticketsSold}</td>
-                <td>€{(showing.ticketsSold) * (showing.price)}</td>
+                <td>€{showing.ticketsSold * showing.price}</td>
               </tr>
             );
           })}
@@ -108,4 +110,4 @@ function GenerateReport() {
     </div>
   );
 }
-export default GenerateReport
+export default GenerateReport;
